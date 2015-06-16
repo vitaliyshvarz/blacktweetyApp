@@ -110,7 +110,7 @@ module.exports = function(grunt) {
 			  }
 			}
 		},
-		 githooks: {
+		githooks: {
 	    all: {
 	      'pre-commit': 'jshint mongobackup:dump',
 	      'post-merge': {
