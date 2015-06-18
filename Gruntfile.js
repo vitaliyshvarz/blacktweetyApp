@@ -23,7 +23,11 @@ module.exports = function(grunt) {
 		  }
 		},
 		jshint: {
-	      files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js', '*.js'],
+	      files: ['Gruntfile.js',
+	      		  'src/**/*.js',
+	      		  'test/**/*.js',
+	      		  '*.js',
+	      		  '!src/public/bower_components/**/*.js'],
 	      options: {
 	        globals: {
 	          jQuery: true

@@ -5,43 +5,30 @@ var router = express.Router();
 // db
 var Users = require("../dbmodels/Users").Users;
 
-var todoItems = [
-	{id: 1, desc: 'foo'},
-	{id: 2, desc: 'bar'},
-	{id: 3, desc: 'here'},
-	{id: 3, desc: 'here'},
-	{id: 3, desc: 'here'},
-	{id: 3, desc: 'here'},
-	{id: 3, desc: 'here'},
-];
-
-
-
 // req- request, res - responce
 // routes
 router.get('/', function(req, res){
-		Users.find({}, function(err, users) {
-			var userMap = {};
-
-			users.forEach(function(user) {
-			  userMap[user._id] = user;
-			});
-			console.log(userMap);
-			res.render('index', {
-				title: 'Black tweety app',
-				users: userMap
-			});
-		});
-
+	res.render('app/views/index', {
+		title: 'Black tweety app',
+	});
 });
 
-router.post('/add', function(req, res){
-	var newItem = req.body.newItem;
-	todoItems.push({
-		id: todoItems.length + 1,
-		desc: newItem
+router.get('/admin', function(req, res){
+	res.render('admin/index', {
+		title: 'Black tweety ADMIN'
 	});
-	res.redirect('/');
+});
+
+router.get('/login', function(req, res){
+	res.render('admin/views/login', {
+		title: 'Login Black tweety app',
+	});
+});
+
+router.post('/login', function(req, res){
+	res.render('admin/views/login', {
+		title: 'Login Black tweety app',
+	});
 });
 
 module.exports = router;

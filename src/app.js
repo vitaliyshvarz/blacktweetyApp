@@ -15,15 +15,14 @@ var database 	= require('./config/db');
 	mongoose.connect('mongodb://localhost/test');
 
 //app confings ===============================================================
-app.set('views', path.join(__dirname, './public/views'));
+app.set('views', path.join(__dirname, './public'));
 app.set('view engine', 'jade');
 
 //use middleware =============================================================
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 // make this route public
-app.use(express.static(path.join(__dirname, '../bower_components')));
-app.use(express.static('./public'));
+app.use(express.static(__dirname + '/public'));
 app.use(favicon(__dirname + '/favicon.png')); // favicon
 
 //router =====================================================================

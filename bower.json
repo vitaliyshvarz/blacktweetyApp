@@ -1,0 +1,16 @@
+{
+  "name": "blacktweetyApp",
+  "version": "0.0.0",
+  "authors": [
+    "Vitaliy Chorniy <vitaliy.chornyy@symphony-solutions.eu>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/public/bower_components",
+    "test",
+    "tests"
+  ]
+}

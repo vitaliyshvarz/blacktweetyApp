@@ -5,15 +5,18 @@ var router = express.Router();
 // db
 var Users = require("../../dbmodels/Users").Users;
 
-
-// req- request, res - responce
 // routes
 router.get('/api/users', function(req, res){
+	Users.find({}, function(err, users) {
+		var userMap = {};
 
-	// res.render('index', {
-	// 	title: 'Black tweety app',
-	// 	users: users
-	// });
+		users.forEach(function(user) {
+		  userMap[user._id] = user;
+		});
+		res.send({
+			users: userMap
+		});
+	});
 });
 
 router.post('/api/users', function(req, res){
@@ -21,7 +24,8 @@ router.post('/api/users', function(req, res){
 			firstName 	: req.body.firstName,
 			lastName 	: req.body.lastName,
 			age 		: req.body.age,
-			email		: req.body.email
+			email		: req.body.email,
+			password	: req.body.password
 		});
 	newUser.save(function (err) {
 	  if (err) return handleError(err);

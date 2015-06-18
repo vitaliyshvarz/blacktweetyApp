@@ -11,8 +11,9 @@ var UserSchema = new mongoose.Schema({
     email: String,
     date: { type: Date, default: Date.now },
     avatar: String,
-    category: String,
-    active: Boolean
+    category: { type: String, default: 'user' },
+    active:  { type: Boolean, default: false },
+    password: String
 });
 
 UserSchema.methods.speak = function() {
