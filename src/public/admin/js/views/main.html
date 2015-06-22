@@ -1,35 +1,72 @@
 <div class="container">
+
+</div>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <span class="glyphicon glyphicon-king"></span>
+      </a>
+    </div>
+    <button
+			class="btn btn-xs navbar-btn"
+			ng-class="lang === 'en' ? 'btn-success' : 'btn-warning'"
+			ng-click="changeLanguage('en')"
+			translate="BUTTON_LANG_EN">
+	</button>
+	<button ng-class="lang === 'de' ? 'btn-success' : 'btn-warning'"
+			class="btn btn-xs navbar-btn"
+			ng-click="changeLanguage('de')"
+			translate="BUTTON_LANG_DE">
+	</button>
+	<button ng-class="lang === 'uk' ? 'btn-success' : 'btn-warning'"
+			class="btn btn-xs navbar-btn"
+			ng-click="changeLanguage('uk')"
+			translate="BUTTON_LANG_UK">
+	</button>
+  </div>
+</nav>
+
+<div class="container">
 	<div class="container">
-		<h1>{{test}}</h1>
+		<h1 translate="MAIN_PAGE_TITLE"></h1>
 	</div>
 </div>
 
 <div class="container">
-	<div class="panel panel-default">
-	  <!-- Default panel contents -->
-	  <div class="panel-heading">Users</div>
+	<div class="row">
+		<div class="col-sm-7">
+			<div class="panel panel-primary">
+			  <!-- Default panel contents -->
+			  <div class="panel-heading" translate="USERS"></div>
 
-	  <!-- Table -->
-	  <table class="table">
-	  	<tr>
-	  		<th>id</th>
-			<th>fullName</th>
-			<th>email</th>
-			<th>age</th>
-			<th>avatar</th>
-			<th>category</th>
-			<th>active</th>
-		</tr>
-	    <tr ng-repeat="user in users">
-			<td>{{user.id}}</td>
-			<td>{{user.fullName}}</td>
-			<td>{{user.email}}</td>
-			<td>{{user.age}}</td>
-			<td>{{user.avatar}}</td>
-			<td>{{user.category}}</td>
-			<td>{{user.active}}</td>
-		</tr>
-	  </table>
+			  <!-- Table -->
+			  <table class="table">
+			  	<tr>
+			  		<th>id</th>
+					<th translate="User.fullName"></th>
+					<th translate="User.email"></th>
+					<th translate="User.age"></th>
+					<th translate="User.avatar"></th>
+					<th translate="User.category"></th>
+					<th translate="User.active"></th>
+				</tr>
+			    <tr ng-repeat="user in users">
+					<td>{{user.id}}</td>
+					<td>{{user.fullName}}</td>
+					<td>{{user.email}}</td>
+					<td>{{user.age}}</td>
+					<td>{{user.avatar}}</td>
+					<td>{{user.category}}</td>
+					<td>{{user.active}}</td>
+				</tr>
+			  </table>
+			</div>
+		</div>
+		<div class="col-sm-5">
+			<add-new-user></add-new-user>
+		</div>
 	</div>
 </div>
 

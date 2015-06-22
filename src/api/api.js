@@ -21,17 +21,18 @@ router.get('/api/users', function(req, res){
 
 router.post('/api/users', function(req, res){
 	var newUser = new Users({
-			firstName 	: req.body.firstName,
-			lastName 	: req.body.lastName,
+			name: {
+				first : req.body.firstName,
+				last 	: req.body.lastName
+			},
 			age 		: req.body.age,
 			email		: req.body.email,
 			password	: req.body.password
 		});
 	newUser.save(function (err) {
-	  if (err) return handleError(err);
+	  if (err) {console.log(err); res.send(err); return;}
 	  console.log('user ' + req.body.firstName + 'saved');
 	});
-	res.redirect('/');
 });
 
 module.exports = router;

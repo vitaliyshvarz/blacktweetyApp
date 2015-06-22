@@ -13,10 +13,12 @@
 			'ngRoute',
 			'ngAnimate',
 			'route-segment',
-			'view-segment'
+			'view-segment',
+			'ngDialog',
+			'pascalprecht.translate'
 		]);
 
-	app.config(function($routeSegmentProvider, $routeProvider) {
+	app.config(function($routeSegmentProvider, $routeProvider, $translateProvider) {
 	    $routeSegmentProvider.options.autoLoadTemplates = true;
 	    $routeSegmentProvider
 
@@ -28,17 +30,18 @@
 	            resolve: {
 	            	initialData: ['initialDataFactory', function(initialDataFactory) {
 			            return initialDataFactory.getUsers();
-			          }]
+			        }]
 	            },
-			        untilResolved: {
-			          templateUrl: 'js/views/loading.html'
-			        },
-			        resolveFailed: {
-			          templateUrl: 'js/views/error.html'
-			        }
+		        untilResolved: {
+		          templateUrl: 'js/views/loading.html'
+		        },
+		        resolveFailed: {
+		          templateUrl: 'js/views/error.html'
+		        }
 	        });
 
 	    $routeProvider.otherwise({redirectTo: '/main'});
+	    $translateProvider.preferredLanguage('en');
 	});
 
 }());

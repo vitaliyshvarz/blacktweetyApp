@@ -4,8 +4,7 @@ var UserSchema = new mongoose.Schema({
 	name: {
 		first: String,
 		last: String,
-		type: String,
-    	index: true
+		type: Object
     },
     age: Number,
     email: String,

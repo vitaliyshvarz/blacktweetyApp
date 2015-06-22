@@ -14,7 +14,8 @@
 	    var endpointUrl = USER_API;
 	    return $resource(endpointUrl, {},
 	      {
-	        'query': { method: 'GET', isArray: false }
+	        'query': { method: 'GET', isArray: false },
+	        'post': { method: 'POST', isArray: false }
 	      }
 	    );
 	  });
