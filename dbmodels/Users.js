@@ -1,6 +1,7 @@
 var mongoose = require("mongoose");
 
 var UserSchema = new mongoose.Schema({
+	_id: String,
 	name: {
 		first: String,
 		last: String,
@@ -10,7 +11,7 @@ var UserSchema = new mongoose.Schema({
     email: String,
     date: { type: Date, default: Date.now },
     avatar: String,
-    category: { type: String, default: 'user' },
+    category: { type: String, default: 'default' },
     active:  { type: Boolean, default: false },
     password: String
 });

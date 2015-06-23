@@ -10,7 +10,7 @@
    */
   angular.module('blacktweetyApp')
   .factory('userFactory',
-    function(userService, $q, ngDialog) {
+    function(userService, $q, ngDialog, $location) {
 
       /**
        * Returns all users
@@ -37,6 +37,7 @@
         userService.post(user).$promise.then(
           function(result) {
             ngDialog.open({ template: 'js/views/popupTmpl.html' });
+            //$location.path('/main').replace();
             _deferred.resolve(result);
           },
           function(error) {

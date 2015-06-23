@@ -53,8 +53,8 @@
 					<th translate="User.active"></th>
 				</tr>
 			    <tr ng-repeat="user in users">
-					<td>{{user.id}}</td>
-					<td>{{user.fullName}}</td>
+					<td>{{user._id}}</td>
+					<td>{{user.name.first + ' ' + user.name.last}}</td>
 					<td>{{user.email}}</td>
 					<td>{{user.age}}</td>
 					<td>{{user.avatar}}</td>

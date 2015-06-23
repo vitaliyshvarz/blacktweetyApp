@@ -11,6 +11,7 @@
 		$scope.lang = $translate.use();
 	    $scope.users = initialData.users.users;
 
+
 	    $scope.addUser = function(data){
 	    	userFactory.addNewUser(data);
 	    };

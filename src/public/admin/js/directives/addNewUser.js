@@ -35,7 +35,27 @@
             	scope.password2 = '';
             	scope.nameError = false;
             	scope.passError = false;
+                /*
+                *   Reset user object.
+                */
+                scope.resetUser = function(){
+                    scope.user = {
+                        'firstName': '',
+                        'lastName': '',
+                        'email': '',
+                        'age': '',
+                        'role': 'default',
+                        'password':'',
+                        'avatar':''
+                    };
+                    scope.password1 = '';
+                    scope.password2 = '';
+                };
 
+                /*
+                *   Check user name.
+                *   parmas{string} name type
+                */
             	scope.checkName = function(nameSt){
             		var name = nameSt + 'Name',
             			error = nameSt + 'NameError',
@@ -68,10 +88,15 @@
             		}
             	};
             	/*
-            	*	Set user password.
+            	*	Add new user.
             	*/
             	scope.addNewUser = function(){
-            		userFactory.addNewUser(scope.user);
+                    if(scope.user.firstName && scope.user.lastName &&
+                        scope.user.email && scope.user.age &&
+                        scope.user.role && scope.user.password) {
+                            userFactory.addNewUser(scope.user);
+                            scope.resetUser();
+                    }
             	};
             }
         };

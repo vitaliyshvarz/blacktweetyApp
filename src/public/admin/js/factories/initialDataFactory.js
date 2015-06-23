@@ -13,18 +13,18 @@
    .factory("initialDataFactory",
       function(userFactory, $q) {
 
-      function getUsers(){
-          var users = userFactory.getAllUsers();
+        function getUsers(){
+            var users = userFactory.getAllUsers();
 
-          return $q.all([users]).then(function(results){
-              return {
-                  users: results[0],
-              };
-          });
-      }
-      return {
-          getUsers: getUsers
-      };
+            return $q.all([users]).then(function(results){
+                return {
+                    users: results[0],
+                };
+            });
+        }
+        return {
+            getUsers: getUsers
+        };
   });
 
 }());
