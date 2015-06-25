@@ -26,6 +26,7 @@
     "mongodb": "^2.0.33",
     "mongoose": "^3.8.30",
     "mongoose-simpledb": "^4.0.3",
+    "multer": "^0.1.8",
     "serve-favicon": "^2.2.1"
   },
   "scripts": {

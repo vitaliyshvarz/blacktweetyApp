@@ -11,16 +11,17 @@
     addNewUser
         .$inject = [
         'userFactory',
-        '$translate'
+        '$translate',
+        '$routeSegment',
+        '$timeout'
     ];
 
-    function addNewUser(userFactory, $translate) {
+    function addNewUser(userFactory, $translate, $routeSegment, $timeout) {
         return {
             restrict: 'E',
-            scope: {},
             replace: false,
             templateUrl: 'js/directives/addNewUser.html',
-            link: function(scope) {
+            link: function(scope, $timeout) {
             	scope.user = {
             		'firstName': '',
             		'lastName': '',
@@ -35,6 +36,7 @@
             	scope.password2 = '';
             	scope.nameError = false;
             	scope.passError = false;
+
                 /*
                 *   Reset user object.
                 */
@@ -50,6 +52,7 @@
                     };
                     scope.password1 = '';
                     scope.password2 = '';
+                    $routeSegment.chain[0].reload();
                 };
 
                 /*
@@ -87,6 +90,7 @@
             			scope.passError = false;
             		}
             	};
+
             	/*
             	*	Add new user.
             	*/
@@ -94,10 +98,27 @@
                     if(scope.user.firstName && scope.user.lastName &&
                         scope.user.email && scope.user.age &&
                         scope.user.role && scope.user.password) {
+                            scope.uploadAvatar(scope.files);
                             userFactory.addNewUser(scope.user);
                             scope.resetUser();
                     }
             	};
+
+                /*
+                *   remove selected image
+                */
+                scope.removeImage = function(){
+                    scope.files = [];
+                };
+
+                scope.log = '';
+
+                scope.uploadAvatar = function (files) {
+                    scope.user.avatar = files[0].name;
+                    userFactory.uploadAvatar(files[0]);
+                };
+
+
             }
         };
     }

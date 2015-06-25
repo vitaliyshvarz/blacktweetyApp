@@ -96,11 +96,24 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-3">
-							<label class="label label-primary">Avatar</label>
+							<label class="label label-primary" translate="User.avatar"></label>
 						</div>
 						<div class="col-sm-9">
-								<input type="file" id="exampleInputFile">
-								<p class="label label-warning" translate="User.avatar"></p>
+							<button class="btn btn-success btn-xs"
+									 ngf-select ng-model="files"
+									 ngf-multiple="multiple">
+									 Select File
+							</button>
+							<button ng-show="files[0] != null"
+									 class="btn btn-danger btn-xs"
+									 ng-click="removeImage()">
+									 cancel
+							</button>
+							<img 	width="100"
+									height="100"
+									class="img-rounded"
+									ng-show="files[0] != null"
+									ngf-src="files[0]"/>
 						</div>
 					</div>
 					<div class="row">

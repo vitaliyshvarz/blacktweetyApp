@@ -10,7 +10,7 @@
    */
   angular.module('blacktweetyApp')
   .factory('userFactory',
-    function(userService, $q, ngDialog, $location) {
+    function(userService, $q, ngDialog, $location, Upload, USER_PHOTO_UPLOAD) {
 
       /**
        * Returns all users
@@ -37,7 +37,6 @@
         userService.post(user).$promise.then(
           function(result) {
             ngDialog.open({ template: 'js/views/popupTmpl.html' });
-            //$location.path('/main').replace();
             _deferred.resolve(result);
           },
           function(error) {
@@ -47,9 +46,26 @@
         return _deferred.promise;
       };
 
+      var uploadAvatar = function(file){
+          Upload.upload({
+              url: USER_PHOTO_UPLOAD,
+              file: file,
+              fields: {
+                'username': 'admin'
+              },
+          }).progress(function (evt) {
+              var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+              console.log('progress: ' + progressPercentage + '% ' +
+                          evt.config.file.name + '\n');
+          }).success(function (data, status, headers, config) {
+              console.log('file: ' + config.file.name + ', Response: ' +
+              JSON.stringify(data) + '\n');
+          });
+      };
       return {
         getAllUsers : getAllUsers,
-        addNewUser  : addNewUser
+        addNewUser  : addNewUser,
+        uploadAvatar: uploadAvatar
       };
     });
 

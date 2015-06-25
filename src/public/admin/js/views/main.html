@@ -1,36 +1,61 @@
-<div class="container">
-
-</div>
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
       <a class="navbar-brand" href="#">
         <span class="glyphicon glyphicon-king"></span>
       </a>
     </div>
-    <button
-			class="btn btn-xs navbar-btn"
-			ng-class="lang === 'en' ? 'btn-success' : 'btn-warning'"
-			ng-click="changeLanguage('en')"
-			translate="BUTTON_LANG_EN">
-	</button>
-	<button ng-class="lang === 'de' ? 'btn-success' : 'btn-warning'"
-			class="btn btn-xs navbar-btn"
-			ng-click="changeLanguage('de')"
-			translate="BUTTON_LANG_DE">
-	</button>
-	<button ng-class="lang === 'uk' ? 'btn-success' : 'btn-warning'"
-			class="btn btn-xs navbar-btn"
-			ng-click="changeLanguage('uk')"
-			translate="BUTTON_LANG_UK">
-	</button>
-  </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">log out</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Language <span class="label label-warning">{{lang}}</span><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li>
+	            <button class="btn btn-xs navbar-btn center-block"
+					ng-class="lang === 'en' ? 'btn-success' : 'btn-warning'"
+					ng-click="changeLanguage('en')"
+					translate="BUTTON_LANG_EN">
+				</button>
+			</li>
+            <li>
+	            <button ng-class="lang === 'de' ? 'btn-success' : 'btn-warning'"
+					class="btn btn-xs navbar-btn center-block"
+					ng-click="changeLanguage('de')"
+					translate="BUTTON_LANG_DE">
+				</button>
+			</li>
+            <li>
+            	<button ng-class="lang === 'uk' ? 'btn-success' : 'btn-warning'"
+					class="btn btn-xs navbar-btn center-block"
+					ng-click="changeLanguage('uk')"
+					translate="BUTTON_LANG_UK">
+				</button>
+			</li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
 </nav>
 
+
+
 <div class="container">
-	<div class="container">
-		<h1 translate="MAIN_PAGE_TITLE"></h1>
+	<div class="container alert alert-info">
+		<p translate="MAIN_PAGE_TITLE"></p>
 	</div>
 </div>
 
@@ -42,26 +67,28 @@
 			  <div class="panel-heading" translate="USERS"></div>
 
 			  <!-- Table -->
-			  <table class="table">
-			  	<tr>
-			  		<th>id</th>
-					<th translate="User.fullName"></th>
-					<th translate="User.email"></th>
-					<th translate="User.age"></th>
-					<th translate="User.avatar"></th>
-					<th translate="User.category"></th>
-					<th translate="User.active"></th>
-				</tr>
-			    <tr ng-repeat="user in users">
-					<td>{{user._id}}</td>
-					<td>{{user.name.first + ' ' + user.name.last}}</td>
-					<td>{{user.email}}</td>
-					<td>{{user.age}}</td>
-					<td>{{user.avatar}}</td>
-					<td>{{user.category}}</td>
-					<td>{{user.active}}</td>
-				</tr>
-			  </table>
+			  <div class="table-responsive">
+				  <table class="table">
+				  	<tr>
+				  		<th>id</th>
+						<th translate="User.fullName"></th>
+						<th translate="User.email"></th>
+						<th translate="User.age"></th>
+						<th translate="User.avatar"></th>
+						<th translate="User.category"></th>
+						<th translate="User.active"></th>
+					</tr>
+				    <tr ng-repeat="user in users">
+						<td>{{user._id}}</td>
+						<td>{{user.name.first + ' ' + user.name.last}}</td>
+						<td>{{user.email}}</td>
+						<td>{{user.age}}</td>
+						<td><img ng-src="{{user.avatar}}"/></td>
+						<td>{{user.category}}</td>
+						<td>{{user.active}}</td>
+					</tr>
+				  </table>
+			  </div>
 			</div>
 		</div>
 		<div class="col-sm-5">

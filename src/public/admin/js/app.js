@@ -15,7 +15,8 @@
 			'route-segment',
 			'view-segment',
 			'ngDialog',
-			'pascalprecht.translate'
+			'pascalprecht.translate',
+			'ngFileUpload'
 		]);
 
 	app.config(function($routeSegmentProvider, $routeProvider, $translateProvider) {

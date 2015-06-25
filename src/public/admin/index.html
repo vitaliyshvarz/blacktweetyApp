@@ -2,22 +2,29 @@
 <html lang="en" ng-app="blacktweetyApp">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>blacktweetyApp</title>
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../bower_components/ngDialog/css/ngDialog-theme-default.min.css">
     <link rel="stylesheet" href="../bower_components/ngDialog/css/ngDialog.min.css">
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
 
     <div class="ng-cloak">
 
-        <div class="container" id="content">
+        <div class="container-fluid" id="content">
             <div class="row anim" app-view-segment="0"></div>
         </div>
 
     </div>
 
+    <!--  Video is muted & autoplays, placed after major DOM elements for performance & has an image fallback  -->
+    <video autoplay loop poster="54.183.64.164/raw-media/first-frame-screencap" id="video-background" muted>
+      <source src="http://beta.mattgrossdesign.com/sites/default/files/wood%20autumn-HD.mp4" type="video/mp4">
+    </video>
 
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/angular-route/angular-route.js"></script>
     <script src="../bower_components/angular-resource/angular-resource.js"></script>
@@ -25,6 +32,9 @@
     <script src="../bower_components/angular-route-segment/build/angular-route-segment.js"></script>
     <script src="../bower_components/ngDialog/js/ngDialog.js"></script>
     <script src="../bower_components/angular-translate/angular-translate.js"></script>
+    <script src="../bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
     <script src="js/app.js"></script>
     <script src="js/config.js"></script>
 <!--=====translations=====-->

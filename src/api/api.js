@@ -2,6 +2,28 @@
 var express = require('express');
 var router = express.Router();
 var shortid = require('shortid');
+var multer  = require('multer');
+var done = false;
+
+
+/*Configure the multer.*/
+
+router.use(multer({ dest: 'src/public/',
+	changeDest: function(dest, req, res) {
+	    return dest + req.body.username + '/uploads/';
+	},
+	rename: function (fieldname, filename) {
+		return filename+Date.now();
+	},
+	onFileUploadStart: function (file) {
+		console.log(file.originalname + ' is starting ...');
+	},
+	onFileUploadComplete: function (file) {
+		console.log(file.fieldname + ' uploaded to  ' + file.path);
+		done=true;
+	}
+}));
+
 
 // db
 var Users = require("../../dbmodels/Users").Users;
@@ -29,14 +51,23 @@ router.post('/api/users', function(req, res){
 			},
 			age 		: req.body.age,
 			email		: req.body.email,
-			category	: req.body.category,
-			password	: req.body.password
+			category	: req.body.role,
+			password	: req.body.password,
+			avatar		: req.body.avatar
 		});
 	newUser.save(function (err) {
 	  if (err) {console.log(err); res.send(err); return;}
 	  console.log('user ' + req.body.firstName + 'saved');
 	  res.send('user added success');
 	});
+});
+
+router.post('/api/photo', function(req, res){
+	console.log(req.body);
+	if(done === true){
+		console.log(req.files);
+		res.end("File uploaded.");
+	}
 });
 
 module.exports = router;
