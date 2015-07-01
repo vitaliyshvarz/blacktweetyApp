@@ -1,1 +1,1 @@
-it will be a awesome CMS
+it will be an awesome CMS
