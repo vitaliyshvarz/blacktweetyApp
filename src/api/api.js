@@ -4,6 +4,7 @@ var router = express.Router();
 var shortid = require('shortid');
 var multer  = require('multer');
 var done = false;
+var filenameSave = '';
 
 
 /*Configure the multer.*/
@@ -12,8 +13,10 @@ router.use(multer({ dest: 'src/public/',
 	changeDest: function(dest, req, res) {
 	    return dest + req.body.username + '/uploads/';
 	},
-	rename: function (fieldname, filename) {
-		return filename+Date.now();
+	rename: function (fieldname, filename, req, res) {
+		var filenameForSave = Date.now()+filename;
+		filenameSave = "uploads/"+filenameForSave+'.'+req.body.extention;
+		return filenameForSave;
 	},
 	onFileUploadStart: function (file) {
 		console.log(file.originalname + ' is starting ...');
@@ -53,7 +56,7 @@ router.post('/api/users', function(req, res){
 			email		: req.body.email,
 			category	: req.body.role,
 			password	: req.body.password,
-			avatar		: req.body.avatar
+			avatar		: filenameSave
 		});
 	newUser.save(function (err) {
 	  if (err) {console.log(err); res.send(err); return;}
@@ -63,9 +66,7 @@ router.post('/api/users', function(req, res){
 });
 
 router.post('/api/photo', function(req, res){
-	console.log(req.body);
 	if(done === true){
-		console.log(req.files);
 		res.end("File uploaded.");
 	}
 });

@@ -83,7 +83,11 @@
 						<td>{{user.name.first + ' ' + user.name.last}}</td>
 						<td>{{user.email}}</td>
 						<td>{{user.age}}</td>
-						<td><img ng-src="{{user.avatar}}"/></td>
+						<td><img width="50"
+								 height="50"
+								 class="img-rounded"
+								 ng-src="{{user.avatar}}"/>
+						</td>
 						<td>{{user.category}}</td>
 						<td>{{user.active}}</td>
 					</tr>

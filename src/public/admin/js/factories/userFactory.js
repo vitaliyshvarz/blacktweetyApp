@@ -51,7 +51,8 @@
               url: USER_PHOTO_UPLOAD,
               file: file,
               fields: {
-                'username': 'admin'
+                'username': 'admin',
+                'extention': file.type.substr(file.type.indexOf('/')+1)
               },
           }).progress(function (evt) {
               var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);

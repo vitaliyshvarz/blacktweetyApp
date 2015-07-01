@@ -28,6 +28,11 @@
             category: 'category',
             active: 'active',
             password: 'password'
+        },
+        Roles: {
+            default: 'default',
+            moderator: 'moderator',
+            admin: 'admin'
         }
       });
     });

@@ -111,8 +111,6 @@
                     scope.files = [];
                 };
 
-                scope.log = '';
-
                 scope.uploadAvatar = function (files) {
                     scope.user.avatar = files[0].name;
                     userFactory.uploadAvatar(files[0]);

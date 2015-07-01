@@ -28,6 +28,11 @@
             category: 'категорія',
             active: 'активний',
             password: 'пароль'
+        },
+        Roles: {
+            default: 'звичайний',
+            moderator: 'модератор',
+            admin: 'адмін'
         }
       });
 
