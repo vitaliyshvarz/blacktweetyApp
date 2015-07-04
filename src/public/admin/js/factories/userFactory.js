@@ -52,7 +52,7 @@
               file: file,
               fields: {
                 'username': 'admin',
-                'extention': file.type.substr(file.type.indexOf('/')+1)
+                'extention': file.name.split('.').pop()
               },
           }).progress(function (evt) {
               var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);

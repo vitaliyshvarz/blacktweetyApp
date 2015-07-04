@@ -12,5 +12,17 @@
     "src/public/bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "homepage": "https://github.com/VitaliyChorniy/blacktweetyApp",
+  "dependencies": {
+    "angular": "~1.4.1",
+    "angular-animate": "~1.4.1",
+    "angular-resource": "~1.4.1",
+    "angular-route": "~1.4.1",
+    "angular-route-segment": "~1.5.0",
+    "angular-translate": "~2.7.2",
+    "bootstrap": "~3.3.5",
+    "ng-file-upload": "~5.0.9",
+    "ngDialog": "~0.4.0"
+  }
 }
