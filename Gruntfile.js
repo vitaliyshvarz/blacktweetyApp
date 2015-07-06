@@ -102,12 +102,13 @@ module.exports = function(grunt) {
 			  options: {
 			    host : 'localhost',
 			    out : './dumps/mongo',
-			    db: 'heroku_375q6vw3'
+			    db: 'test'
 			  }
 			},
 			restore: {
 			  options: {
-			  	db: 'heroku_375q6vw3',
+			  	db: 'test',
+			    host : 'localhost',
 			    drop : true,
 			    path : './dumps/mongo/test'
 			  }
@@ -126,7 +127,7 @@ module.exports = function(grunt) {
 
 
   // Default task(s).
-  grunt.registerTask('build', ['mongobackup:restore', 'express:prod']);
+  grunt.registerTask('build', ['express:prod']);
   grunt.registerTask('start', [ 'express:dev', 'open:dev', 'watch' ]);
   grunt.registerTask('dbdump', [ 'mongobackup:dump']);
   grunt.registerTask('dbrestore', ['mongobackup:restore' ]);
