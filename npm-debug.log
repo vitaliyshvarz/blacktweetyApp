@@ -1,0 +1,198 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'ng-dialog',
+1 verbose cli   '--save' ]
+2 info using npm@2.10.1
+3 info using node@v0.12.4
+4 verbose install initial load of /home/vitaliy/MVC/blacktweetyApp/package.json
+5 warn package.json blacktweetyapp@1.0.0 No repository field.
+6 verbose installManyTop reading scoped package data from /home/vitaliy/MVC/blacktweetyApp/node_modules/body-parser/package.json
+7 verbose installManyTop reading scoped package data from /home/vitaliy/MVC/blacktweetyApp/node_modules/bower/package.json
+8 verbose installManyTop reading scoped package data from /home/vitaliy/MVC/blacktweetyApp/node_modules/ejs/package.json
+9 verbose installManyTop reading scoped package data from /home/vitaliy/MVC/blacktweetyApp/node_modules/express/package.json
+10 verbose installManyTop reading scoped package data from /home/vitaliy/MVC/blacktweetyApp/node_modules/grunt/package.json
+11 verbose installManyTop reading scoped package data from /home/vitaliy/MVC/blacktweetyApp/node_modules/grunt-concurrent/package.json
+12 verbose installManyTop reading scoped package data from /home/vitaliy/MVC/blacktweetyApp/node_modules/grunt-contrib-jshint/package.json
+13 verbose installManyTop reading scoped package data from /home/vitaliy/MVC/blacktweetyApp/node_modules/grunt-contrib-uglify/package.json
+14 verbose installManyTop reading scoped package data from /home/vitaliy/MVC/blacktweetyApp/node_modules/grunt-contrib-watch/package.json
+15 verbose installManyTop reading scoped package data from /home/vitaliy/MVC/blacktweetyApp/node_modules/grunt-express-server/package.json
+16 verbose installManyTop reading scoped package data from /home/vitaliy/MVC/blacktweetyApp/node_modules/grunt-githooks/package.json
+17 verbose installManyTop reading scoped package data from /home/vitaliy/MVC/blacktweetyApp/node_modules/grunt-mongo-backup/package.json
+18 verbose installManyTop reading scoped package data from /home/vitaliy/MVC/blacktweetyApp/node_modules/grunt-nodemon/package.json
+19 verbose installManyTop reading scoped package data from /home/vitaliy/MVC/blacktweetyApp/node_modules/grunt-open/package.json
+20 verbose installManyTop reading scoped package data from /home/vitaliy/MVC/blacktweetyApp/node_modules/grunt-shell/package.json
+21 verbose installManyTop reading scoped package data from /home/vitaliy/MVC/blacktweetyApp/node_modules/jade/package.json
+22 verbose installManyTop reading scoped package data from /home/vitaliy/MVC/blacktweetyApp/node_modules/mongobackup/package.json
+23 verbose installManyTop reading scoped package data from /home/vitaliy/MVC/blacktweetyApp/node_modules/mongodb/package.json
+24 verbose installManyTop reading scoped package data from /home/vitaliy/MVC/blacktweetyApp/node_modules/mongoose/package.json
+25 verbose installManyTop reading scoped package data from /home/vitaliy/MVC/blacktweetyApp/node_modules/multer/package.json
+26 verbose installManyTop reading scoped package data from /home/vitaliy/MVC/blacktweetyApp/node_modules/nodemon/package.json
+27 verbose installManyTop reading scoped package data from /home/vitaliy/MVC/blacktweetyApp/node_modules/serve-favicon/package.json
+28 verbose installManyTop reading scoped package data from /home/vitaliy/MVC/blacktweetyApp/node_modules/shortid/package.json
+29 info package.json grunt@0.4.5 No license field.
+30 info package.json bower@1.4.1 No license field.
+31 info package.json grunt-contrib-watch@0.6.1 No license field.
+32 info package.json grunt-contrib-jshint@0.11.2 No license field.
+33 info package.json grunt-contrib-uglify@0.9.1 No license field.
+34 info package.json grunt-githooks@0.3.1 No license field.
+35 info package.json grunt-open@0.2.3 No license field.
+36 info package.json grunt-express-server@0.5.1 No license field.
+37 info package.json nodemon@1.3.7 No license field.
+38 info package.json grunt-mongo-backup@0.0.2 No license field.
+39 verbose readDependencies loading dependencies from /home/vitaliy/MVC/blacktweetyApp/package.json
+40 silly cache add args [ 'ng-dialog', null ]
+41 verbose cache add spec ng-dialog
+42 silly cache add parsed spec { raw: 'ng-dialog',
+42 silly cache add   scope: null,
+42 silly cache add   name: 'ng-dialog',
+42 silly cache add   rawSpec: '',
+42 silly cache add   spec: '*',
+42 silly cache add   type: 'range' }
+43 silly addNamed ng-dialog@*
+44 verbose addNamed "*" is a valid semver range for ng-dialog
+45 silly addNameRange { name: 'ng-dialog', range: '*', hasData: false }
+46 silly mapToRegistry name ng-dialog
+47 silly mapToRegistry using default registry
+48 silly mapToRegistry registry https://registry.npmjs.org/
+49 silly mapToRegistry uri https://registry.npmjs.org/ng-dialog
+50 verbose addNameRange registry:https://registry.npmjs.org/ng-dialog not in flight; fetching
+51 verbose request uri https://registry.npmjs.org/ng-dialog
+52 verbose request no auth needed
+53 info attempt registry request try #1 at 5:11:41 PM
+54 verbose request id f094f7b83aeab31e
+55 http request GET https://registry.npmjs.org/ng-dialog
+56 http 200 https://registry.npmjs.org/ng-dialog
+57 silly get cb [ 200,
+57 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+57 silly get     etag: '"LLV0EU2GY9FG27JG8MDV6O55"',
+57 silly get     'content-type': 'application/json',
+57 silly get     'cache-control': 'max-age=60',
+57 silly get     'content-length': '46033',
+57 silly get     'accept-ranges': 'bytes',
+57 silly get     date: 'Mon, 06 Jul 2015 14:11:42 GMT',
+57 silly get     via: '1.1 varnish',
+57 silly get     age: '0',
+57 silly get     connection: 'keep-alive',
+57 silly get     'x-served-by': 'cache-fra1237-FRA',
+57 silly get     'x-cache': 'HIT',
+57 silly get     'x-cache-hits': '1',
+57 silly get     'x-timer': 'S1436191902.204217,VS0,VE172',
+57 silly get     vary: 'Accept' } ]
+58 verbose get saving ng-dialog to /home/vitaliy/.npm/registry.npmjs.org/ng-dialog/.cache.json
+59 silly addNameRange number 2 { name: 'ng-dialog', range: '*', hasData: true }
+60 silly addNameRange versions [ 'ng-dialog',
+60 silly addNameRange   [ '0.1.6',
+60 silly addNameRange     '0.2.2',
+60 silly addNameRange     '0.2.3',
+60 silly addNameRange     '0.2.6',
+60 silly addNameRange     '0.2.10',
+60 silly addNameRange     '0.2.11',
+60 silly addNameRange     '0.2.13',
+60 silly addNameRange     '0.2.14',
+60 silly addNameRange     '0.3.0',
+60 silly addNameRange     '0.3.2',
+60 silly addNameRange     '0.3.3',
+60 silly addNameRange     '0.3.4',
+60 silly addNameRange     '0.3.5',
+60 silly addNameRange     '0.3.6',
+60 silly addNameRange     '0.3.7',
+60 silly addNameRange     '0.3.8',
+60 silly addNameRange     '0.3.10',
+60 silly addNameRange     '0.3.11',
+60 silly addNameRange     '0.3.12',
+60 silly addNameRange     '0.4.0' ] ]
+61 silly addNamed ng-dialog@0.4.0
+62 verbose addNamed "0.4.0" is a plain semver version for ng-dialog
+63 silly mapToRegistry name ng-dialog
+64 silly mapToRegistry using default registry
+65 silly mapToRegistry registry https://registry.npmjs.org/
+66 silly mapToRegistry uri https://registry.npmjs.org/ng-dialog
+67 verbose addRemoteTarball https://registry.npmjs.org/ng-dialog/-/ng-dialog-0.4.0.tgz not in flight; adding
+68 verbose addRemoteTarball [ 'https://registry.npmjs.org/ng-dialog/-/ng-dialog-0.4.0.tgz',
+68 verbose addRemoteTarball   'a790e2b61625ca6e5322032536e4ea8746ee5657' ]
+69 info retry fetch attempt 1 at 5:11:42 PM
+70 info attempt registry request try #1 at 5:11:42 PM
+71 http fetch GET https://registry.npmjs.org/ng-dialog/-/ng-dialog-0.4.0.tgz
+72 http fetch 200 https://registry.npmjs.org/ng-dialog/-/ng-dialog-0.4.0.tgz
+73 silly fetchAndShaCheck shasum a790e2b61625ca6e5322032536e4ea8746ee5657
+74 verbose addTmpTarball /tmp/npm-5741-e9e30691/registry.npmjs.org/ng-dialog/-/ng-dialog-0.4.0.tgz not in flight; adding
+75 verbose addTmpTarball already have metadata; skipping unpack for ng-dialog@0.4.0
+76 silly cache afterAdd ng-dialog@0.4.0
+77 verbose afterAdd /home/vitaliy/.npm/ng-dialog/0.4.0/package/package.json not in flight; writing
+78 verbose afterAdd /home/vitaliy/.npm/ng-dialog/0.4.0/package/package.json written
+79 silly install resolved [ { name: 'ng-dialog',
+79 silly install resolved     version: '0.4.0',
+79 silly install resolved     homepage: 'https://github.com/likeastore/ngDialog',
+79 silly install resolved     description: 'Modal dialogs and popups provider for Angular.js applications',
+79 silly install resolved     main: './js/ngDialog.js',
+79 silly install resolved     scripts: { test: './node_modules/karma/bin/karma start --single-run --browsers PhantomJS' },
+79 silly install resolved     directories: { test: 'tests' },
+79 silly install resolved     keywords:
+79 silly install resolved      [ 'angular.js',
+79 silly install resolved        'modals',
+79 silly install resolved        'popups',
+79 silly install resolved        'dialog',
+79 silly install resolved        'ng',
+79 silly install resolved        'provider',
+79 silly install resolved        'factory',
+79 silly install resolved        'directive' ],
+79 silly install resolved     author:
+79 silly install resolved      { name: 'Dmitri Voronianski',
+79 silly install resolved        email: 'dmitri.voronianski@gmail.com',
+79 silly install resolved        url: 'http://pixelhunter.me' },
+79 silly install resolved     bugs: { url: 'https://github.com/likeastore/ngDialog/issues' },
+79 silly install resolved     repository: { type: 'git', url: 'https://github.com/likeastore/ngDialog' },
+79 silly install resolved     license: 'MIT',
+79 silly install resolved     dependencies: { angular: '1.3.x' },
+79 silly install resolved     devDependencies:
+79 silly install resolved      { grunt: '~0.4.2',
+79 silly install resolved        'grunt-contrib-cssmin': '^0.9.0',
+79 silly install resolved        'grunt-contrib-jshint': '~0.7.2',
+79 silly install resolved        'grunt-contrib-uglify': '~0.2.7',
+79 silly install resolved        'grunt-myth': '~0.1.0',
+79 silly install resolved        'jasmine-core': '^2.2.0',
+79 silly install resolved        karma: '^0.12.31',
+79 silly install resolved        'karma-jasmine': '^0.3.5',
+79 silly install resolved        'karma-phantomjs-launcher': '^0.1.4',
+79 silly install resolved        myth: '~0.1.6',
+79 silly install resolved        'network-address': '0.0.4',
+79 silly install resolved        strata: '~0.20.1' },
+79 silly install resolved     gitHead: '1dc76a7411536aad2880c0cfc2d5f6e07ba6941d',
+79 silly install resolved     _id: 'ng-dialog@0.4.0',
+79 silly install resolved     _shasum: 'a790e2b61625ca6e5322032536e4ea8746ee5657',
+79 silly install resolved     _from: 'ng-dialog@*',
+79 silly install resolved     _npmVersion: '1.4.28',
+79 silly install resolved     _npmUser: { name: 'dmitri', email: 'dmitri.voronianski@gmail.com' },
+79 silly install resolved     maintainers: [ [Object] ],
+79 silly install resolved     dist:
+79 silly install resolved      { shasum: 'a790e2b61625ca6e5322032536e4ea8746ee5657',
+79 silly install resolved        tarball: 'http://registry.npmjs.org/ng-dialog/-/ng-dialog-0.4.0.tgz' },
+79 silly install resolved     _resolved: 'https://registry.npmjs.org/ng-dialog/-/ng-dialog-0.4.0.tgz' } ]
+80 info install ng-dialog@0.4.0 into /home/vitaliy/MVC/blacktweetyApp
+81 info installOne ng-dialog@0.4.0
+82 verbose installOne of ng-dialog to /home/vitaliy/MVC/blacktweetyApp not in flight; installing
+83 warn locking Error: EACCES, open '/home/vitaliy/.npm/_locks/ng-dialog-f5203b9d7dc4a0b5.lock'
+83 warn locking     at Error (native)
+83 warn locking  /home/vitaliy/.npm/_locks/ng-dialog-f5203b9d7dc4a0b5.lock failed { [Error: EACCES, open '/home/vitaliy/.npm/_locks/ng-dialog-f5203b9d7dc4a0b5.lock']
+83 warn locking   errno: -13,
+83 warn locking   code: 'EACCES',
+83 warn locking   path: '/home/vitaliy/.npm/_locks/ng-dialog-f5203b9d7dc4a0b5.lock' }
+84 verbose stack Error: Attempt to unlock /home/vitaliy/MVC/blacktweetyApp/node_modules/ng-dialog, which hasn't been locked
+84 verbose stack     at unlock (/usr/local/lib/node_modules/npm/lib/utils/locker.js:66:11)
+84 verbose stack     at cb (/usr/local/lib/node_modules/npm/lib/install.js:1017:5)
+84 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:1021:20
+84 verbose stack     at /usr/local/lib/node_modules/npm/lib/utils/locker.js:40:9
+84 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/lockfile/lockfile.js:149:38)
+84 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/lockfile/lockfile.js:177:38
+84 verbose stack     at FSReqWrap.oncomplete (fs.js:95:15)
+85 verbose cwd /home/vitaliy/MVC/blacktweetyApp
+86 error Linux 3.13.0-55-generic
+87 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "ng-dialog" "--save"
+88 error node v0.12.4
+89 error npm  v2.10.1
+90 error Attempt to unlock /home/vitaliy/MVC/blacktweetyApp/node_modules/ng-dialog, which hasn't been locked
+91 error If you need help, you may report this error at:
+91 error     <https://github.com/npm/npm/issues>
+92 verbose exit [ 1, true ]
