@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
 
-	var PORT = process.env.SERVER_PORT || 3000;
-	// Load the plugin that provides the "uglify" task.
+	var PORT = process.env.PORT || 3000;
+	// Load plugins
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-nodemon');
@@ -82,7 +82,7 @@ module.exports = function(grunt) {
 		    },
 		    prod: {
 		      options: {
-		        script: 'path/to/prod/server.js',
+		        script: 'src/app.js',
 		        node_env: 'production'
 		      }
 		    },
@@ -130,5 +130,5 @@ module.exports = function(grunt) {
   grunt.registerTask('start', [ 'express:dev', 'open:dev', 'watch' ]);
   grunt.registerTask('dbdump', [ 'mongobackup:dump']);
   grunt.registerTask('dbrestore', ['mongobackup:restore' ]);
-
+  grunt.registerTask('build', ['mongobackup:restore','express:prod']);
 };

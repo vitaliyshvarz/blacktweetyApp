@@ -11,8 +11,15 @@ var port 		= process.env.PORT || 3000;
 var database 	= require('./config/db');
 var mongoose 	= require('mongoose');
 var database 	= require('./config/db');
+var environment = app.settings.env;
 
-	mongoose.connect('mongodb://localhost/test');
+(function connectDB(){
+	if(environment === 'development'){
+		mongoose.connect('mongodb://localhost/test');
+	} else {
+		mongoose.connect('mongodb://heroku_qlm1xzh0:heroku_qlm1xzh0@ds055752.mongolab.com:55752/heroku_qlm1xzh0');
+	}
+})();
 
 //app confings ===============================================================
 app.set('views', path.join(__dirname, './public'));
@@ -25,13 +32,14 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 app.use(favicon(__dirname + '/favicon.png')); // favicon
 
-//router =====================================================================
-app.use(require('./router'));
-app.use(require('./api/api'));
+//modules =====================================================================
+app.use(require('./router')); //Router
+app.use(require('./api/api'));//API
 
-// start the app
+// start the app =============================================================
 app.listen(port, function(){
-	console.log('app is runnin on port' + port);
+	console.log('app is runnin on port ' + port);
+	console.log('environment: ' + environment);
 });
 
 
