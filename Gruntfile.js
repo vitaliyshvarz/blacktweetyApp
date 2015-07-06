@@ -108,7 +108,6 @@ module.exports = function(grunt) {
 			restore: {
 			  options: {
 			  	db: 'test',
-			    host : 'localhost',
 			    drop : true,
 			    path : './dumps/mongo/test'
 			  }
