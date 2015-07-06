@@ -130,5 +130,4 @@ module.exports = function(grunt) {
   grunt.registerTask('start', [ 'express:dev', 'open:dev', 'watch' ]);
   grunt.registerTask('dbdump', [ 'mongobackup:dump']);
   grunt.registerTask('dbrestore', ['mongobackup:restore' ]);
-  
 };

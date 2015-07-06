@@ -4,6 +4,7 @@
   "description": "app",
   "main": "app.js",
   "dependencies": {
+    "body-parser": "^1.13.2",
     "bower": "^1.4.1",
     "express": "^4.13.1",
     "grunt": "^0.4.5",
