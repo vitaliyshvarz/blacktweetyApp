@@ -82,7 +82,8 @@ module.exports = function(grunt) {
 		    },
 		    prod: {
 		      options: {
-		        script: 'src/app.js'
+		        script: 'src/app.js',
+		        node_env: 'production'
 		      }
 		    },
 		    test: {
