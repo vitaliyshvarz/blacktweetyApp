@@ -73,7 +73,7 @@ module.exports = function(grunt) {
 		},
 		express: {
 		    options: {
-		      port: 3000,
+		      port: PORT,
 		    },
 		    dev: {
 		      options: {
@@ -82,8 +82,7 @@ module.exports = function(grunt) {
 		    },
 		    prod: {
 		      options: {
-		        script: 'src/app.js',
-		        node_env: 'production'
+		        script: 'src/app.js'
 		      }
 		    },
 		    test: {
@@ -127,8 +126,9 @@ module.exports = function(grunt) {
 
 
   // Default task(s).
+  grunt.registerTask('build', ['express:prod', 'watch']);
   grunt.registerTask('start', [ 'express:dev', 'open:dev', 'watch' ]);
   grunt.registerTask('dbdump', [ 'mongobackup:dump']);
   grunt.registerTask('dbrestore', ['mongobackup:restore' ]);
-  grunt.registerTask('build', ['mongobackup:restore','express:prod']);
+  
 };
