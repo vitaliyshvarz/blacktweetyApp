@@ -17,7 +17,7 @@ var environment = app.settings.env;
 	if(environment === 'development'){
 		mongoose.connect('mongodb://localhost/test');
 	} else {
-		mongoose.connect('mongodb://heroku_375q6vw3:heroku_375q6vw3@ds033760.mongolab.com:33760/heroku_375q6vw3');
+		mongoose.connect('mongodb://heroku:heroku@ds033760.mongolab.com:33760/heroku_375q6vw3');
 	}
 })();
 
