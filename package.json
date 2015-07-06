@@ -25,7 +25,6 @@
   },
   "scripts": {
     "test": "test",
-    "start": "grunt build",
     "postinstall": "bash ./post_install.sh"
   },
   "keywords": [
