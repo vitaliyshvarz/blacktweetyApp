@@ -102,12 +102,12 @@ module.exports = function(grunt) {
 			  options: {
 			    host : 'localhost',
 			    out : './dumps/mongo',
-			    db: 'test'
+			    db: 'heroku_375q6vw3'
 			  }
 			},
 			restore: {
 			  options: {
-			  	db: 'test',
+			  	db: 'heroku_375q6vw3',
 			    drop : true,
 			    path : './dumps/mongo/test'
 			  }
