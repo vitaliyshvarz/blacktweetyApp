@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
 
 	var PORT = process.env.PORT || 3000;
+	console.log(process.env);
 	// Load plugins
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -91,9 +92,9 @@ module.exports = function(grunt) {
 		copy: {
 			prod: {
 				files: [{
-						cwd: 'src',
+						cwd: 'src/',
 						src: ['**/*', '!**/dumps/**','!**/node_modules/**', '!**/dbmodels/**'],
-						dest: 'build',
+						dest: 'build/',
 						expand: true
 					}],
 			}
@@ -156,6 +157,14 @@ module.exports = function(grunt) {
 			    drop : true,
 			    path : './dumps/mongo/test'
 			  }
+			},
+			prod: {
+				options: {
+				  	db: 'heroku_375q6vw3',
+				    host : 'heroku:heroku@ds033760.mongolab.com:33760',
+				    drop : true,
+				    path : './dumps/mongo/test'
+				  }
 			}
 		},
 		githooks: {
@@ -178,7 +187,7 @@ module.exports = function(grunt) {
 
 
   grunt.registerTask('build', [
-  	'mongobackup:restore',
+  	'mongobackup:prod',
   	'copy:prod',
   	'ngAnnotate:prod',
   	'uglify:prod',
