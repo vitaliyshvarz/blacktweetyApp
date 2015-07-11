@@ -1,17 +1,23 @@
 (function () {
 
-  'use strict';
+    'use strict';
 
-  /**
-   * @ngdoc service
-   * @name blacktweetyApp.initialDataFactory
-   * @description
-   * # userFactory
-   * Factory in the blacktweetyApp.
-   */
-   angular.module('blacktweetyApp')
-   .factory("initialDataFactory",
-      function(userFactory, $q) {
+    /**
+    * @ngdoc service
+    * @name blacktweetyApp.initialDataFactory
+    * @description
+    * # userFactory
+    * Factory in the blacktweetyApp.
+    */
+    angular.module('blacktweetyApp').factory('initialDataFactory', initialDataFactory);
+
+    initialDataFactory
+        .$inject = [
+        'userFactory',
+        '$q'
+    ];
+
+    function initialDataFactory(userFactory, $q) {
 
         function getUsers(){
             var users = userFactory.getAllUsers();
@@ -25,6 +31,6 @@
         return {
             getUsers: getUsers
         };
-  });
+    }
 
 }());

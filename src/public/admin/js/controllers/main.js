@@ -4,9 +4,18 @@
 	/**
 	 * Main controller of blacktweetyApp
 	 */
-	angular.module('blacktweetyApp')
-	.controller('MainCtrl',
-		function($scope, $routeSegment, initialData, userFactory, $translate) {
+	angular.module('blacktweetyApp').controller('MainCtrl', MainCtrl);
+
+	MainCtrl
+		.$inject = [
+		'$scope',
+		'$routeSegment',
+		'initialData',
+		'userFactory',
+		'$translate'
+	];
+
+	function MainCtrl($scope, $routeSegment, initialData, userFactory, $translate) {
 
 		$scope.lang = $translate.use();
 	    $scope.users = initialData.users.users;
@@ -21,6 +30,6 @@
 			$translate.use(langKey);
 			$scope.lang = $translate.use();
 		};
-	});
+	}
 
 }());

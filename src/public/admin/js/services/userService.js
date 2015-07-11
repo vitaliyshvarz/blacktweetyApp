@@ -8,9 +8,16 @@
 	 * # userService
 	 * Service in the blacktweetyApp.
 	 */
-	angular.module('blacktweetyApp')
-	.service('userService',
-	  function($resource, USER_API) {
+
+	angular.module('blacktweetyApp').factory('userService', userService);
+
+    userService
+        .$inject = [
+        '$resource',
+        'USER_API'
+    ];
+
+	function userService($resource, USER_API) {
 	    var endpointUrl = USER_API;
 	    return $resource(endpointUrl, {},
 	      {
@@ -18,6 +25,6 @@
 	        'post': { method: 'POST', isArray: false }
 	      }
 	    );
-	  });
+	  }
 
 }());

@@ -19,7 +19,10 @@
 			'ngFileUpload'
 		]);
 
-	app.config(function($routeSegmentProvider, $routeProvider, $translateProvider) {
+	app.config(['$routeSegmentProvider',
+		'$routeProvider',
+		'$translateProvider',
+		function($routeSegmentProvider, $routeProvider, $translateProvider) {
 	    $routeSegmentProvider.options.autoLoadTemplates = true;
 	    $routeSegmentProvider
 
@@ -43,6 +46,6 @@
 
 	    $routeProvider.otherwise({redirectTo: '/main'});
 	    $translateProvider.preferredLanguage('en');
-	});
+	}]);
 
 }());

@@ -10,6 +10,10 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-open');
 	grunt.loadNpmTasks('mongobackup');
 	grunt.loadNpmTasks('grunt-githooks');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-contrib-htmlmin');
+	grunt.loadNpmTasks('grunt-ng-annotate');
 
 	// Project configuration.
 	grunt.initConfig({
@@ -17,9 +21,7 @@ module.exports = function(grunt) {
 		concurrent: {
 		  dev: {
 		    tasks: ['nodemon', 'node-inspector', 'watch'],
-		    options: {
-		      logConcurrentOutput: true
-		    }
+		    options: { logConcurrentOutput: true }
 		  }
 		},
 		jshint: {
@@ -29,18 +31,14 @@ module.exports = function(grunt) {
 	      		  '*.js',
 	      		  '!src/public/bower_components/**/*.js'],
 	      options: {
-	        globals: {
-	          jQuery: true
-	        }
+	        globals: { jQuery: true }
 	      }
 	    },
 	    watch: {
 		    express: {
 		      files:  ['<%= jshint.files %>'],
 		      tasks:  [ 'jshint', 'express:dev' ],
-		      options: {
-		        spawn: false
-		      }
+		      options: { spawn: false }
 		    }
 		},
 		nodemon: {
@@ -71,6 +69,52 @@ module.exports = function(grunt) {
 		    }
 		  }
 		},
+		// ng-annotate tries to make the code safe for minification automatically
+	    // by using the Angular long form for dependency injection.
+	    ngAnnotate: {
+	      prod: {
+	        files: [{
+	          expand: true,
+	          cwd: 'build/public/admin',
+	          src: '**/*.js'
+	        }]
+	      }
+	    },
+		uglify: {
+		    prod: {
+		      files: [{
+		          expand: true,
+		          src: ['build/public/admin/js/**/*.js'],
+		      }]
+		    },
+		},
+		copy: {
+			prod: {
+				files: [{
+						cwd: 'src',
+						src: ['**/*', '!**/dumps/**','!**/node_modules/**', '!**/dbmodels/**'],
+						dest: 'build',
+						expand: true
+					}],
+			}
+		},
+		htmlmin: {
+	      prod: {
+	        options: {
+	          collapseWhitespace: true,
+	          conservativeCollapse: true,
+	          collapseBooleanAttributes: true,
+	          removeCommentsFromCDATA: true,
+	          removeOptionalTags: true
+	        },
+	        files: [{
+	          expand: true,
+	          cwd: 'build',
+	          src: '**/*.html',
+	          dest: 'build'
+	        }]
+	      }
+	    },
 		express: {
 		    options: {
 		      port: PORT,
@@ -82,7 +126,7 @@ module.exports = function(grunt) {
 		    },
 		    prod: {
 		      options: {
-		        script: 'src/app.js',
+		        script: 'build/app.js',
 		        node_env: 'production'
 		      }
 		    },
@@ -91,7 +135,7 @@ module.exports = function(grunt) {
 		        script: 'path/to/test/server.js'
 		      }
 		    }
-		  },
+		},
 		open : {
 		    dev : {
 		      path: 'http://127.0.0.1:' + PORT,
@@ -127,8 +171,21 @@ module.exports = function(grunt) {
 
 
   // Default task(s).
-  grunt.registerTask('build', ['express:prod', 'watch']);
+  // grunt.registerTask('build', ['express:prod', 'watch']);
   grunt.registerTask('start', [ 'express:dev', 'open:dev', 'watch' ]);
   grunt.registerTask('dbdump', [ 'mongobackup:dump']);
   grunt.registerTask('dbrestore', ['mongobackup:restore' ]);
+
+
+  grunt.registerTask('build', [
+  	'mongobackup:restore',
+  	'copy:prod',
+  	'ngAnnotate:prod',
+  	'uglify:prod',
+  	'htmlmin:prod',
+  	'express:prod',
+  	'watch'
+  ]);
+
+
 };
