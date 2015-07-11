@@ -1,0 +1,12 @@
+{
+	"dev":{
+		"dbName": "test",
+		"host": "localhost"
+	},
+	"prod":{
+		"dbName": "heroku_375q6vw3",
+		"host": "heroku:heroku@ds033760.mongolab.com:33760",
+		"pass": "heroku_375q6vw3",
+		"user": "heroku_375q6vw3"
+	}
+}

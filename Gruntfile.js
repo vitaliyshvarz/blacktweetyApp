@@ -1,7 +1,8 @@
 module.exports = function(grunt) {
 
-	var PORT = process.env.PORT || 3000;
-	console.log(process.env);
+	var PORT = process.env.PORT || 5000;
+	var DB = grunt.file.readJSON('dbConf.json');
+
 	// Load plugins
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -145,23 +146,23 @@ module.exports = function(grunt) {
 		mongobackup: {
 			dump : {
 			  options: {
-			    host : 'localhost',
+			    host : DB.dev.host,
 			    out : './dumps/mongo',
 			    db: 'test'
 			  }
 			},
 			restore: {
 			  options: {
-			  	db: 'test',
-			    host : 'localhost',
+			  	db: DB.dev.dbName,
+			    host : DB.dev.host,
 			    drop : true,
 			    path : './dumps/mongo/test'
 			  }
 			},
 			prod: {
 				options: {
-				  	db: 'heroku_375q6vw3',
-				    host : 'heroku:heroku@ds033760.mongolab.com:33760',
+				  	db: DB.prod.dbName,
+				    host : DB.prod.host,
 				    drop : true,
 				    path : './dumps/mongo/test'
 				  }
