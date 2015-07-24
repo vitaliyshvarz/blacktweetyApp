@@ -31,4 +31,8 @@ router.post('/login', function(req, res){
 	});
 });
 
+function merge(){
+	console.log("do");
+}
+
 module.exports = router;

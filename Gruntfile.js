@@ -178,10 +178,6 @@ module.exports = function(grunt) {
 	  }
 	});
 
-
-
-  // Default task(s).
-  // grunt.registerTask('build', ['express:prod', 'watch']);
   grunt.registerTask('start', [ 'express:dev', 'open:dev', 'watch' ]);
   grunt.registerTask('dbdump', [ 'mongobackup:dump']);
   grunt.registerTask('dbrestore', ['mongobackup:restore' ]);
