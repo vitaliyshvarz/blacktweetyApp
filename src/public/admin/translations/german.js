@@ -33,7 +33,12 @@
             default: 'Standard',
             moderator: 'Moderator',
             admin: 'Admin'
-        }
+        },
+        LOGIN: 'Einloggen',
+        FORGOT_PASS: 'Passwort Vergessen',
+        SUPPORT: 'Hilfe',
+        USER_NOT_FOUND: 'Kein Benutzer mit dieser Email or Passwort',
+        USER_NOT_ACTIVE: 'Ihr Konto ist nicht aktiviert kontaktieren Sie bitte Unterstützung'
         });
     });
 

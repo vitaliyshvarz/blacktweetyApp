@@ -9,6 +9,7 @@
 	*/
 	angular.module('blacktweetyApp')
 	.constant('USER_API', '/api/users')
-	.constant('USER_PHOTO_UPLOAD', '/api/photo');
+	.constant('USER_PHOTO_UPLOAD', '/api/photo')
+	.constant('LOGIN_API', '/api/login');
 
 }());

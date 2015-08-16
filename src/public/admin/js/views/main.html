@@ -17,26 +17,27 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">log out</a></li>
+      	<li><a ng-bind="userName"></a></li>
+        <li><a href="#" ng-click="logOut()">log out</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Language <span class="label label-warning">{{lang}}</span><span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li>
-	            <button class="btn btn-xs navbar-btn center-block"
+      <li>
+	      <button class="btn btn-xs navbar-btn center-block"
 					ng-class="lang === 'en' ? 'btn-success' : 'btn-warning'"
 					ng-click="changeLanguage('en')"
 					translate="BUTTON_LANG_EN">
 				</button>
 			</li>
-            <li>
-	            <button ng-class="lang === 'de' ? 'btn-success' : 'btn-warning'"
+      <li>
+	      <button ng-class="lang === 'de' ? 'btn-success' : 'btn-warning'"
 					class="btn btn-xs navbar-btn center-block"
 					ng-click="changeLanguage('de')"
 					translate="BUTTON_LANG_DE">
 				</button>
 			</li>
-            <li>
-            	<button ng-class="lang === 'uk' ? 'btn-success' : 'btn-warning'"
+      <li>
+        <button ng-class="lang === 'uk' ? 'btn-success' : 'btn-warning'"
 					class="btn btn-xs navbar-btn center-block"
 					ng-click="changeLanguage('uk')"
 					translate="BUTTON_LANG_UK">

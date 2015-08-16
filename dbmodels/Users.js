@@ -7,13 +7,13 @@ var UserSchema = new mongoose.Schema({
 		last: String,
 		type: Object
     },
-    age: Number,
-    email: String,
-    date: { type: Date, default: Date.now },
-    avatar: String,
-    category: { type: String, default: 'default' },
-    active:  { type: Boolean, default: false },
-    password: String
+  age: Number,
+  email: String,
+  date: { type: Date, default: Date.now },
+  avatar: String,
+  category: { type: String, default: 'default' },
+  active:  { type: Boolean, default: false },
+  password: String
 });
 
 UserSchema.methods.speak = function() {

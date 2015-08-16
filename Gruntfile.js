@@ -16,6 +16,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-htmlmin');
 	grunt.loadNpmTasks('grunt-ng-annotate');
+	grunt.loadNpmTasks('grunt-karma');
 
 	// Project configuration.
 	grunt.initConfig({
@@ -31,7 +32,8 @@ module.exports = function(grunt) {
 	      		  'src/**/*.js',
 	      		  'test/**/*.js',
 	      		  '*.js',
-	      		  '!src/public/bower_components/**/*.js'],
+	      		  '!src/public/bower_components/**/*.js',
+	      		  '!src/**/*.mock.js', '!src/**/*.spec.js'],
 	      options: {
 	        globals: { jQuery: true }
 	      }
@@ -86,7 +88,9 @@ module.exports = function(grunt) {
 		    prod: {
 		      files: [{
 		          expand: true,
-		          src: ['build/public/admin/js/**/*.js'],
+		          src: ['build/public/admin/js/**/*.js',
+		          			'!src/**/*.spec.js',
+		          			'!src/**/*.mock.js'],
 		      }]
 		    },
 		},
@@ -175,7 +179,33 @@ module.exports = function(grunt) {
 	        taskNames: 'bower:install mongobackup:restore'
 	      }
 	    }
-	  }
+	  },
+		karma: {
+		  unit: {
+		    options: {
+		      frameworks: ['jasmine'],
+		      singleRun: true,
+		      browsers: ['Chrome'],
+		      files: [
+		      	'src/public/bower_components/angular/angular.js',
+		      	'src/public/bower_components/angular-mocks/angular-mocks.js',
+		      	'src/public/bower_components/angular-resource/angular-resource.js',
+		      	'src/public/bower_components/angular-route/angular-route.js',
+		      	'src/public/bower_components/angular-animate/angular-animate.js',
+		      	'src/public/bower_components/angular-route-segment/build/angular-route-segment.js',
+		      	'src/public/bower_components/ngDialog/js/ngDialog.js',
+		      	'src/public/bower_components/angular-translate/angular-translate.js',
+		      	'src/public/bower_components/ng-file-upload/ng-file-upload.min.js',
+		      	'src/public/admin/js/**/*.js',
+		      	'src/public/admin/js/app.js', //testing admin
+		        'src/**/*.mock.js', 'src/**/*.spec.js'
+		      ],
+		      colors: true,
+		      port: 9090,
+		      reporters: ['progress']
+		    }
+		  }
+		}
 	});
 
   grunt.registerTask('start', [ 'express:dev', 'open:dev', 'watch' ]);
@@ -193,5 +223,8 @@ module.exports = function(grunt) {
   	'watch'
   ]);
 
-
+	grunt.registerTask('test', [
+	  'jshint',
+	  'karma:unit'
+	]);
 };

@@ -71,4 +71,15 @@ router.post('/api/photo', function(req, res){
 	}
 });
 
+router.post('/api/login', function(req, res){
+		Users.find({password: req.body.pass, email: req.body.email},
+			function(err, user) {
+				if (err) {console.log(err); res.send(err); return;}
+				user.password = '';
+				res.send({
+					user: user
+				});
+		});
+});
+
 module.exports = router;

@@ -16,7 +16,8 @@
 			'view-segment',
 			'ngDialog',
 			'pascalprecht.translate',
-			'ngFileUpload'
+			'ngFileUpload',
+			'ngCookies'
 		]);
 
 	app.config(['$routeSegmentProvider',
@@ -27,15 +28,27 @@
 	    $routeSegmentProvider
 
 	        .when('/main',          'main')
+	        .when('/login',         'login')
 
 	        .segment('main', {
-	            templateUrl: 'js/views/main.html',
-	            controller: 'MainCtrl',
-	            resolve: {
-	            	initialData: ['initialDataFactory', function(initialDataFactory) {
-			            return initialDataFactory.getUsers();
-			        }]
-	            },
+            templateUrl: 'js/views/main.html',
+            controller: 'MainCtrl',
+            resolve: {
+            	initialData: ['initialDataFactory', function(initialDataFactory) {
+		            return initialDataFactory.getUsers();
+		        }]
+            },
+		        untilResolved: {
+		          templateUrl: 'js/views/loading.html'
+		        },
+		        resolveFailed: {
+		          templateUrl: 'js/views/error.html'
+		        }
+	        })
+	        .segment('login',{
+	        	templateUrl: 'js/views/login.html',
+            controller: 'LoginCtrl',
+            resolve: {},
 		        untilResolved: {
 		          templateUrl: 'js/views/loading.html'
 		        },
@@ -46,6 +59,15 @@
 
 	    $routeProvider.otherwise({redirectTo: '/main'});
 	    $translateProvider.preferredLanguage('en');
+	}]);
+
+	app.run(['$rootScope', '$location', '$cookies', '$http', function($rootScope, $location, $cookies, $http){
+    $rootScope.user = $cookies.getObject('user') || {};
+    $rootScope.$on('$locationChangeStart', function (event, next, current) {
+        if (!$rootScope.user.active) {
+            $location.path('/login');
+        }
+    });
 	}]);
 
 }());

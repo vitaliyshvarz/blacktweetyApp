@@ -33,7 +33,12 @@
             default: 'default',
             moderator: 'moderator',
             admin: 'admin'
-        }
+        },
+        LOGIN: 'Login',
+        FORGOT_PASS: 'Forgot Password',
+        SUPPORT: 'Support',
+        USER_NOT_FOUND: 'No user with such email or password',
+        USER_NOT_ACTIVE: 'Your account is not activated please contact support'
       });
     });
 
