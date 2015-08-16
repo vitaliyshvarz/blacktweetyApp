@@ -196,6 +196,7 @@ module.exports = function(grunt) {
 		      	'src/public/bower_components/ngDialog/js/ngDialog.js',
 		      	'src/public/bower_components/angular-translate/angular-translate.js',
 		      	'src/public/bower_components/ng-file-upload/ng-file-upload.min.js',
+		      	'src/public/bower_components/angular-cookies/angular-cookies.js',
 		      	'src/public/admin/js/**/*.js',
 		      	'src/public/admin/js/app.js', //testing admin
 		        'src/**/*.mock.js', 'src/**/*.spec.js'

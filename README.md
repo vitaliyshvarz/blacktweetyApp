@@ -1,6 +1,15 @@
 it will be an awesome CMS
 
-1) install mongoDB
-2) create DB "test"
-3) npm install
-4) bower install
+- install mongoDB
+- create DB "test"
+- npm install
+- bower install
+
+Node test:
+- make test
+
+Front-end admin test
+- grunt test
+
+(VPS) Heroku url
+- blacktweetyapp.herokuapp.com
