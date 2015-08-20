@@ -17,7 +17,8 @@
 			'ngDialog',
 			'pascalprecht.translate',
 			'ngFileUpload',
-			'ngCookies'
+			'ngCookies',
+			'datatables'
 		]);
 
 	app.config(['$routeSegmentProvider',
@@ -27,24 +28,48 @@
 	    $routeSegmentProvider.options.autoLoadTemplates = true;
 	    $routeSegmentProvider
 
-	        .when('/main',          'main')
-	        .when('/login',         'login')
+	        .when('/main',          			'main')
+	        .when('/login',         			'login')
+	        .when('/main/dash-board',     'main.dashBoard')
+	        .when('/main/users',          'main.users')
 
 	        .segment('main', {
             templateUrl: 'js/views/main.html',
             controller: 'MainCtrl',
-            resolve: {
-            	initialData: ['initialDataFactory', function(initialDataFactory) {
-		            return initialDataFactory.getUsers();
-		        }]
-            },
+            resolve:{},
 		        untilResolved: {
 		          templateUrl: 'js/views/loading.html'
 		        },
 		        resolveFailed: {
 		          templateUrl: 'js/views/error.html'
 		        }
-	        })
+		      })
+
+		        .within()
+
+		        	.segment('dashBoard',{
+		        		default: true,
+		        		templateUrl: 'js/views/dashBoard.html'
+		        	})
+
+		        	.segment('users', {
+		        		templateUrl: 'js/views/users.html',
+		        		controller: 'UsersCtrl',
+		        		resolve: {
+		            	initialData: ['initialDataFactory', function(initialDataFactory) {
+				            return initialDataFactory.getUsers();
+				        	}]
+		            },
+				        untilResolved: {
+				          templateUrl: 'js/views/loading.html'
+				        },
+				        resolveFailed: {
+				          templateUrl: 'js/views/error.html'
+				        }
+		        	})
+
+		        .up()
+
 	        .segment('login',{
 	        	templateUrl: 'js/views/login.html',
             controller: 'LoginCtrl',
@@ -57,7 +82,7 @@
 		        }
 	        });
 
-	    $routeProvider.otherwise({redirectTo: '/main'});
+	    $routeProvider.otherwise({redirectTo: '/main/dash-board'});
 	    $translateProvider.preferredLanguage('en');
 	}]);
 

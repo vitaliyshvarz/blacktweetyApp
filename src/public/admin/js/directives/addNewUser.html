@@ -1,155 +1,152 @@
-			<div class="panel panel-primary">
-				<div class="panel-heading" translate="ADD_NEW_USER"></div>
-				<div class="panel-body">
-					<form name="addUserForm">
-					<div class="row" ng-class="{'has-error': firstNameError}">
-						<div class="col-sm-3">
-							<label class="label label-primary" translate="User.firstName"></label>
-						</div>
-						<div class="col-sm-9">
-						  	<input 	type="text"
-						  			class="form-control"
-						  			placeholder="first name"
-						  			aria-describedby="basic-addon1"
-						  			name="firstName"
-						  			ng-model="user.firstName"
-						  			ng-change="checkName('first')"
-						  			required="true">
-						  	<span class="text-danger" ng-show="firstNameError" ng-bind="firstNameErrorText"></span>
-						</div>
-					</div>
-					<div class="row" ng-class="{'has-error': lastNameError}">
-						<div class="col-sm-3">
-							<label class="label label-primary" translate="User.lastName"></label>
-						</div>
-						<div class="col-sm-9">
-						 	<input 	type="text"
-						 			class="form-control"
-						 			placeholder="last lame"
-						 			aria-describedby="basic-addon2"
-						 			name="lastName"
-						 			ng-model="user.lastName"
-						 			ng-change="checkName('last')"
-						 			required="true">
-						 	<span class="text-danger" ng-show="lastNameError" ng-bind="lastNameErrorText"></span>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-3">
-							<label class="label label-primary" translate="User.email"></label>
-						</div>
-						<div class="col-sm-9">
-						  	<input 	type="email"
-						  			class="form-control"
-						  			aria-label="email"
-						  			name="email"
-						  			placeholder="email"
-						  			ng-model="user.email"
-						  			required="true">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-3">
-							<label class="label label-primary" translate="User.age"></label>
-						</div>
-						<div class="col-sm-9">
-						  	<input 	type="number"
-						  			class="form-control"
-						  			aria-label="age"
-						  			name="age"
-						  			placeholder="age"
-						  			ng-model="user.age"
-						  			required="true">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-3">
-							<label class="label label-primary" translate="User.password"></label>
-						</div>
-						<div class="col-sm-9">
-						  	<input 	type="text"
-						  			class="form-control"
-						  			aria-label="password"
-						  			name="password1"
-						  			placeholder="password"
-						  			ng-model="password1"
-						  			ng-change="setPassword()"
-						  			required="true">
-						</div>
-					</div>
-					<div class="row" ng-class="{'has-error': passError}">
-						<div class="col-sm-3">
-							<label class="label label-primary" translate="CONFIRM_PASS"></label>
-						</div>
-						<div class="col-sm-9">
-						  	<input 	type="text"
-						  			class="form-control"
-						  			aria-label="password"
-						  			name="password2"
-						  			placeholder="confirm password"
-						  			ng-model="password2"
-						  			ng-change="setPassword()"
-						  			required="true">
-						  	<span class="text-danger" ng-show="passError" translate="PASS_MATCH_ERR"></span>
-						</div>
 
-					</div>
-					<div class="row">
-						<div class="col-sm-3">
-							<label class="label label-primary" translate="User.avatar"></label>
-						</div>
-						<div class="col-sm-9">
-							<button class="btn btn-success btn-xs"
-									 ngf-select ng-model="files"
-									 ngf-multiple="multiple">
-									 Select File
-							</button>
-							<button ng-show="files[0] != null"
-									 class="btn btn-danger btn-xs"
-									 ng-click="removeImage()">
-									 cancel
-							</button>
-							<img 	width="100"
-									height="100"
-									class="img-rounded"
-									ng-show="files[0] != null"
-									ngf-src="files[0]"/>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-3">
-							<label class="label label-danger" translate="ROLES"></label>
-						</div>
-						<div class="col-sm-9">
-							<div class="radio">
-								<label>
-									<input 	type="radio"
-											id="userRoleDefault"
-											ng-model="user.role"
-											value="default">
-									<span translate="Roles.default"</span>
-								</label>
-								<label>
-									<input 	type="radio"
-											id="userRoleDefault"
-											ng-model="user.role"
-											value="moderator">
-									<span translate="Roles.moderator"</span>
-								</label>
-								<label>
-									<input 	type="radio"
-											id="userRoleDefault"
-											ng-model="user.role"
-											value="admin">
-									<span translate="Roles.admin"</span>
-								</label>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<button class="btn btn-success center-block"
-								ng-click="addNewUser()" translate="SUBMIT"></button>
-					</div>
-					</form>
+		<form name="addUserForm">
+		<div class="row" ng-class="{'has-error': firstNameError}">
+			<div class="col-sm-3">
+				<label class="label label-primary" translate="User.firstName"></label>
+			</div>
+			<div class="col-sm-9">
+			  	<input 	type="text"
+			  			class="form-control"
+			  			placeholder="first name"
+			  			aria-describedby="basic-addon1"
+			  			name="firstName"
+			  			ng-model="user.firstName"
+			  			ng-change="checkName('first')"
+			  			required="true">
+			  	<span class="text-danger" ng-show="firstNameError" ng-bind="firstNameErrorText"></span>
+			</div>
+		</div>
+		<div class="row" ng-class="{'has-error': lastNameError}">
+			<div class="col-sm-3">
+				<label class="label label-primary" translate="User.lastName"></label>
+			</div>
+			<div class="col-sm-9">
+			 	<input 	type="text"
+			 			class="form-control"
+			 			placeholder="last lame"
+			 			aria-describedby="basic-addon2"
+			 			name="lastName"
+			 			ng-model="user.lastName"
+			 			ng-change="checkName('last')"
+			 			required="true">
+			 	<span class="text-danger" ng-show="lastNameError" ng-bind="lastNameErrorText"></span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-3">
+				<label class="label label-primary" translate="User.email"></label>
+			</div>
+			<div class="col-sm-9">
+			  	<input 	type="email"
+			  			class="form-control"
+			  			aria-label="email"
+			  			name="email"
+			  			placeholder="email"
+			  			ng-model="user.email"
+			  			required="true">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-3">
+				<label class="label label-primary" translate="User.age"></label>
+			</div>
+			<div class="col-sm-9">
+			  	<input 	type="number"
+			  			class="form-control"
+			  			aria-label="age"
+			  			name="age"
+			  			placeholder="age"
+			  			ng-model="user.age"
+			  			required="true">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-3">
+				<label class="label label-primary" translate="User.password"></label>
+			</div>
+			<div class="col-sm-9">
+			  	<input 	type="text"
+			  			class="form-control"
+			  			aria-label="password"
+			  			name="password1"
+			  			placeholder="password"
+			  			ng-model="password1"
+			  			ng-change="setPassword()"
+			  			required="true">
+			</div>
+		</div>
+		<div class="row" ng-class="{'has-error': passError}">
+			<div class="col-sm-3">
+				<label class="label label-primary" translate="CONFIRM_PASS"></label>
+			</div>
+			<div class="col-sm-9">
+			  	<input 	type="text"
+			  			class="form-control"
+			  			aria-label="password"
+			  			name="password2"
+			  			placeholder="confirm password"
+			  			ng-model="password2"
+			  			ng-change="setPassword()"
+			  			required="true">
+			  	<span class="text-danger" ng-show="passError" translate="PASS_MATCH_ERR"></span>
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col-sm-3">
+				<label class="label label-primary" translate="User.avatar"></label>
+			</div>
+			<div class="col-sm-9">
+				<button class="btn btn-success btn-xs"
+						 ngf-select ng-model="files"
+						 ngf-multiple="multiple">
+						 Select File
+				</button>
+				<button ng-show="files[0] != null"
+						 class="btn btn-danger btn-xs"
+						 ng-click="removeImage()">
+						 cancel
+				</button>
+				<img 	width="100"
+						height="100"
+						class="img-rounded"
+						ng-show="files[0] != null"
+						ngf-src="files[0]"/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-3">
+				<label class="label label-danger" translate="ROLES"></label>
+			</div>
+			<div class="col-sm-9">
+				<div class="radio">
+					<label>
+						<input 	type="radio"
+								id="userRoleDefault"
+								ng-model="user.role"
+								value="default">
+						<span translate="Roles.default"</span>
+					</label>
+					<label>
+						<input 	type="radio"
+								id="userRoleDefault"
+								ng-model="user.role"
+								value="moderator">
+						<span translate="Roles.moderator"</span>
+					</label>
+					<label>
+						<input 	type="radio"
+								id="userRoleDefault"
+								ng-model="user.role"
+								value="admin">
+						<span translate="Roles.admin"</span>
+					</label>
 				</div>
 			</div>
+		</div>
+		<div class="row">
+			<button class="btn btn-success center-block"
+					ng-click="addNewUser()" translate="SUBMIT"></button>
+		</div>
+		</form>
+

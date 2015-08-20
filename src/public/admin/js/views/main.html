@@ -1,104 +1,143 @@
 
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">
-        <span class="glyphicon glyphicon-king"></span>
-      </a>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+	      <a class="navbar-brand" href="#/main">
+	        <span class="glyphicon glyphicon-king"></span>
+	      </a>
     </div>
+    <!-- /.navbar-header -->
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-      	<li><a ng-bind="userName"></a></li>
-        <li><a href="#" ng-click="logOut()">log out</a></li>
+    <ul class="nav navbar-top-links navbar-right">
+    		<li><img 	width="50"
+									height="50"
+									class="img-rounded"
+									ng-src="{{user.avatar}}"/>
+				</li>
+        <li><a ng-bind="userName"></a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Language <span class="label label-warning">{{lang}}</span><span class="caret"></span></a>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-user">
+                <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                </li>
+                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                </li>
+                <li class="divider"></li>
+                <li><a href="#" ng-click="logOut()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                </li>
+            </ul>
+            <!-- /.dropdown-user -->
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-language fa-fw"></i>  <i class="fa fa-caret-down"></i>
+          </a>
           <ul class="dropdown-menu">
-      <li>
-	      <button class="btn btn-xs navbar-btn center-block"
-					ng-class="lang === 'en' ? 'btn-success' : 'btn-warning'"
-					ng-click="changeLanguage('en')"
-					translate="BUTTON_LANG_EN">
-				</button>
-			</li>
-      <li>
-	      <button ng-class="lang === 'de' ? 'btn-success' : 'btn-warning'"
-					class="btn btn-xs navbar-btn center-block"
-					ng-click="changeLanguage('de')"
-					translate="BUTTON_LANG_DE">
-				</button>
-			</li>
-      <li>
-        <button ng-class="lang === 'uk' ? 'btn-success' : 'btn-warning'"
-					class="btn btn-xs navbar-btn center-block"
-					ng-click="changeLanguage('uk')"
-					translate="BUTTON_LANG_UK">
-				</button>
-			</li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+          	<li>
+          	<a href="#" class="text-center">
+				      <p  class="label"
+				      		ng-class="lang === 'en' ? 'label-success' : 'label-warning'"
+									ng-click="changeLanguage('en')"
+									translate="BUTTON_LANG_EN">
+							</p></a>
+						</li>
+			      <li>
+				      <a href="#" class="text-center">
+				      	<p 	ng-class="lang === 'de' ? 'label-success' : 'label-warning'"
+										class="label"
+										ng-click="changeLanguage('de')"
+										translate="BUTTON_LANG_DE">
+								</p>
+							</a>
+						</li>
+			      <li>
+			      	<a href="#" class="text-center">
+				        <p 	ng-class="lang === 'uk' ? 'label-success' : 'label-warning'"
+										class="label"
+										ng-click="changeLanguage('uk')"
+										translate="BUTTON_LANG_UK">
+								</p>
+							</a>
+						</li>
           </ul>
         </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+        <!-- /.dropdown -->
+    </ul>
+    <!-- /.navbar-top-links -->
+
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav in" id="side-menu">
+                <li class="sidebar-search">
+                    <div class="input-group custom-search-form">
+                        <input type="text" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                    </div>
+                    <!-- /input-group -->
+                </li>
+	            <li>
+	                <a href="#/main/users" ><i class="fa fa-dashboard fa-fw"></i> Users</a>
+	            </li>
+	            <li>
+	                <a href="#"><i class="fa fa-table fa-fw"></i> Blog</a>
+	            </li>
+	            <li>
+	                <a href="#"><i class="fa fa-edit fa-fw"></i> Forms</a>
+	            </li>
+
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.navbar-static-side -->
 </nav>
 
 
 
-<div class="container">
-	<div class="container alert alert-info">
-		<p translate="MAIN_PAGE_TITLE"></p>
-	</div>
-</div>
 
-<div class="container">
-	<div class="row">
-		<div class="col-sm-7">
-			<div class="panel panel-primary">
-			  <!-- Default panel contents -->
-			  <div class="panel-heading" translate="USERS"></div>
 
-			  <!-- Table -->
-			  <div class="table-responsive">
-				  <table class="table">
-				  	<tr>
-				  		<th>id</th>
-						<th translate="User.fullName"></th>
-						<th translate="User.email"></th>
-						<th translate="User.age"></th>
-						<th translate="User.avatar"></th>
-						<th translate="User.category"></th>
-						<th translate="User.active"></th>
-					</tr>
-				    <tr ng-repeat="user in users">
-						<td>{{user._id}}</td>
-						<td>{{user.name.first + ' ' + user.name.last}}</td>
-						<td>{{user.email}}</td>
-						<td>{{user.age}}</td>
-						<td><img width="50"
-								 height="50"
-								 class="img-rounded"
-								 ng-src="{{user.avatar}}"/>
-						</td>
-						<td>{{user.category}}</td>
-						<td>{{user.active}}</td>
-					</tr>
-				  </table>
-			  </div>
-			</div>
-		</div>
-		<div class="col-sm-5">
-			<add-new-user></add-new-user>
-		</div>
-	</div>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+	<div id="page-wrapper" style="min-height: 638px;">
+
+		<div class="row anim" app-view-segment="1"></div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

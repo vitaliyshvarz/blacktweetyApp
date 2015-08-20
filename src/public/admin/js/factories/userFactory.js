@@ -45,7 +45,7 @@
             var _deferred = $q.defer();
             userService.post(user).$promise.then(
                 function(result) {
-                    ngDialog.open({ template: 'js/views/popupTmpl.html' });
+                    showMessage("Success adding user");
                     _deferred.resolve(result);
                 },
                 function(error) {
@@ -71,6 +71,19 @@
                 JSON.stringify(data) + '\n');
             });
         };
+
+        /**
+        * Show dialog message
+        * @params{string} - message
+        */
+        function showMessage(message){
+            ngDialog.open({ template: 'js/views/popupTmpl.html' ,
+                controller: ['$scope', function($scope) {
+                $scope.message = message;
+                }]
+            });
+        }
+
         return {
             getAllUsers : getAllUsers,
             addNewUser  : addNewUser,

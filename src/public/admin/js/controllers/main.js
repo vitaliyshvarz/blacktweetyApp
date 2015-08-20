@@ -10,17 +10,16 @@
 		.$inject = [
 		'$scope',
 		'$routeSegment',
-		'initialData',
 		'$translate',
 		'$cookies',
 		'$rootScope',
 		'$location'
 	];
 
-	function MainCtrl($scope, $routeSegment, initialData, $translate, $cookies, $rootScope, $location) {
+	function MainCtrl($scope, $routeSegment, $translate, $cookies, $rootScope, $location) {
 
 		$scope.lang = $translate.use();
-	  $scope.users = initialData.users.users;
+		$scope.user = $rootScope.user;
 	  $scope.userName = $rootScope.user.name.first + ' ' + $rootScope.user.name.last || '';
 
 	    // change language

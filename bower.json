@@ -25,6 +25,8 @@
     "ng-file-upload": "~5.0.9",
     "ngDialog": "~0.2.11",
     "angular-mocks": "~1.4.4",
-    "angular-cookies": "~1.4.4"
+    "angular-cookies": "~1.4.4",
+    "startbootstrap-sb-admin-2": "~1.0.7",
+    "angular-datatables": "~0.4.3"
   }
 }

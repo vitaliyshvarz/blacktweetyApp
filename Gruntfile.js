@@ -187,6 +187,7 @@ module.exports = function(grunt) {
 		      singleRun: true,
 		      browsers: ['Chrome'],
 		      files: [
+		      	'src/public/bower_components/jquery/dist/jquery.min.js',
 		      	'src/public/bower_components/angular/angular.js',
 		      	'src/public/bower_components/angular-mocks/angular-mocks.js',
 		      	'src/public/bower_components/angular-resource/angular-resource.js',
@@ -197,6 +198,7 @@ module.exports = function(grunt) {
 		      	'src/public/bower_components/angular-translate/angular-translate.js',
 		      	'src/public/bower_components/ng-file-upload/ng-file-upload.min.js',
 		      	'src/public/bower_components/angular-cookies/angular-cookies.js',
+		      	'src/public/bower_components/angular-datatables/dist/angular-datatables.min.js',
 		      	'src/public/admin/js/**/*.js',
 		      	'src/public/admin/js/app.js', //testing admin
 		        'src/**/*.mock.js', 'src/**/*.spec.js'
