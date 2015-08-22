@@ -4,27 +4,25 @@ describe('Testing userFactory', function () {
 
   var userFactory;
 
+  beforeEach(module('blacktweetyApp'));
   beforeEach(function () {
-    //beforeEach(module('blacktweetyApp'));
     inject(function (_userFactory_) {
       userFactory = _userFactory_;
     });
 
   });
-    //     it("psDeregister method", function () {
-    //   expect(userFactory.dddd).toBeDefined();
-    // });
-  describe("should contain", function () {
 
-    it("init methods", function () {
-      expect(userFactory.getAllUser).toBeDefined();
+  describe("userFactory should contain", function () {
+
+    it("getAllUsers method", function () {
+      expect(userFactory.getAllUsers).toBeDefined();
     });
 
-    it("psRegister method", function () {
+    it("addNewUser method", function () {
       expect(userFactory.addNewUser).toBeDefined();
     });
 
-    it("psDeregister method", function () {
+    it("uploadAvatar method", function () {
       expect(userFactory.uploadAvatar).toBeDefined();
     });
   });

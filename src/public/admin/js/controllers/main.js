@@ -13,16 +13,25 @@
 		'$translate',
 		'$cookies',
 		'$rootScope',
-		'$location'
+		'$location',
+		'DEFAULT_AVATAR'
 	];
 
-	function MainCtrl($scope, $routeSegment, $translate, $cookies, $rootScope, $location) {
+	function MainCtrl($scope, $routeSegment, $translate, $cookies, $rootScope, $location, DEFAULT_AVATAR) {
 
 		$scope.lang = $translate.use();
-		$scope.user = $rootScope.user;
-	  $scope.userName = $rootScope.user.name.first + ' ' + $rootScope.user.name.last || '';
 
-	    // change language
+	  $scope.init = function(){
+			$scope.user = $rootScope.user;
+		  $scope.userName = $rootScope.user.name.first + ' ' + $rootScope.user.name.last || '';
+		  if(!$scope.user.avatar){
+		  	$rootScope.user.avatar = DEFAULT_AVATAR;
+		  }
+	  };
+
+	  $scope.init();
+
+		// change language
 		$scope.changeLanguage = function (langKey) {
 			$translate.use(langKey);
 			$scope.lang = $translate.use();

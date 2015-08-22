@@ -19,8 +19,11 @@
 
 		$scope.lang = $translate.use();
 		$scope.email = '';
+		$scope.renEmail = '';
 		$scope.pass = '';
 		$scope.loginError = false;
+		$scope.forgotPass = false;
+		$scope.successNewPass = false;
 
 		$scope.login = function() {
 			if($scope.email.length > 0 && $scope.pass.length > 0) {
@@ -35,10 +38,28 @@
 					});
 			}
 		};
+		$scope.showForgotPass = function(){
+			$scope.forgotPass = !$scope.forgotPass ? true : false;
+		};
 	  // change language
 		$scope.changeLanguage = function (langKey) {
 			$translate.use(langKey);
 			$scope.lang = $translate.use();
+		};
+
+		$scope.sendNewPass = function(){
+			if(/[\w]+@[\w]{1,10}\.[a-zA-Z]{2,5}/i.test($scope.renEmail)){
+				accountActions.resetPass($scope.renEmail).
+					then(function(result){
+						if(result.success){
+							$scope.successNewPass = true;
+							$scope.newPassResult = $filter('translate')('SUCCESS_NEW_PASS');
+						} else {
+							$scope.successNewPass = false;
+							$scope.newPassResult = $filter('translate')('FAIL_NEW_PASS');
+						}
+					});
+			}
 		};
 	}
 

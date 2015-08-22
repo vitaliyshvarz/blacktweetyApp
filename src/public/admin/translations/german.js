@@ -27,7 +27,9 @@
             avatar: 'Foto',
             category: 'Kategorie',
             active: 'aktiv',
-            password: 'Passwort'
+            password: 'Passwort',
+            currentPassword: 'Aktuelles Passwort',
+            newPassword: 'Neue Passwort'
         },
         Roles: {
             default: 'Standard',
@@ -38,7 +40,18 @@
         FORGOT_PASS: 'Passwort Vergessen',
         SUPPORT: 'Hilfe',
         USER_NOT_FOUND: 'Kein Benutzer mit dieser Email or Passwort',
-        USER_NOT_ACTIVE: 'Ihr Konto ist nicht aktiviert kontaktieren Sie bitte Unterstützung'
+        USER_NOT_ACTIVE: 'Ihr Konto ist nicht aktiviert kontaktieren Sie bitte Unterstützung',
+        EMAIL: 'Email',
+        SEND: 'Senden',
+        SUCCESS_NEW_PASS: 'Neues Passwort an Ihre E-Mail gesendet',
+        FAIL_NEW_PASS: 'Benutzer mit solchen E-Mail ist nicht vorhanden',
+        SEND_NEW_PASS: 'Schicken Sie mir neue Passwort',
+        NEW_IMAGE: 'Wählen Sie New Image',
+        SELECT_FILE: 'Wählen Sie Datei',
+        DELETE_IMAGE: 'Löschen',
+        CANCEL: 'stornieren',
+        UPDATE: "erfrischen",
+        UPDATE_PASS: 'Update Passwort'
         });
     });
 

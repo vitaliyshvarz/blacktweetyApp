@@ -27,7 +27,9 @@
             avatar: 'photo',
             category: 'category',
             active: 'active',
-            password: 'password'
+            password: 'password',
+            currentPassword: 'Current password',
+            newPassword: 'New password'
         },
         Roles: {
             default: 'default',
@@ -38,7 +40,18 @@
         FORGOT_PASS: 'Forgot Password',
         SUPPORT: 'Support',
         USER_NOT_FOUND: 'No user with such email or password',
-        USER_NOT_ACTIVE: 'Your account is not activated please contact support'
+        USER_NOT_ACTIVE: 'Your account is not activated please contact support',
+        EMAIL: 'Email',
+        SEND: 'Send',
+        SUCCESS_NEW_PASS: 'New password sent to your email',
+        FAIL_NEW_PASS: 'User with such email does not exist',
+        SEND_NEW_PASS: 'Send me new password',
+        NEW_IMAGE: 'Select New Image',
+        SELECT_FILE: 'Select File',
+        DELETE_IMAGE: 'Delete',
+        CANCEL: 'Cancel',
+        UPDATE: "Update",
+        UPDATE_PASS: 'Update password'
       });
     });
 

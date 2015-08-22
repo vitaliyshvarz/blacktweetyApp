@@ -38,6 +38,7 @@
     "mongoose": "^4.0.6",
     "multer": "^0.1.8",
     "ng-annotate": "^1.0.1",
+    "nodemailer": "^1.4.0",
     "phantomjs": "^1.9.18",
     "serve-favicon": "^2.2.1",
     "shortid": "^2.2.2",

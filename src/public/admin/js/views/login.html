@@ -7,14 +7,14 @@
   <div class="row">
     <div class="Absolute-Center is-Responsive panel panel-primary">
       <div id="logo-container"></div>
-      <div class="col-sm-12 col-md-10 col-md-offset-1">
+      <div ng-show="!forgotPass" class="col-sm-12 col-md-10 col-md-offset-1">
         <form action="" id="loginForm">
           <div class="form-group input-group">
             <span class="input-group-addon warning"><i class="glyphicon glyphicon-user"></i></span>
             <input 	class="form-control"
             				type="text"
             				name='email'
-            				placeholder="email"
+            				placeholder="{{'EMAIL' | translate}}"
             				ng-model="email"/>
           </div>
           <div class="form-group input-group">
@@ -22,7 +22,7 @@
             <input 	class="form-control"
             				type="password"
             				name='password'
-            				placeholder="password"
+            				placeholder="{{'User.password' | translate}}"
             				ng-model="pass"/>
           </div>
           <div class="form-group">
@@ -33,7 +33,14 @@
             </button>
           </div>
           <div class="form-group text-center">
-            <a href="#" translate="FORGOT_PASS"></a>&nbsp;|&nbsp;<a href="#" translate="SUPPORT"></a>
+            <a  href="#"
+                translate="FORGOT_PASS"
+                ng-click="showForgotPass()"></a>&nbsp;|&nbsp;
+            <a  href="#"
+                translate="SUPPORT"
+                data-toggle="collapse"
+                data-target="#support">
+            </a>
           </div>
           <div 	class="alert alert-danger"
           			role="alert"
@@ -44,8 +51,45 @@
         </form>
       </div>
 
+      <!-- help -->
+      <div id="support" class="col-sm-12 col-md-10 col-md-offset-1 text-center collapse">
+        <h5>Questions? please contact us:</h5>
+        <a href="mailto:chornij1@gmail.com?Subject=BlackTweetyCMS%20support" target="_top">Send Mail</a>
+        <i>or Skype: blacktweety4</i>
+      </div>
+
+      <!-- forgot password -->
+      <div ng-show="forgotPass" id="support" class="col-sm-12 col-md-10 col-md-offset-1 text-center">
+        <h5 translate="SEND_NEW_PASS"></h5>
+        <form action="" id="forgotPass">
+          <div class="form-group input-group">
+            <span class="input-group-addon warning"><i class="glyphicon glyphicon-user"></i></span>
+            <input  class="form-control"
+                    type="text"
+                    name='email'
+                    placeholder="{{'EMAIL' | translate}}"
+                    ng-model="renEmail"/>
+          </div>
+            <button type="button"
+                    class="btn btn-sm btn-block btn-success"
+                    translate="SEND"
+                    ng-click="sendNewPass()">
+            </button>
+            <button type="button"
+                    class="btn btn-sm btn-block btn-warning"
+                    translate="LOGIN"
+                    ng-click="showForgotPass()">
+            </button>
+            <hr>
+        </form>
+        <div  class="alert" ng-if="newPassResult"
+              ng-class="successNewPass ? 'alert-success' : 'alert-danger'"
+              ng-bind="newPassResult">
+        </div>
+      </div>
+
       <!-- languages -->
-      <div class="col-sm-12 col-md-10 col-md-offset-1">
+      <div ng-if="!newPassResult" class="col-sm-12 col-md-10 col-md-offset-1">
       	<div class="btn-group btn-group-justified">
 	      		<div class="btn-group" role="group">
 				      <button class="btn btn-xs"

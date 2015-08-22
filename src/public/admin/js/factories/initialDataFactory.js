@@ -19,6 +19,10 @@
 
     function initialDataFactory(userFactory, $q) {
 
+        /**
+        * Get all users
+        * @returns{promice} object with users array
+        */
         function getUsers(){
             var users = userFactory.getAllUsers();
 

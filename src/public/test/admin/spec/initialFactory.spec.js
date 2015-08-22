@@ -3,22 +3,16 @@
 describe('Testing initialDataFactory', function () {
 
   var initialDataFactory;
-
+  beforeEach(module('blacktweetyApp'));
   beforeEach(function () {
-    beforeEach(module('blacktweetyApp'));
     inject(function (_initialDataFactory_) {
       initialDataFactory = _initialDataFactory_;
     });
 
   });
 
-  it('should be defined', function(){
+  it('getUsers be defined', function(){
     expect(initialDataFactory.getUsers).toBeDefined();
   });
-
-  it('should not be defined', function(){
-    expect(initialDataFactory.getUser).toBeDefined();
-  });
-
 
 });

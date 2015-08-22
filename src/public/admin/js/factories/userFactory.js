@@ -17,10 +17,12 @@
         'ngDialog',
         '$location',
         'Upload',
+        'deleteFile',
+        'updateUserService',
         'USER_PHOTO_UPLOAD'
     ];
 
-    function userFactory(userService, $q, ngDialog, $location, Upload, USER_PHOTO_UPLOAD) {
+    function userFactory(userService, $q, ngDialog, $location, Upload, deleteFile, updateUserService, USER_PHOTO_UPLOAD) {
 
         /**
         * Returns all users
@@ -73,6 +75,39 @@
         };
 
         /**
+        * Delete image
+        * @params{string} -file link
+        */
+        var deleteImage = function(file){
+            var _deferred = $q.defer();
+            deleteFile.post({file : file}).$promise.then(
+                function(result) {
+                    _deferred.resolve(result);
+                },
+                function(error) {
+                    _deferred.reject( error );
+                });
+            return _deferred.promise;
+        };
+
+        /**
+        * Update user
+        * @params{object} - user data
+        */
+        var updateUser = function(user){
+            var _deferred = $q.defer();
+            updateUserService.post(user).$promise.then(
+                function(result) {
+                    _deferred.resolve(result);
+                    showMessage("User Updated");
+                },
+                function(error) {
+                    _deferred.reject( error );
+                });
+            return _deferred.promise;
+        };
+
+        /**
         * Show dialog message
         * @params{string} - message
         */
@@ -87,7 +122,9 @@
         return {
             getAllUsers : getAllUsers,
             addNewUser  : addNewUser,
-            uploadAvatar: uploadAvatar
+            uploadAvatar: uploadAvatar,
+            deleteImage: deleteImage,
+            updateUser: updateUser
         };
     }
 

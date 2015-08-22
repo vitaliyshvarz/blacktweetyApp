@@ -8,8 +8,14 @@
 	* constants in the blacktweetyApp.
 	*/
 	angular.module('blacktweetyApp')
-	.constant('USER_API', '/api/users')
+	.constant('USER_API',          '/api/users')
 	.constant('USER_PHOTO_UPLOAD', '/api/photo')
-	.constant('LOGIN_API', '/api/login');
+	.constant('LOGIN_API',         '/api/login')
+	.constant('RESET_PASS_API',    '/api/reset-pass')
+	.constant('DELETE_FILE',       '/api/delete_file')
+	.constant('USER_UPDATE_API',   '/api/update_user')
+	.constant('USER_PASS_UPDATE',  '/api/update-pass')
+
+	.constant('DEFAULT_AVATAR',    'uploads/userDefault.jpg');
 
 }());

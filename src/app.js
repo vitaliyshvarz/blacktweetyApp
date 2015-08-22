@@ -1,18 +1,17 @@
 
 
 // dependencies ==============================================================
-var express 	= require('express');
-var app 		= express();
-var path 		= require('path'); // core nodejs module
+var express 	  = require('express');
+var app 		    = express();
+var path 		    = require('path'); // core nodejs module
 var bodyParser 	= require('body-parser');
-var jade 		= require('jade');
-var favicon 	= require('serve-favicon');
-var port 		= process.env.PORT || 5000;
-var database 	= require('./config/db');
-var mongoose 	= require('mongoose');
-var database 	= require('./config/db');
+var jade 		    = require('jade');
+var favicon 	  = require('serve-favicon');
+var port 		    = process.env.PORT || 5000;
+var database   	= require('./config/db');
+var mongoose 	  = require('mongoose');
 var environment = app.settings.env;
-var fs  		= require('fs');
+var fs  		    = require('fs');
 
 // db ========================================================================
 var dbConfig = JSON.parse(fs.readFileSync('./dbConf.json', 'utf8'));

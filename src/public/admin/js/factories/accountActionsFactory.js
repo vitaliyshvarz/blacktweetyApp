@@ -18,11 +18,18 @@
         'ngDialog',
         '$location',
         '$cookies',
-        '$rootScope'
+        '$rootScope',
+        'resetPassService',
+        'updatePassService'
     ];
 
-    function accountActions(loginService, $q, ngDialog, $location, $cookies, $rootScope) {
+    function accountActions(loginService, $q, ngDialog, $location, $cookies, $rootScope, resetPassService, updatePassService) {
 
+        /**
+        * Login user
+        * @params{object} - user email and password
+        * @returns{promise} user data
+        */
         function login(data){
             var _deferred = $q.defer();
             loginService.post(data).$promise.then(
@@ -42,6 +49,39 @@
         }
 
         /**
+        * Reset user password
+        * @params{string} - user email
+        * @returns{boolean} - success reset or unsuccess reset
+        */
+        function resetPass(email){
+            var _deferred = $q.defer();
+            resetPassService.post({email: email}).$promise.
+                then(function(result){
+                     _deferred.resolve(result);
+                }, function(error){
+                     _deferred.reject(result);
+                });
+            return _deferred.promise;
+        }
+
+        /**
+        * Update user password
+        * @params{string} - user email
+        * @returns{boolean} - success reset or unsuccess reset
+        */
+        function updateUserPass(oldPass, newPass){
+            var _deferred = $q.defer();
+            updatePassService.post({oldPass: oldPass, newPass: newPass}).$promise.
+                then(function(result){
+                    showMessage('Password updated');
+                    _deferred.resolve(result);
+                }, function(error){
+                     _deferred.reject(result);
+                });
+            return _deferred.promise;
+        }
+
+        /**
         * Show dialog message
         * @params{string} - message
         */
@@ -54,7 +94,9 @@
         }
 
         return {
-            login: login
+            login: login,
+            resetPass: resetPass,
+            updateUserPass: updateUserPass
         };
     }
 

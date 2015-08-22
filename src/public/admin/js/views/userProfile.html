@@ -1,0 +1,241 @@
+
+      <div class="col-lg-12">
+          <h1 class="page-header" ng-bind="userName"></h1>
+      </div>
+
+  	<div class="col-md-4">
+  		<div>
+				<img 	ng-if="user.avatar && files[0] == null"
+							width="120"
+							height="120"
+							class="img-rounded center-block"
+							ng-src="{{user.avatar}}">
+				<img 	width="120"
+							height="120"
+							class="img-rounded center-block"
+							ng-show="files[0] != null"
+							ngf-src="files[0]"/>
+  		</div>
+  		<br>
+  		<div class="text-center">
+	  		<div class="btn-group">
+					<button class="btn btn-success btn-xs"
+							 		ngf-select ng-model="files"
+							 		ngf-multiple="multiple">
+							 		{{'SELECT_FILE' | translate}}
+					</button>
+					<button class="btn btn-danger btn-xs"
+									ng-disabled="user.avatar == 'uploads/userDefault.jpg'"
+									ng-click="deleteImage()">
+									{{'DELETE_IMAGE' | translate}}
+					</button>
+					<button class="btn btn-danger btn-xs"
+							 		ng-click="removeImage()">
+							 		{{'CANCEL' | translate}}
+					</button>
+	  		</div>
+  		</div>
+  		<hr>
+  		<form>
+				<div class="row" ng-class="{'has-error': firstNameError}">
+					<div class="col-sm-3">
+						<label class="label label-primary" translate="User.firstName"></label>
+					</div>
+					<div class="col-sm-9">
+					  	<input 	type="text"
+							  			class="form-control"
+							  			placeholder="first name"
+							  			aria-describedby="basic-addon1"
+							  			name="firstName"
+							  			ng-model="user.name.first"
+							  			ng-change="checkName('first')"
+							  			required="true">
+					  	<span class="text-danger" ng-show="firstNameError" ng-bind="firstNameErrorText"></span>
+					</div>
+				</div>
+				<div class="row" ng-class="{'has-error': lastNameError}">
+					<div class="col-sm-3">
+						<label class="label label-primary" translate="User.lastName"></label>
+					</div>
+					<div class="col-sm-9">
+					 	<input 	type="text"
+					 			class="form-control"
+					 			placeholder="last lame"
+					 			aria-describedby="basic-addon2"
+					 			name="lastName"
+					 			ng-model="user.name.last"
+					 			ng-change="checkName('last')"
+					 			required="true">
+					 	<span class="text-danger" ng-show="lastNameError" ng-bind="lastNameErrorText"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<label class="label label-primary" translate="User.email"></label>
+					</div>
+					<div class="col-sm-9">
+					  	<input 	type="email"
+					  			class="form-control"
+					  			aria-label="email"
+					  			name="email"
+					  			placeholder="email"
+					  			ng-model="user.email"
+					  			required="true">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<label class="label label-primary" translate="User.age"></label>
+					</div>
+					<div class="col-sm-9">
+					  	<input 	type="number"
+					  			class="form-control"
+					  			aria-label="age"
+					  			name="age"
+					  			placeholder="age"
+					  			ng-model="user.age"
+					  			required="true">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<label class="label label-danger" translate="ROLES"></label>
+					</div>
+					<div class="col-sm-9">
+						<div class="radio">
+							<label>
+								<input 	type="radio"
+												id="userRoleDefault"
+												ng-model="user.category"
+												value="default">
+								<span translate="Roles.default"</span>
+							</label>
+							<label>
+								<input 	type="radio"
+												id="userRoleDefault"
+												ng-model="user.category"
+												value="moderator">
+								<span translate="Roles.moderator"</span>
+							</label>
+							<label>
+								<input 	type="radio"
+												id="userRoleDefault"
+												ng-model="user.category"
+												value="admin">
+								<span translate="Roles.admin"</span>
+							</label>
+						</div>
+					</div>
+				</div>
+				<hr>
+				<button class="btn btn-success center-block"
+					ng-click="updateUser()" translate="UPDATE">
+				</button>
+  		</form>
+  	</div>
+
+
+  	<div class="col-md-8">
+
+  			<div class="row">
+  	      <div class="col-lg-3 col-md-4">
+              <div class="panel panel-primary">
+                  <div class="panel-heading">
+                      <div class="row">
+                          <div class="col-xs-3">
+                              <i class="fa fa-comments fa-3x"></i>
+                          </div>
+                          <div class="col-xs-9 text-right">
+                              <div class="huge">26</div>
+                              <div>My Comments</div>
+                          </div>
+                      </div>
+                  </div>
+                  <a href="#">
+                      <div class="panel-footer">
+                          <span class="pull-left">View Details</span>
+                          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                          <div class="clearfix"></div>
+                      </div>
+                  </a>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-4">
+              <div class="panel panel-green">
+                  <div class="panel-heading">
+                      <div class="row">
+                          <div class="col-xs-3">
+                              <i class="fa fa-envelope-o fa-3x"></i>
+                          </div>
+                          <div class="col-xs-9 text-right">
+                              <div class="huge">12</div>
+                              <div>Incoming Emails</div>
+                          </div>
+                      </div>
+                  </div>
+                  <a href="#">
+                      <div class="panel-footer">
+                          <span class="pull-left">View Details</span>
+                          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                          <div class="clearfix"></div>
+                      </div>
+                  </a>
+              </div>
+          </div>
+				</div>
+
+  		<hr>
+  		<form>
+  		  <div class="row">
+					<div class="col-sm-3">
+						<label class="label label-warning" translate="User.currentPassword"></label>
+					</div>
+					<div class="col-sm-9">
+					  	<input 	type="text"
+							  			class="form-control"
+							  			aria-label="password"
+							  			name="password1"
+							  			placeholder="password"
+							  			ng-model="passwordOld"
+							  			required="true">
+					</div>
+				</div>
+  			<div class="row">
+					<div class="col-sm-3">
+						<label class="label label-warning" translate="User.newPassword"></label>
+					</div>
+					<div class="col-sm-9">
+					  	<input 	type="text"
+							  			class="form-control"
+							  			aria-label="password"
+							  			name="password1"
+							  			placeholder="password"
+							  			ng-model="password1"
+							  			ng-change="setPassword()"
+							  			required="true">
+					</div>
+				</div>
+				<div class="row" ng-class="{'has-error': passError}">
+					<div class="col-sm-3">
+						<label class="label label-warning" translate="CONFIRM_PASS"></label>
+					</div>
+					<div class="col-sm-9">
+					  	<input 	type="text"
+							  			class="form-control"
+							  			aria-label="password"
+							  			name="password2"
+							  			placeholder="confirm password"
+							  			ng-model="password2"
+							  			ng-change="setPassword()"
+							  			required="true">
+					  	<span class="text-danger" ng-show="passError" translate="PASS_MATCH_ERR"></span>
+					</div>
+
+				</div>
+				<hr>
+				<button class="btn btn-warning center-block"
+					ng-click="updatePassword()" translate="UPDATE_PASS">
+				</button>
+  		</form>
+  		<hr>
+  	</div>

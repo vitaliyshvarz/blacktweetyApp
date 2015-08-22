@@ -30,6 +30,7 @@
 
 	        .when('/main',          			'main')
 	        .when('/login',         			'login')
+	        .when('/main/user-profile',   'main.userProfile')
 	        .when('/main/dash-board',     'main.dashBoard')
 	        .when('/main/users',          'main.users')
 
@@ -67,6 +68,18 @@
 				          templateUrl: 'js/views/error.html'
 				        }
 		        	})
+
+		        	.segment('userProfile', {
+			        	templateUrl: 'js/views/userProfile.html',
+			        	controller: 'userProfileCtrl',
+		            resolve: {},
+				        untilResolved: {
+				          templateUrl: 'js/views/loading.html'
+				        },
+				        resolveFailed: {
+				          templateUrl: 'js/views/error.html'
+				        }
+			        })
 
 		        .up()
 
