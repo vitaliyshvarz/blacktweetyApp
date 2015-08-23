@@ -27,6 +27,8 @@
     "angular-mocks": "~1.4.4",
     "angular-cookies": "~1.4.4",
     "startbootstrap-sb-admin-2": "~1.0.7",
-    "angular-datatables": "~0.4.3"
+    "angular-datatables": "~0.4.3",
+    "ng-tags-input": "~3.0.0",
+    "textAngular": "~1.4.3"
   }
 }

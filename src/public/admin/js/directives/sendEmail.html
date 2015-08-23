@@ -1,0 +1,94 @@
+			<form>
+				<div class="row vcenter">
+					<div class="col-xs-2">
+						<label class="label label-primary" translate="Mail.from"></label>
+					</div>
+					<div class="col-xs-10">
+				  	<input 	type="email"
+						  			class="form-control"
+						  			aria-label="email"
+						  			name="email"
+						  			placeholder="email"
+						  			ng-model="mailParams.from"
+						  			required="true">
+					</div>
+				</div>
+				<div class="row vcenter">
+					<div class="col-xs-2">
+						<label class="label label-primary" translate="Mail.to"></label>
+					</div>
+					<div class="col-xs-10">
+  					<tags-input ng-model="mailParams.to"
+        								placeholder="Type email or name"
+        								class="bootstrap"
+        								replace-spaces-with-dashes="false">
+				        <auto-complete  source="allUsers"></auto-complete>
+				    </tags-input>
+				   	<div  class="alert alert-danger" ng-if="mailToError"
+		              ng-bind="mailToError">
+	        	</div>
+					</div>
+				</div>
+				<div class="row vcenter">
+					<div class="col-xs-2">
+						<label class="label label-primary" translate="Mail.cc"></label>
+					</div>
+					<div class="col-xs-10">
+  					<tags-input class="bootstrap"
+  											ng-model="mailParams.cc"
+        								placeholder="Type email or name"
+        								replace-spaces-with-dashes="false">
+				        <auto-complete  source="allUsers"  debounce-delay="0"></auto-complete>
+				    </tags-input>
+				    <div  class="alert alert-danger" ng-if="mailCcError"
+		              ng-bind="mailCcError">
+	        	</div>
+					</div>
+				</div>
+				<div class="row vcenter">
+					<div class="col-xs-2">
+						<label class="label label-primary" translate="Mail.bcc"></label>
+					</div>
+					<div class="col-xs-10">
+  					<tags-input ng-model="mailParams.bcc"
+        								placeholder="Type email or name"
+        								class="bootstrap"
+        								replace-spaces-with-dashes="false">
+				        <auto-complete  source="allUsers"></auto-complete>
+				    </tags-input>
+				    <div  class="alert alert-danger" ng-if="mailBccError"
+		              ng-bind="mailBccError">
+	        	</div>
+					</div>
+				</div>
+				<div class="row vcenter">
+					<div class="col-xs-2">
+						<label class="label label-primary" translate="Mail.subject"></label>
+					</div>
+					<div class="col-xs-10">
+				  	<input 	type="text"
+						  			class="form-control"
+						  			aria-label="Subject"
+						  			name="subject"
+						  			placeholder="Subject"
+						  			ng-model="mailParams.subject"
+						  			required="true">
+					</div>
+				</div>
+				<div>
+					<div class="col-xs-12 text-center">
+						<hr><p><label class="label label-primary" translate="Mail.text"></label></p>
+					</div>
+					<text-angular ng-model="mailParams.text"></text-angular>
+					<div  class="alert alert-danger" ng-if="mailTextError"
+	              ng-bind="mailTextError">
+	        </div>
+				</div>
+
+				<div class="row">
+					<br>
+					<button class="btn btn-success center-block"
+						ng-click="sendEmail()" translate="SEND_EMAIL">
+					</button>
+				</div>
+			</form>

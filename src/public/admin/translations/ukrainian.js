@@ -51,7 +51,13 @@
         DELETE_IMAGE: 'Видалити',
         CANCEL: 'відміна',
         UPDATE: "Оновити",
-        UPDATE_PASS: 'Оновити пароль'
+        UPDATE_PASS: 'Оновити пароль',
+        SEND_EMAIL: 'Надіслати Імейл',
+        INVALID_TO: 'Невірні одержувачі: ',
+        INVALID_CC: 'Невірні Carbon Copy одержувачі: ',
+        INVALID_BCC: 'Невірні Blind Carbon Copy одержувачі: ',
+        TO_REQUIRED: 'Одержувачі обов’язкові',
+        NO_EMAIL_MESSAGE: 'Повідомлення обов’язкове'
       });
 
     });

@@ -1,6 +1,6 @@
 // dependencies
 var express      	= require('express');
-var router       	= express.Router();
+var api       	  = express.Router();
 var shortid      	= require('shortid');
 var multer       	= require('multer');
 var mailer       	= require('./../config/mail.js');
@@ -12,7 +12,7 @@ var fs 						= require('fs');
 
 /*Configure the multer.*/
 
-router.use(multer({ dest: 'src/public/',
+api.use(multer({ dest: 'src/public/',
 	changeDest: function(dest, req, res) {
 	    return dest + req.body.username + '/uploads/';
 	},
@@ -35,7 +35,7 @@ router.use(multer({ dest: 'src/public/',
 var Users = require("../../dbmodels/Users").Users;
 
 // routes
-router.get('/api/users', function(req, res){
+api.get('/api/users', function(req, res){
 	Users.find({}, function(err, users) {
 		var userMap = {};
 
@@ -48,7 +48,7 @@ router.get('/api/users', function(req, res){
 	});
 });
 
-router.post('/api/users', function(req, res){
+api.post('/api/users', function(req, res){
 	var newUser = new Users({
 			_id: shortid.generate(),
 			name: {
@@ -68,13 +68,13 @@ router.post('/api/users', function(req, res){
 	});
 });
 
-router.post('/api/photo', function(req, res){
+api.post('/api/photo', function(req, res){
 	if(done === true){
 		res.end("File uploaded.");
 	}
 });
 
-router.post('/api/login', function(req, res){
+api.post('/api/login', function(req, res){
 		Users.find({password: req.body.pass, email: req.body.email},
 			function(err, user) {
 				if (err) {console.log(err); res.send(err); return;}
@@ -85,7 +85,7 @@ router.post('/api/login', function(req, res){
 		});
 });
 
-router.post('/api/reset-pass', function(req, res){
+api.post('/api/reset-pass', function(req, res){
 	Users.find({email: req.body.email},
 		function(err, user){
 			if (err) {console.log(err); res.send(err); return;}
@@ -96,7 +96,8 @@ router.post('/api/reset-pass', function(req, res){
 
 						if (err) {console.log(err); res.send(err); return;}
 						var mailOptions = {
-						    from: adminDetails.admin.email, // sender address
+						    from: adminDetails.app.email,
+						    sender: adminDetails.app.email,
 						    to: req.body.email, // list of receivers
 						    subject: adminDetails.app.name + ' Password reneval ✔', // Subject line
 						    html: mailTpl.passwordReneval(newPass) // html body
@@ -121,7 +122,7 @@ router.post('/api/reset-pass', function(req, res){
 /**
 *	Update user
 */
-router.post('/api/update_user', function(req, res){
+api.post('/api/update_user', function(req, res){
 	var newUser = {
 			name: {
 				first      : req.body.name.first,
@@ -141,7 +142,37 @@ router.post('/api/update_user', function(req, res){
   	});
 });
 
-router.post('/api/update-pass', function(req, res){
+/**
+* Send message to user
+* @params{object} email params
+* @returns{string} success/error
+*/
+api.post('/api/send-message', function(req, res){
+		var mailOptions = {
+		    from: adminDetails.app.email,
+		    sender: req.body.sender,
+		    to: req.body.to,
+		    subject: req.body.subject,
+		    html: req.body.text
+		};
+
+		mailer.sendMail(mailOptions, function(error, info){
+		    if(error){
+		    		res.send(error);
+		        console.log(error);
+		    }else{
+		    		res.send({success: 'message sent'});
+		        console.log('Message sent: ' + info.response);
+		    }
+		});
+});
+
+/**
+* Update user password
+* @params{object} old password, new password
+* @params{string} success/error
+*/
+api.post('/api/update-pass', function(req, res){
 	Users.find({password: req.body.oldPass}, function(err, user){
 		if(err || !user.length){ console.log('user not found', err); res.send(err); return;}
 		else{
@@ -158,11 +189,11 @@ router.post('/api/update-pass', function(req, res){
 /**
 *	delete file
 */
-router.post('/api/delete_file', function(req, res){
+api.post('/api/delete_file', function(req, res){
 	fs.unlinkSync('src/public/admin/' + req.body.file, function (err) {
 	  if (err) throw err;
 	  console.log('successfully deleted ' + req.body.file);
 	});
 });
 
-module.exports = router;
+module.exports = api;

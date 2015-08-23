@@ -18,7 +18,9 @@
 			'pascalprecht.translate',
 			'ngFileUpload',
 			'ngCookies',
-			'datatables'
+			'datatables',
+			'ngTagsInput',
+			'textAngular'
 		]);
 
 	app.config(['$routeSegmentProvider',
@@ -72,7 +74,11 @@
 		        	.segment('userProfile', {
 			        	templateUrl: 'js/views/userProfile.html',
 			        	controller: 'userProfileCtrl',
-		            resolve: {},
+		            resolve: {
+		            	initialData: ['initialDataFactory', function(initialDataFactory) {
+				            return initialDataFactory.getUsers();
+				        	}]
+		            },
 				        untilResolved: {
 				          templateUrl: 'js/views/loading.html'
 				        },

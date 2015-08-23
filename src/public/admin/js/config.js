@@ -15,6 +15,7 @@
 	.constant('DELETE_FILE',       '/api/delete_file')
 	.constant('USER_UPDATE_API',   '/api/update_user')
 	.constant('USER_PASS_UPDATE',  '/api/update-pass')
+	.constant('SEND_EMAIL_API',    '/api/send-message')
 
 	.constant('DEFAULT_AVATAR',    'uploads/userDefault.jpg');
 

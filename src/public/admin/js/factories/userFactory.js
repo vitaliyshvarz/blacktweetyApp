@@ -107,6 +107,19 @@
             return _deferred.promise;
         };
 
+        /*
+        * Get filtered user data
+        * @params{object} users full data
+        * @returns{array} users array with names, emails
+        */
+        function filteredUsersData(userData){
+            var users = [];
+            angular.forEach(userData, function(user){
+                users.push({text: user.name.first + ' ' + user.name.last + ' ' + user.email});
+            });
+            return users;
+        }
+
         /**
         * Show dialog message
         * @params{string} - message
@@ -124,7 +137,8 @@
             addNewUser  : addNewUser,
             uploadAvatar: uploadAvatar,
             deleteImage: deleteImage,
-            updateUser: updateUser
+            updateUser: updateUser,
+            filteredUsersData: filteredUsersData
         };
     }
 

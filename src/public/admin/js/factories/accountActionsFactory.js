@@ -20,10 +20,20 @@
         '$cookies',
         '$rootScope',
         'resetPassService',
-        'updatePassService'
+        'updatePassService',
+        'sendEmailService'
     ];
 
-    function accountActions(loginService, $q, ngDialog, $location, $cookies, $rootScope, resetPassService, updatePassService) {
+    function accountActions(
+        loginService,
+        $q,
+        ngDialog,
+        $location,
+        $cookies,
+        $rootScope,
+        resetPassService,
+        updatePassService,
+        sendEmailService) {
 
         /**
         * Login user
@@ -82,6 +92,53 @@
         }
 
         /**
+        * Send email
+        * @params{object} email data
+        */
+        function sendEmail(email){
+            var email = parseEmails(email);
+            var _deferred = $q.defer();
+            sendEmailService.post(email).$promise.
+                then(function(result){
+                    showMessage('Email sent!');
+                    _deferred.resolve(result);
+                }, function(error){
+                     _deferred.reject(result);
+                });
+            return _deferred.promise;
+        }
+
+        /**
+        * Parse email-name string to for object
+        * @params{object} email data
+        * @return{object} updated email with receivers updated:
+        * {name: 'name', address: 'address'}
+        */
+        function parseEmails(email){
+            var name, address;
+            if(email.to.length){
+                email.to = formEmailObj(email.to);
+            }
+            if(email.cc.length){
+                email.to = formEmailObj(email.cc);
+            }
+            if(email.bcc.length){
+                email.to = formEmailObj(email.bcc);
+            }
+
+            function formEmailObj(emails){
+                var formedEmails = [];
+                angular.forEach(emails, function(to){
+                    address = /[\w]+@[\w]{1,10}\.[a-zA-Z]{2,5}/i.exec(to.text);
+                    name = to.text.replace(address, '');
+                    formedEmails.push({  name: name, address:  address[0] });
+                });
+                return formedEmails;
+            }
+
+            return email;
+        }
+        /**
         * Show dialog message
         * @params{string} - message
         */
@@ -96,7 +153,8 @@
         return {
             login: login,
             resetPass: resetPass,
-            updateUserPass: updateUserPass
+            updateUserPass: updateUserPass,
+            sendEmail: sendEmail
         };
     }
 

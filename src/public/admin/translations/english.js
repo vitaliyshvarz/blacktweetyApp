@@ -51,7 +51,13 @@
         DELETE_IMAGE: 'Delete',
         CANCEL: 'Cancel',
         UPDATE: "Update",
-        UPDATE_PASS: 'Update password'
+        UPDATE_PASS: 'Update password',
+        SEND_EMAIL: 'Send email',
+        INVALID_TO: 'Invalid recipients: ',
+        INVALID_CC: 'Invalid Carbon Copy recipients: ',
+        INVALID_BCC: 'Invalid Blind Carbon Copy recipients: ',
+        TO_REQUIRED: 'Recipients required',
+        NO_EMAIL_MESSAGE: 'Email message required'
       });
     });
 

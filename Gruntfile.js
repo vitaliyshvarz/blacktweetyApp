@@ -200,6 +200,10 @@ module.exports = function(grunt) {
 		      	'src/public/bower_components/ng-file-upload/ng-file-upload.min.js',
 		      	'src/public/bower_components/angular-cookies/angular-cookies.js',
 		      	'src/public/bower_components/angular-datatables/dist/angular-datatables.js',
+		      	'src/public/bower_components/ng-tags-input/ng-tags-input.min.js',
+		      	'src/public/bower_components/textAngular/dist/textAngular-rangy.min.js',
+		      	'src/public/bower_components/textAngular/dist/textAngular-sanitize.min.js',
+		      	'src/public/bower_components/textAngular/dist/textAngular.min.js',
 		      	'src/public/admin/js/**/*.js',
 		        'src/**/*.mock.js', 'src/**/*.spec.js'
 		      ],

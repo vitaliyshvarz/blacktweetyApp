@@ -51,7 +51,13 @@
         DELETE_IMAGE: 'Löschen',
         CANCEL: 'stornieren',
         UPDATE: "erfrischen",
-        UPDATE_PASS: 'Update Passwort'
+        UPDATE_PASS: 'Update Passwort',
+        SEND_EMAIL: 'Email Schicken',
+        INVALID_TO: 'ungültige Empfänger: ',
+        INVALID_CC: 'Ungültige Carbon Copy-Empfänger: ',
+        INVALID_BCC: 'Ungültige Blindkopie-Empfänger: ',
+        TO_REQUIRED: 'Empfänger erforderlich',
+        NO_EMAIL_MESSAGE: 'E-Mail-Nachricht ein Erforderlich'
         });
     });
 

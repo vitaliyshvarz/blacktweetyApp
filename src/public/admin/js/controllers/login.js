@@ -48,7 +48,7 @@
 		};
 
 		$scope.sendNewPass = function(){
-			if(/[\w]+@[\w]{1,10}\.[a-zA-Z]{2,5}/i.test($scope.renEmail)){
+			if(/^[\w]+@[\w]{1,10}\.[a-zA-Z]{2,5}$/i.test($scope.renEmail)){
 				accountActions.resetPass($scope.renEmail).
 					then(function(result){
 						if(result.success){

@@ -16,7 +16,8 @@
 		'userFactory',
 		'$cookies',
 		'DEFAULT_AVATAR',
-		'accountActions'
+		'accountActions',
+		'initialData'
 	];
 
 	function userProfileCtrl(
@@ -27,7 +28,8 @@
 			userFactory,
 			$cookies,
 			DEFAULT_AVATAR,
-			accountActions
+			accountActions,
+			initialData
 		) {
 		$scope.user = $rootScope.user;
 		$scope.userName = $scope.user.name.first + ' ' + $scope.user.name.last || '';
@@ -37,6 +39,7 @@
   	$scope.passError = false;
   	$scope.passwordOld = '';
 
+  	$scope.allUsers = userFactory.filteredUsersData(initialData.users.users);
 
     /*
     *   Check user name.
