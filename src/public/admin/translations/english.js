@@ -57,7 +57,15 @@
         INVALID_CC: 'Invalid Carbon Copy recipients: ',
         INVALID_BCC: 'Invalid Blind Carbon Copy recipients: ',
         TO_REQUIRED: 'Recipients required',
-        NO_EMAIL_MESSAGE: 'Email message required'
+        NO_EMAIL_MESSAGE: 'Email message required',
+        Mail: {
+            from: 'from',
+            to: 'To',
+            cc: 'CC',
+            bcc: 'BCC',
+            subject: 'Subject',
+            text: 'Text'
+        }
       });
     });
 

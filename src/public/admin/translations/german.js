@@ -57,7 +57,15 @@
         INVALID_CC: 'Ungültige Carbon Copy-Empfänger: ',
         INVALID_BCC: 'Ungültige Blindkopie-Empfänger: ',
         TO_REQUIRED: 'Empfänger erforderlich',
-        NO_EMAIL_MESSAGE: 'E-Mail-Nachricht ein Erforderlich'
+        NO_EMAIL_MESSAGE: 'E-Mail-Nachricht ein Erforderlich',
+        Mail: {
+            from: 'Von',
+            to: 'An',
+            cc: 'CC',
+            bcc: 'BCC',
+            subject: 'Subjekt',
+            text: 'Text'
+        }
         });
     });
 

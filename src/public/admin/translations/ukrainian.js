@@ -57,7 +57,15 @@
         INVALID_CC: 'Невірні Carbon Copy одержувачі: ',
         INVALID_BCC: 'Невірні Blind Carbon Copy одержувачі: ',
         TO_REQUIRED: 'Одержувачі обов’язкові',
-        NO_EMAIL_MESSAGE: 'Повідомлення обов’язкове'
+        NO_EMAIL_MESSAGE: 'Повідомлення обов’язкове',
+        Mail: {
+            from: 'Від',
+            to: 'Кому',
+            cc: 'CC',
+            bcc: 'BCC',
+            subject: 'Тема',
+            text: 'Текст'
+        }
       });
 
     });

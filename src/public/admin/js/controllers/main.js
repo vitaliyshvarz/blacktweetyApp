@@ -14,10 +14,11 @@
 		'$cookies',
 		'$rootScope',
 		'$location',
-		'DEFAULT_AVATAR'
+		'DEFAULT_AVATAR',
+		'ngDialog'
 	];
 
-	function MainCtrl($scope, $routeSegment, $translate, $cookies, $rootScope, $location, DEFAULT_AVATAR) {
+	function MainCtrl($scope, $routeSegment, $translate, $cookies, $rootScope, $location, DEFAULT_AVATAR, ngDialog) {
 
 		$scope.lang = $translate.use();
 
@@ -42,15 +43,6 @@
 			$cookies.remove('user');
 			$location.path('/login');
 		};
-
-		$rootScope.$on('$locationChangeStart', function (event, next, current) {
-        if (!$rootScope.user.active) {
-            $location.path('/login');
-        }
-    });
-
-
-
 	}
 
 }());

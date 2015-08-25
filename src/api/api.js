@@ -9,8 +9,12 @@ var adminDetails 	= require('./../config/admin.js');
 var done         	= false;
 var filenameSave 	= '';
 var fs 						= require('fs');
+// db
+var Users = require("../../dbmodels/Users").Users;
+var Emails = require('../../dbmodels/Emails').Emails;
+var LoginData = require('../../dbmodels/LoginData').LoginData;
 
-/*Configure the multer.*/
+/* Milter config */
 
 api.use(multer({ dest: 'src/public/',
 	changeDest: function(dest, req, res) {
@@ -31,10 +35,14 @@ api.use(multer({ dest: 'src/public/',
 }));
 
 
-// db
-var Users = require("../../dbmodels/Users").Users;
 
-// routes
+/*=================== main API ========================*/
+/*=================== TODO: Docu ======================*/
+/*=====================================================*/
+
+
+
+
 api.get('/api/users', function(req, res){
 	Users.find({}, function(err, users) {
 		var userMap = {};
@@ -78,12 +86,37 @@ api.post('/api/login', function(req, res){
 		Users.find({password: req.body.pass, email: req.body.email},
 			function(err, user) {
 				if (err) {console.log(err); res.send(err); return;}
-				user.password = '';
-				res.send({
-					user: user
+				delete user[0].password;
+				var date = Date.now();
+				var newLogin = new LoginData({_id: shortid.generate(), userId: user[0]._id, date: date});
+				newLogin.save(function(err){
+					if (err) {console.log(err); res.send(err); return;}
+				});
+				Users.update({_id: user[0]._id }, {lastLogin: date} ,{},function(err, result) {
+					if (err) {console.log(err); res.send(err); return;}
+					res.send({ user: user });
 				});
 		});
 });
+
+api.get('/api/get-login-data/:id', function(req, res){
+	LoginData.find({userId: req.params.id }, function(err, loginData) {
+		if (err) {console.log(err); res.send(err); return;}
+		res.send({
+			loginData: loginData
+		});
+	});
+});
+
+api.get('/api/get-email-data/:email', function(req, res){
+	Emails.find({}, function(err, emailsData) {
+		if (err) {console.log(err); res.send(err); return;}
+		res.send({
+			emailsData: emailsData
+		});
+	});
+});
+
 
 api.post('/api/reset-pass', function(req, res){
 	Users.find({email: req.body.email},
@@ -148,15 +181,16 @@ api.post('/api/update_user', function(req, res){
 * @returns{string} success/error
 */
 api.post('/api/send-message', function(req, res){
-		var mailOptions = {
+		var mail = {
 		    from: adminDetails.app.email,
 		    sender: req.body.sender,
 		    to: req.body.to,
+		    cc: req.body.cc,
+		    bcc: req.body.bcc,
 		    subject: req.body.subject,
 		    html: req.body.text
 		};
-
-		mailer.sendMail(mailOptions, function(error, info){
+		mailer.sendMail(mail, function(error, info){
 		    if(error){
 		    		res.send(error);
 		        console.log(error);
@@ -164,6 +198,18 @@ api.post('/api/send-message', function(req, res){
 		    		res.send({success: 'message sent'});
 		        console.log('Message sent: ' + info.response);
 		    }
+		});
+
+		mail._id = shortid.generate();
+		mail.type = 'outbox';
+		mail.message = {
+			subject: req.body.subject,
+			text: req.body.text
+		};
+		var newEmail = new Emails(mail);
+		newEmail.save(mail, function (err) {
+	  if (err) {console.log(err); res.send(err); return;}
+	  	console.log('email saved');
 		});
 });
 

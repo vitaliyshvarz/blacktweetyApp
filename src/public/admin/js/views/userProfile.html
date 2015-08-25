@@ -36,6 +36,23 @@
 	  		</div>
   		</div>
   		<hr>
+  		 <div class="row">
+  			<div class="col-sm-3">
+						<label class="label label-success" translate="User.lastLogin"></label>
+				</div>
+				<div class="col-sm-9">
+					{{user.lastLogin | date: "MM/dd/yyyy 'at' HH:mm"}}
+				</div>
+  		</div>
+  		<div class="row">
+  			<div class="col-sm-3">
+						<label class="label label-success" translate="User.registered"></label>
+				</div>
+				<div class="col-sm-9">
+					{{user.date | date: "MM/dd/yyyy 'at' HH:mm"}}
+				</div>
+  		</div>
+  		<br>
   		<form>
 				<div class="row" ng-class="{'has-error': firstNameError}">
 					<div class="col-sm-3">
@@ -163,8 +180,8 @@
                               <i class="fa fa-comments fa-3x"></i>
                           </div>
                           <div class="col-xs-9 text-right">
-                              <div class="huge">26</div>
-                              <div>My Comments</div>
+                              <div class="huge">Null</div>
+                              <div>New Comments</div>
                           </div>
                       </div>
                   </div>
@@ -185,8 +202,8 @@
                               <i class="fa fa-envelope-o fa-3x"></i>
                           </div>
                           <div class="col-xs-9 text-right">
-                              <div class="huge">12</div>
-                              <div>Incoming Emails</div>
+                              <div class="huge" ng-bind="user.newMessages.length"></div>
+                              <div>Unread Emails</div>
                           </div>
                       </div>
                   </div>

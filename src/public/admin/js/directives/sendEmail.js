@@ -10,15 +10,12 @@
 
     sendEmail
         .$inject = [
-        'userFactory',
         '$translate',
-        '$routeSegment',
-        '$timeout',
         '$filter',
-        'accountActions'
+        'Email'
     ];
 
-    function sendEmail(userFactory, $translate, $routeSegment, $timeout, $filter, accountActions) {
+    function sendEmail($translate, $filter, Email) {
         return {
             restrict: 'E',
             replace: false,
@@ -27,7 +24,7 @@
                 allUsers: '=allUsers'
             },
             templateUrl: 'js/directives/sendEmail.html',
-            link: function(scope, $timeout) {
+            link: function(scope) {
 
             scope.mailParams = {
                 from: scope.user.email,
@@ -47,7 +44,7 @@
                 });
                 if(invaldEmails.length > 0){ return invaldEmails.join(', '); }
                 return true;
-            }
+            };
 
             scope.checkEmailData = function(){
                 scope.emailError = false;
@@ -94,12 +91,12 @@
                 if(scope.emailError){ return false; }
                 return true;
 
-            }
+            };
             scope.sendEmail = function(){
                 if(scope.checkEmailData()){
-                    accountActions.sendEmail(scope.mailParams);
+                    Email.send(scope.mailParams);
                 }
-            }
+            };
 
             }
         };

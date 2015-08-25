@@ -14,15 +14,28 @@
         .$inject = [
         'userService',
         '$q',
-        'ngDialog',
         '$location',
         'Upload',
         'deleteFile',
         'updateUserService',
-        'USER_PHOTO_UPLOAD'
+        'USER_PHOTO_UPLOAD',
+        '$rootScope',
+        'userLoginService',
+        'userEmailService'
     ];
 
-    function userFactory(userService, $q, ngDialog, $location, Upload, deleteFile, updateUserService, USER_PHOTO_UPLOAD) {
+    function userFactory(
+        userService,
+        $q,
+        $location,
+        Upload,
+        deleteFile,
+        updateUserService,
+        USER_PHOTO_UPLOAD,
+        $rootScope,
+        userLoginService,
+        userEmailService
+        ) {
 
         /**
         * Returns all users
@@ -47,7 +60,7 @@
             var _deferred = $q.defer();
             userService.post(user).$promise.then(
                 function(result) {
-                    showMessage("Success adding user");
+                    $rootScope.showMessage("Success adding user");
                     _deferred.resolve(result);
                 },
                 function(error) {
@@ -99,7 +112,7 @@
             updateUserService.post(user).$promise.then(
                 function(result) {
                     _deferred.resolve(result);
-                    showMessage("User Updated");
+                    $rootScope.showMessage("User Updated");
                 },
                 function(error) {
                     _deferred.reject( error );
@@ -121,16 +134,47 @@
         }
 
         /**
-        * Show dialog message
-        * @params{string} - message
+        * Returns user loginData
+        * @params{string} user id
+        * @returns{object} user login data
         */
-        function showMessage(message){
-            ngDialog.open({ template: 'js/views/popupTmpl.html' ,
-                controller: ['$scope', function($scope) {
-                $scope.message = message;
-                }]
-            });
-        }
+        var getUserLoginData = function(id){
+            var _deferred = $q.defer();
+            userLoginService.query({'id': id}).$promise.then(
+                function(result) {
+                    _deferred.resolve(result);
+                },
+                function(error) {
+                    _deferred.reject( error );
+                });
+            return _deferred.promise;
+        };
+
+        /**
+        * Returns user emails
+        * @params{string} user email
+        * @returns{object} user login data
+        */
+        var getUserEmails = function(email){
+            var _deferred = $q.defer();
+            userEmailService.query({'email': email}).$promise.then(
+                function(result) {
+                    _deferred.resolve(result);
+                },
+                function(error) {
+                    _deferred.reject( error );
+                });
+            return _deferred.promise;
+        };
+
+        /**
+        * Returns new user(emails user has not read)
+        * @params{string} user email
+        * @returns{object} user login data
+        */
+        var getNewMessages = function(allEmails){
+            return allEmails.filter(function(email){ return (!!email.unread && email.type === 'inbox'); });
+        };
 
         return {
             getAllUsers : getAllUsers,
@@ -138,8 +182,12 @@
             uploadAvatar: uploadAvatar,
             deleteImage: deleteImage,
             updateUser: updateUser,
-            filteredUsersData: filteredUsersData
+            filteredUsersData: filteredUsersData,
+            getUserLoginData: getUserLoginData,
+            getUserEmails: getUserEmails,
+            getNewMessages: getNewMessages
         };
     }
 
 }());
+

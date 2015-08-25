@@ -75,9 +75,17 @@
 			        	templateUrl: 'js/views/userProfile.html',
 			        	controller: 'userProfileCtrl',
 		            resolve: {
-		            	initialData: ['initialDataFactory', function(initialDataFactory) {
-				            return initialDataFactory.getUsers();
-				        	}]
+		            	users: ['initialDataFactory', function(initialDataFactory) {
+				            return 	initialDataFactory.getUsers();
+				        	}],
+				        	loginData: ['initialDataFactory', '$rootScope', function(initialDataFactory, $rootScope) {
+		            		var usrId = $rootScope.user._id;
+				            return 	initialDataFactory.getUserLoginData(usrId);
+				        	}],
+				        	emailsData: ['initialDataFactory', '$rootScope', function(initialDataFactory, $rootScope) {
+		            		var usrEmail = $rootScope.user.email;
+				            return 	initialDataFactory.getUserEmails(usrEmail);
+				        	}],
 		            },
 				        untilResolved: {
 				          templateUrl: 'js/views/loading.html'
@@ -105,13 +113,31 @@
 	    $translateProvider.preferredLanguage('en');
 	}]);
 
-	app.run(['$rootScope', '$location', '$cookies', '$http', function($rootScope, $location, $cookies, $http){
+	app.run(['$rootScope', '$location', '$cookies', '$http', 'ngDialog', function($rootScope, $location, $cookies, $http, ngDialog){
     $rootScope.user = $cookies.getObject('user') || {};
     $rootScope.$on('$locationChangeStart', function (event, next, current) {
         if (!$rootScope.user.active) {
             $location.path('/login');
         }
     });
+
+    $rootScope.$on('$locationChangeStart', function (event, next, current) {
+        if (!$rootScope.user.active) {
+            $location.path('/login');
+        }
+    });
+
+			/**
+			* Show dialog message
+			* @params{string} - message
+			*/
+      $rootScope.showMessage = function(message){
+        ngDialog.open({ template: 'js/views/popupTmpl.html' ,
+            controller: ['$scope', function($scope) {
+            $scope.message = message;
+            }]
+        });
+      };
 	}]);
 
 }());
