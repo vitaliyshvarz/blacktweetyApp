@@ -21,7 +21,7 @@
 	    var endpointUrl = USER_EMAIL_DATA_API;
 	    return $resource(endpointUrl, {},
 	      {
-	        'query': { method: 'GET', isArray: false , params:{ id:'@id' }}
+	        'query': { method: 'GET', isArray: false }
 	      }
 	    );
 	  }

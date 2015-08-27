@@ -1,0 +1,20 @@
+(function () {
+	'use strict';
+
+	/**
+	 * Messages controller of blacktweetyApp
+	 */
+	angular.module('blacktweetyApp').controller('MessagesCtrl', MessagesCtrl);
+
+	MessagesCtrl
+		.$inject = [
+		'emailFactory'
+	];
+
+	function MessagesCtrl($scope, emailFactory) {
+
+	  $scope.message = emailsData.emailsData;
+
+	}
+
+}());

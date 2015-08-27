@@ -29,7 +29,9 @@
             active: 'active',
             password: 'password',
             currentPassword: 'Current password',
-            newPassword: 'New password'
+            newPassword: 'New password',
+            lastLogin: 'Last login time:',
+            registered: 'Registered'
         },
         Roles: {
             default: 'default',
@@ -64,8 +66,16 @@
             cc: 'CC',
             bcc: 'BCC',
             subject: 'Subject',
-            text: 'Text'
-        }
+            text: 'Text',
+            actions: 'Actions'
+        },
+        NEW_EMAILS: 'Unread Emails',
+        VIEW_EMAILS: 'View emails',
+        OUTBOX_MESSAGES: 'Outbox emails',
+        INBOX_MESSAGES: 'Inbox emails',
+        OPEN: 'Open',
+        DELETE: 'Delete',
+        DATE: 'Date'
       });
     });
 

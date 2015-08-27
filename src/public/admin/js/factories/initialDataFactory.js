@@ -14,10 +14,11 @@
     initialDataFactory
         .$inject = [
         'userFactory',
+        'emailFactory',
         '$q'
     ];
 
-    function initialDataFactory(userFactory, $q) {
+    function initialDataFactory(userFactory, emailFactory, $q) {
 
         /**
         * Get all users
@@ -48,7 +49,7 @@
         * @returns{promice} object with login data  array
         */
         function getUserEmails(usrEmail){
-            var emails = userFactory.getUserEmails(usrEmail);
+            var emails = emailFactory.getUserEmails(usrEmail);
 
             return $q.all([emails]).then(function(results){
                 return results[0];

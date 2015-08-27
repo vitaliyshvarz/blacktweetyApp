@@ -29,7 +29,9 @@
             active: 'активний',
             password: 'пароль',
             currentPassword: 'Поточний пароль',
-            newPassword: 'Новий пароль'
+            newPassword: 'Новий пароль',
+            lastLogin: 'Останній вхід:',
+            registered: 'Зареєстрований'
         },
         Roles: {
             default: 'звичайний',
@@ -64,8 +66,16 @@
             cc: 'CC',
             bcc: 'BCC',
             subject: 'Тема',
-            text: 'Текст'
-        }
+            text: 'Текст',
+            actions: 'Дії'
+        },
+        NEW_EMAILS: 'Нові повідомлення',
+        VIEW_EMAILS: 'Повідомлення',
+        OUTBOX_MESSAGES: 'Вихідні повідомлення',
+        INBOX_MESSAGES: 'Вхідні повідомлення',
+        OPEN: 'Відкрити',
+        DELETE: 'Видалити',
+        DATE: 'Дата'
       });
 
     });

@@ -35,6 +35,8 @@
 	        .when('/main/user-profile',   'main.userProfile')
 	        .when('/main/dash-board',     'main.dashBoard')
 	        .when('/main/users',          'main.users')
+	        .when('/main/messages',       'main.messages')
+	        .when('/main/messages/:id',   'main.message')
 
 	        .segment('main', {
             templateUrl: 'js/views/main.html',
@@ -63,6 +65,42 @@
 				            return initialDataFactory.getUsers();
 				        	}]
 		            },
+				        untilResolved: {
+				          templateUrl: 'js/views/loading.html'
+				        },
+				        resolveFailed: {
+				          templateUrl: 'js/views/error.html'
+				        }
+		        	})
+
+		        	.segment('messages', {
+		        		templateUrl: 'js/views/messages.html',
+		        		controller: 'MessagesCtrl',
+		        		resolve: {
+				        	emailsData: ['initialDataFactory', '$rootScope', function(initialDataFactory, $rootScope) {
+		            		var usrEmail = $rootScope.user.email;
+				            return 	initialDataFactory.getUserEmails(usrEmail);
+				        	}],
+				       		users: ['initialDataFactory', function(initialDataFactory) {
+				            return 	initialDataFactory.getUsers();
+				        	}],
+		            },
+				        untilResolved: {
+				          templateUrl: 'js/views/loading.html'
+				        },
+				        resolveFailed: {
+				          templateUrl: 'js/views/error.html'
+				        }
+		        	})
+
+		        	.segment('message',{
+		        		templateUrl: 'js/views/message.html',
+		        		controller: 'MessageCtrl',
+		        		resolve: {
+		        			message: ['$routeParams', 'emailFactory', function($routeParams, emailFactory){
+		        				return emailFactory.getEmailById($routeParams.id);
+		        			}],
+		        		},
 				        untilResolved: {
 				          templateUrl: 'js/views/loading.html'
 				        },

@@ -83,19 +83,23 @@ api.post('/api/photo', function(req, res){
 });
 
 api.post('/api/login', function(req, res){
-		Users.find({password: req.body.pass, email: req.body.email},
+		Users.find({password: req.body.pass, email: req.body.email}, { password: 0 },
 			function(err, user) {
 				if (err) {console.log(err); res.send(err); return;}
-				delete user[0].password;
-				var date = Date.now();
-				var newLogin = new LoginData({_id: shortid.generate(), userId: user[0]._id, date: date});
-				newLogin.save(function(err){
-					if (err) {console.log(err); res.send(err); return;}
-				});
-				Users.update({_id: user[0]._id }, {lastLogin: date} ,{},function(err, result) {
-					if (err) {console.log(err); res.send(err); return;}
-					res.send({ user: user });
-				});
+				if(user.length){
+					delete user[0].password;
+					var date = Date.now();
+					var newLogin = new LoginData({_id: shortid.generate(), userId: user[0]._id, date: date});
+					newLogin.save(function(err){
+						if (err) {console.log(err); res.send(err); return;}
+					});
+					Users.update({_id: user[0]._id }, {lastLogin: date} ,{},function(err, result) {
+						if (err) {console.log(err); res.send(err); return;}
+						res.send({ user: user });
+					});
+				} else {
+					res.send({ user: {}});
+				}
 		});
 });
 
@@ -108,7 +112,7 @@ api.get('/api/get-login-data/:id', function(req, res){
 	});
 });
 
-api.get('/api/get-email-data/:email', function(req, res){
+api.get('/api/get-email-data', function(req, res){
 	Emails.find({}, function(err, emailsData) {
 		if (err) {console.log(err); res.send(err); return;}
 		res.send({
@@ -117,6 +121,22 @@ api.get('/api/get-email-data/:email', function(req, res){
 	});
 });
 
+api.get('/api/read-email/:id', function(req, res){
+	Emails.update({_id : req.params.id}, {unread: req.params.unread},{},
+		function(err, email){
+			if (err) {console.log(err); res.send(err); return;}
+			console.log('email updated');
+			res.send({ result: 'success' });
+		});
+});
+
+api.get('/api/email-by-id/:id', function(req, res){
+	Emails.find({_id : req.params.id},
+		function(err, email){
+			if (err) {console.log(err); res.send(err); return;}
+			res.send({ email: email });
+		});
+});
 
 api.post('/api/reset-pass', function(req, res){
 	Users.find({email: req.body.email},
