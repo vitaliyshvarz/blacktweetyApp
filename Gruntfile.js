@@ -116,7 +116,7 @@ module.exports = function(grunt) {
 	        files: [{
 	          expand: true,
 	          cwd: 'build',
-	          src: ['**/*.html', '!src/public/bower_components/**/*.html'],
+	          src: ['**/*.html', '!**/bower_components/**/*.html'],
 	          dest: 'build'
 	        }]
 	      }
