@@ -1,6 +1,6 @@
   <div class="row">
       <div class="col-lg-12">
-          <h1 class="page-header">Messages</h1>
+          <h1 class="page-header" translate="Menu.messages"></h1>
       </div>
   </div>
 
@@ -31,60 +31,41 @@
 
 					  <div class="panel-body table-responsive">
 					  	<!-- Table -->
-					  	<div><h4>Unread emails</h4></div>
+					  	<div><h4 translate="UNREAD_MSG"></h4></div>
 					  	<table class="table  table-hover table-resposive" >
 						  	<thead>
 							  	<tr>
 							  		<th translate="DATE"></th>
 										<th translate="Mail.from"></th>
 										<th translate="Mail.subject"></th>
-										<th translate="Mail.actions"></th>
 									</tr>
 								</thead>
 								<tbody>
 							    <tr ng-repeat="mail in messages | filter: { type: 'inbox', unread: true }"
-							    		ng-class="{'success': mail.unread === true}">
+							    		ng-class="{'success': mail.unread === true}"
+							    		ng-click="openMessage('new' ,mail._id)">
 							    	<td>{{mail.date | date: 'MM/dd/yyyy \'at\' HH:mm'}}</td>
 										<td>{{mail.from}}</td>
 										<td>{{mail.message.subject}}</td>
-										<td>
-											<button class="btn btn-xs btn-green"
-															ng-click="openMessage('new' ,mail._id)"
-															translate="OPEN">
-											</button>
-											<button class="btn btn-xs btn-red"
-															ng-click="deleteMessage(mail._id)"
-															translate="DELETE">
-											</button></td>
 									</tr>
 								</tbody>
 						  </table>
 						  <hr>
-						  <div><h4>All emails</h4></div>
+						  <div><h4 translate="ALL_MSG"></h4></div>
 						  <table class="table  table-hover table-resposive" datatable="ng" >
 						  	<thead>
 							  	<tr>
 							  		<th translate="DATE"></th>
 										<th translate="Mail.from"></th>
 										<th translate="Mail.subject"></th>
-										<th translate="Mail.actions"></th>
 									</tr>
 								</thead>
 								<tbody>
-							    <tr ng-repeat="mail in messages | filter: { type: 'inbox', unread: false }">
+							    <tr ng-repeat="mail in messages | filter: { type: 'inbox', unread: false }"
+							    		ng-click="openMessage('new' ,mail._id)">
 							    	<td>{{mail.date | date: 'MM/dd/yyyy \'at\' HH:mm'}}</td>
 										<td>{{mail.from}}</td>
 										<td>{{mail.message.subject}}</td>
-										<td>
-											<button class="btn btn-xs btn-green"
-															ng-click="openMessage('old', mail._id)"
-															translate="OPEN">
-											</button>
-											<button class="btn btn-xs btn-red"
-															ng-click="deleteMessage(mail._id)"
-															translate="DELETE">
-											</button>
-										</td>
 									</tr>
 								</tbody>
 						  </table>
@@ -107,24 +88,14 @@
 							  		<th translate="DATE"></th>
 										<th translate="Mail.from"></th>
 										<th translate="Mail.subject"></th>
-										<th translate="Mail.actions"></th>
 									</tr>
 								</thead>
 								<tbody>
-							    <tr ng-repeat="mail in messages | filter: { type: 'outbox' }">
+							    <tr ng-repeat="mail in messages | filter: { type: 'outbox' }"
+							    		ng-click="openMessage('new' ,mail._id)">
 							    	<td>{{mail.date | date: 'MM/dd/yyyy \'at\' HH:mm'}}</td>
 										<td>{{mail.from}}</td>
 										<td>{{mail.message.subject}}</td>
-										<td>
-											<button class="btn btn-xs btn-green"
-															ng-click="openMessage('old', Mail._id)"
-															translate="OPEN">
-											</button>
-											<button class="btn btn-xs btn-red"
-															ng-click="deleteMessage(Mail._id)"
-															translate="DELETE">
-											</button></td>
-										</td>
 									</tr>
 								</tbody>
 						  </table>

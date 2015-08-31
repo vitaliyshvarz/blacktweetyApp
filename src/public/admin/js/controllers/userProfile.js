@@ -2,7 +2,7 @@
 	'use strict';
 
 	/**
-	 * Main controller of blacktweetyApp
+	 * User Profile controller of blacktweetyApp
 	 */
 	angular.module('blacktweetyApp').
 		controller('userProfileCtrl', userProfileCtrl);
@@ -43,7 +43,7 @@
   	$scope.passError = false;
   	$scope.passwordOld = '';
 
-  	$scope.allUsers         = userFactory.filteredUsersData(users.users);
+  	$scope.allUsers         = users.users;
     $scope.userLoginData    = loginData.loginData;
     $scope.user.messages    = emailsData.emailsData;
     $scope.user.newMessages = userFactory.getNewMessages($scope.user.messages);

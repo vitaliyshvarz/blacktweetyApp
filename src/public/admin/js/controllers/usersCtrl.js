@@ -19,7 +19,7 @@
 
 	function UsersCtrl($scope, $routeSegment, initialData, $translate, $cookies, $rootScope, $location) {
 
-	  $scope.users = initialData.users.users;
+	  $scope.users = initialData.users;
 	  $('#usersTable').dataTable();
 	}
 

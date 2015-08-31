@@ -10,7 +10,8 @@
 						  			name="email"
 						  			placeholder="email"
 						  			ng-model="mailParams.from"
-						  			required="true">
+						  			required="true"
+						  			disabled="true">
 					</div>
 				</div>
 				<div class="row vcenter">
@@ -87,6 +88,7 @@
 
 				<div class="row">
 					<br>
+					<div class="text-center" ng-show="showSpinner"><img src="img/loader.gif"></div>
 					<button class="btn btn-success center-block"
 						ng-click="sendEmail()" translate="SEND_EMAIL">
 					</button>

@@ -5,7 +5,7 @@ var adminConf = {
 		lastName: 'Chorniy',
 	},
 	app: {
-		email: 'blackTweetyaApp@mail.com',
+		email: 'blacktweetyapp@yahoo.com',
 		name: 'BlackTweetyApp'
 	}
 };

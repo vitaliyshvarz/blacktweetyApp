@@ -138,6 +138,14 @@ api.get('/api/email-by-id/:id', function(req, res){
 		});
 });
 
+api.delete('/api/delete-email/:id', function(req, res){
+	Emails.remove({_id : req.params.id},
+		function(err, email){
+			if (err) {console.log(err); res.send(err); return;}
+			res.send({ result: 'success' });
+		});
+});
+
 api.post('/api/reset-pass', function(req, res){
 	Users.find({email: req.body.email},
 		function(err, user){

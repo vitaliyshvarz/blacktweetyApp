@@ -2,10 +2,10 @@ var nodemailer = require('nodemailer');
 
 // create reusable transporter object using SMTP transport
 var transporter = nodemailer.createTransport({
-    service: 'Gmail',
+    service: 'Yahoo',
     auth: {
-        user: 'chornij1@gmail.com',
-        pass: '3802221643'
+        user: 'blacktweetyapp@yahoo.com',
+        pass: 'levrone2000'
     }
 });
 

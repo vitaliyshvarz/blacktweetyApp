@@ -20,7 +20,8 @@
 			'ngCookies',
 			'datatables',
 			'ngTagsInput',
-			'textAngular'
+			'textAngular',
+			'underscore'
 		]);
 
 	app.config(['$routeSegmentProvider',
@@ -54,7 +55,20 @@
 
 		        	.segment('dashBoard',{
 		        		default: true,
-		        		templateUrl: 'js/views/dashBoard.html'
+		        		templateUrl: 'js/views/dashBoard.html',
+		        		controller: 'DashboardCtrl',
+		        		resolve: {
+				        	emailsData: ['initialDataFactory', '$rootScope', function(initialDataFactory, $rootScope) {
+		            		var usrEmail = $rootScope.user.email;
+				            return 	initialDataFactory.getUserEmails(usrEmail);
+				        	}]
+		            },
+				        untilResolved: {
+				          templateUrl: 'js/views/loading.html'
+				        },
+				        resolveFailed: {
+				          templateUrl: 'js/views/error.html'
+				        }
 		        	})
 
 		        	.segment('users', {
@@ -97,9 +111,16 @@
 		        		templateUrl: 'js/views/message.html',
 		        		controller: 'MessageCtrl',
 		        		resolve: {
+		        			emailsData: ['initialDataFactory', '$rootScope', function(initialDataFactory, $rootScope) {
+		            		var usrEmail = $rootScope.user.email;
+				            return 	initialDataFactory.getUserEmails(usrEmail);
+				        	}],
 		        			message: ['$routeParams', 'emailFactory', function($routeParams, emailFactory){
 		        				return emailFactory.getEmailById($routeParams.id);
 		        			}],
+		        			users: ['initialDataFactory', function(initialDataFactory) {
+				            return 	initialDataFactory.getUsers();
+				        	}],
 		        		},
 				        untilResolved: {
 				          templateUrl: 'js/views/loading.html'

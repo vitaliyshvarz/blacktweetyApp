@@ -16,7 +16,9 @@
         '$q',
         'userEmailService',
         'readEmailService',
-        'getEmailByIdService'
+        'getEmailByIdService',
+        'deleteEmailService',
+        '$rootScope'
     ];
 
     function emailFactory(
@@ -24,7 +26,9 @@
         $q,
         userEmailService,
         readEmailService,
-        getEmailByIdService
+        getEmailByIdService,
+        deleteEmailService,
+        $rootScope
         ) {
 
         var emailCache;
@@ -84,11 +88,24 @@
             }
             return q.promise;
         }
+
+        function deleteEmail(id){
+            var q = $q.defer();
+            deleteEmailService.delete({'id': id}).$promise.then(
+                function(result) {
+                    $rootScope.showMessage("Message deleted!");
+                    q.resolve(result);
+                },
+                function(error) { q.reject( error ); });
+            return q.promise;
+        }
+
         return {
             getUserEmails: getUserEmails,
             getNewMessages: getNewMessages,
             setEmailToRead: setEmailToRead,
-            getEmailById: getEmailById
+            getEmailById: getEmailById,
+            deleteEmail: deleteEmail
         };
     }
 

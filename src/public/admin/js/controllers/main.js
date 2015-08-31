@@ -28,6 +28,7 @@
 		  if(!$scope.user.avatar){
 		  	$rootScope.user.avatar = DEFAULT_AVATAR;
 		  }
+		  hideCollapsedMenu();
 	  };
 
 	  $scope.init();
@@ -43,6 +44,13 @@
 			$cookies.remove('user');
 			$location.path('/login');
 		};
+
+		function hideCollapsedMenu(){
+			var elem = angular.element('.sidebar-nav.navbar-collapse');
+			if(!elem.hasClass('collapse')){
+				elem.addClass('collapse');
+			}
+		}
 	}
 
 }());

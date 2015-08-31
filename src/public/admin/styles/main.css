@@ -130,3 +130,15 @@ div.well{
   color: #262626;
   background-color: #ffff00;
 }
+.table-hover tr {
+  cursor: pointer;
+}
+.fixed-side-navbar{
+  position: fixed;
+}
+
+@media(max-width:768px) {
+  .hide-elem-tablet {
+    display: none !important;
+  }
+}

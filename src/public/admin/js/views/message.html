@@ -1,0 +1,132 @@
+  <div class="col-lg-12">
+      <div class="col-lg-12">
+          <h2 class="page-header">{{ 'MESSAGE' | translate}} {{ 'Mail.from' | translate}} {{message.from}}</h2>
+      </div>
+  </div>
+
+  <div class="col-lg-12">
+
+  				<div class="row vcenter">
+	  				<div class="col-xs-2">
+	  					<h4><span class="label label-primary" translate="Mail.from"></span></h4>
+	  				</div>
+	  				<div class="col-xs-10">
+	  					<input 	type="text"
+							  			class="form-control"
+							  			ng-model="message.from"
+							  			disabled="true">
+	  				</div>
+  				</div>
+
+
+  				<div class="row vcenter">
+	  				<div class="col-xs-2">
+	  					<h4><span class="label label-primary" translate="Mail.to"></span></h4>
+	  				</div>
+	  				<div class="col-xs-10">
+	  					<div ng-repeat="message in message.to">
+	  						<input 	type="email"
+							  			class="form-control"
+							  			placeholder="{{message.address + ' ' + message.name}}"
+							  			disabled="true">
+	  					</div>
+	  				</div>
+  				</div>
+
+
+  				<div class="row vcenter">
+	  				<div class="col-xs-2">
+	  					<h4><span class="label label-primary" translate="Mail.cc"></span></h4>
+	  				</div>
+
+	  				<div class="col-xs-10">
+	  					<div ng-repeat="message in message.cc">
+	  						<input 	type="email"
+							  			class="form-control"
+							  			placeholder="{{message.address + ' ' + message.name}}"
+							  			disabled="true">
+	  					</div>
+	  				</div>
+  				</div>
+
+
+  				<div class="row vcenter">
+	  				<div class="col-xs-2">
+	  					<h4><span class="label label-primary" translate="Mail.bcc"></span></h4>
+	  				</div>
+
+	  				<div class="col-xs-10">
+	  					<div ng-repeat="message in message.bcc">
+	  						<input 	type="email"
+							  			class="form-control"
+							  			placeholder="{{message.address + ' ' + message.name}}"
+							  			disabled="true">
+	  					</div>
+	  				</div>
+  				</div>
+
+  				<br>
+
+	  			<div class="row">
+	  				<div class="col-xs-12">
+	  					<div class="panel panel-default">
+	  						<div class="panel-heading">
+	  							<div class=""><h4><span class="text-muted" translate="Mail.subject"></span> : <h4></div>
+	  							<h4 ng-bind="message.message.subject"></h4>
+	  						</div>
+	  						<div class="panel=body">
+	  							<div class="col-xs-12">
+	  								<div class=""><h4><span class="text-muted" translate="Mail.text"></span> : <h4></div>
+	  								<div  ng-bind-html="message.message.text"></div>
+	  							</div>
+	  						</div>
+	  					</div>
+	  				</div>
+	  			</div>
+
+	  			<div class="row">
+	  				<div class="text-center">
+					  		<div class="">
+									<button class="btn btn-success"
+											 		ng-click="openReply()"
+											 		data-toggle="modal"
+											 		data-target="#myModal">
+											 		{{'REPLY' | translate}}
+									</button>
+									<button class="btn btn-warning"
+											 		ng-click="openForward()"
+											 		data-toggle="modal"
+											 		data-target="#myModal">
+											 		{{'FORWARD' | translate}}
+									</button>
+									<button class="btn btn-danger"
+													ng-click="delete()">
+													{{'DELETE' | translate}}
+									</button>
+					  		</div>
+				  	</div>
+	  			</div>
+
+
+  </div>
+
+
+
+
+	<!-- Send message -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel" ng-bind="sendMessModalName"></h4>
+	      </div>
+	      <div class="modal-body" id="messageReply" ng-show="showReply">
+	      	<send-email user="user" all-users="allUsers" message="reMessage"></send-email>
+	      </div>
+	      <div class="modal-body" id="messageFwd" ng-show="showForward">
+	      	<send-email user="user" all-users="allUsers" message="fwdMessage"></send-email>
+	      </div>
+	    </div>
+	  </div>
+	</div>

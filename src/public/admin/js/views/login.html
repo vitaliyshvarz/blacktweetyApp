@@ -1,119 +1,127 @@
-  <!--  Video is muted & autoplays, placed after major DOM elements for performance & has an image fallback  -->
-  <video autoplay loop poster="54.183.64.164/raw-media/first-frame-screencap" id="video-background" muted>
-    <source src="http://beta.mattgrossdesign.com/sites/default/files/wood%20autumn-HD.mp4" type="video/mp4">
-  </video>
+<video autoplay  poster="img/video/london.jpg" id="bgvid" muted loop>
+  <source src="img/video/london.webm" type="video/webm">
+  <source src="img/video/london.mp4" type="video/mp4">
+</video>
+
+
+
 
 <div class="container">
-  <div class="row">
-    <div class="Absolute-Center is-Responsive panel panel-primary">
-      <div id="logo-container"></div>
-      <div ng-show="!forgotPass" class="col-sm-12 col-md-10 col-md-offset-1">
-        <form action="" id="loginForm">
-          <div class="form-group input-group">
-            <span class="input-group-addon warning"><i class="glyphicon glyphicon-user"></i></span>
-            <input 	class="form-control"
-            				type="text"
-            				name='email'
-            				placeholder="{{'EMAIL' | translate}}"
-            				ng-model="email"/>
-          </div>
-          <div class="form-group input-group">
-            <span class="input-group-addon warning"><i class="glyphicon glyphicon-lock"></i></span>
-            <input 	class="form-control"
-            				type="password"
-            				name='password'
-            				placeholder="{{'User.password' | translate}}"
-            				ng-model="pass"/>
-          </div>
-          <div class="form-group">
-            <button type="button"
-            				class="btn btn-def btn-block btn-success"
-            				translate="LOGIN"
-            				ng-click="login()">
-            </button>
-          </div>
-          <div class="form-group text-center">
-            <a  href="#"
-                translate="FORGOT_PASS"
-                ng-click="showForgotPass()"></a>&nbsp;|&nbsp;
-            <a  href="#"
-                translate="SUPPORT"
-                data-toggle="collapse"
-                data-target="#support">
-            </a>
-          </div>
-          <div 	class="alert alert-danger"
-          			role="alert"
-          			ng-bind="loginError"
-          			ng-if="loginError"
-          			style="font-size:10px; padding: 5px;">
-          </div>
-        </form>
-      </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{'Menu.login' | translate}}</h3>
+                    </div>
 
-      <!-- help -->
-      <div id="support" class="col-sm-12 col-md-10 col-md-offset-1 text-center collapse">
-        <h5>Questions? please contact us:</h5>
-        <a href="mailto:chornij1@gmail.com?Subject=BlackTweetyCMS%20support" target="_top">Send Mail</a>
-        <i>or Skype: blacktweety4</i>
-      </div>
+                    <div class="panel-body text-center">
+                      <div ng-show="!forgotPass">
+                        <form action="" id="loginForm">
+                          <div class="form-group input-group">
+                            <span class="input-group-addon default"><i class="glyphicon glyphicon-user"></i></span>
+                            <input  class="form-control"
+                                    type="text"
+                                    name='email'
+                                    placeholder="{{'EMAIL' | translate}}"
+                                    ng-model="email"/>
+                          </div>
+                          <div class="form-group input-group">
+                            <span class="input-group-addon default"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input  class="form-control"
+                                    type="password"
+                                    name='password'
+                                    placeholder="{{'User.password' | translate}}"
+                                    ng-model="pass"/>
+                          </div>
+                          <div class="form-group">
+                            <button type="button"
+                                    class="btn btn-def btn-block btn-primary"
+                                    translate="LOGIN"
+                                    ng-click="login()">
+                            </button>
+                          </div>
+                          <h6>
+                            <a  href="#"
+                                translate="FORGOT_PASS"
+                                ng-click="showForgotPass()"></a>&nbsp;|&nbsp;
+                            <a  href="#"
+                                translate="SUPPORT"
+                                data-toggle="collapse"
+                                data-target="#support">
+                            </a>
+                          </h6>
+                          <div  class="alert alert-danger"
+                                role="alert"
+                                ng-bind="loginError"
+                                ng-if="loginError"
+                                style="font-size:10px; padding: 5px;">
+                          </div>
+                        </form>
 
-      <!-- forgot password -->
-      <div ng-show="forgotPass" id="support" class="col-sm-12 col-md-10 col-md-offset-1 text-center">
-        <h5 translate="SEND_NEW_PASS"></h5>
-        <form action="" id="forgotPass">
-          <div class="form-group input-group">
-            <span class="input-group-addon warning"><i class="glyphicon glyphicon-user"></i></span>
-            <input  class="form-control"
-                    type="text"
-                    name='email'
-                    placeholder="{{'EMAIL' | translate}}"
-                    ng-model="renEmail"/>
-          </div>
-            <button type="button"
-                    class="btn btn-sm btn-block btn-success"
-                    translate="SEND"
-                    ng-click="sendNewPass()">
-            </button>
-            <button type="button"
-                    class="btn btn-sm btn-block btn-warning"
-                    translate="LOGIN"
-                    ng-click="showForgotPass()">
-            </button>
-            <hr>
-        </form>
-        <div  class="alert" ng-if="newPassResult"
-              ng-class="successNewPass ? 'alert-success' : 'alert-danger'"
-              ng-bind="newPassResult">
+                      </div>
+                      <!-- help -->
+                        <div id="support" class=" text-center collapse">
+                          <h5>Questions? please contact us:</h5>
+                          <a href="mailto:chornij1@gmail.com?Subject=BlackTweetyCMS%20support" target="_top">Send Mail</a>
+                          <i>or Skype: blacktweety4</i>
+                        </div>
+                        <!-- forgot password -->
+                        <div ng-show="forgotPass">
+                          <h5 translate="SEND_NEW_PASS"></h5>
+                          <form action="" id="forgotPass">
+                            <div class="form-group input-group">
+                              <span class="input-group-addon default"><i class="glyphicon glyphicon-user"></i></span>
+                              <input  class="form-control"
+                                      type="text"
+                                      name='email'
+                                      placeholder="{{'EMAIL' | translate}}"
+                                      ng-model="renEmail"/>
+                            </div>
+                              <button type="button"
+                                      class="btn btn-sm btn-block btn-primary"
+                                      translate="SEND"
+                                      ng-click="sendNewPass()">
+                              </button>
+                              <button type="button"
+                                      class="btn btn-sm btn-block btn-default"
+                                      translate="LOGIN"
+                                      ng-click="showForgotPass()">
+                              </button>
+                              <hr>
+                          </form>
+                          <div  class="alert" ng-if="newPassResult"
+                                ng-class="successNewPass ? 'alert-primary' : 'alert-danger'"
+                                ng-bind="newPassResult">
+                          </div>
+                        </div>
+                        <!-- languages -->
+                        <div ng-if="!newPassResult">
+                          <div class="btn-group btn-group-justified">
+                              <div class="btn-group" role="group">
+                                <button class="btn btn-xs"
+                                  ng-class="lang === 'en' ? 'btn-primary' : 'btn-default'"
+                                  ng-click="changeLanguage('en')"
+                                  translate="BUTTON_LANG_EN">
+                                </button>
+                              </div>
+                              <div class="btn-group" role="group">
+                                <button ng-class="lang === 'de' ? 'btn-primary' : 'btn-default'"
+                                  class="btn btn-xs"
+                                  ng-click="changeLanguage('de')"
+                                  translate="BUTTON_LANG_DE">
+                                </button>
+                              </div>
+                              <div class="btn-group" role="group">
+                                <button ng-class="lang === 'uk' ? 'btn-primary' : 'btn-default'"
+                                  class="btn btn-xs"
+                                  ng-click="changeLanguage('uk')"
+                                  translate="BUTTON_LANG_UK">
+                                </button>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <!-- languages -->
-      <div ng-if="!newPassResult" class="col-sm-12 col-md-10 col-md-offset-1">
-      	<div class="btn-group btn-group-justified">
-	      		<div class="btn-group" role="group">
-				      <button class="btn btn-xs"
-								ng-class="lang === 'en' ? 'btn-success' : 'btn-warning'"
-								ng-click="changeLanguage('en')"
-								translate="BUTTON_LANG_EN">
-							</button>
-						</div>
-						<div class="btn-group" role="group">
-				      <button ng-class="lang === 'de' ? 'btn-success' : 'btn-warning'"
-								class="btn btn-xs"
-								ng-click="changeLanguage('de')"
-								translate="BUTTON_LANG_DE">
-							</button>
-						</div>
-						<div class="btn-group" role="group">
-			        <button ng-class="lang === 'uk' ? 'btn-success' : 'btn-warning'"
-								class="btn btn-xs"
-								ng-click="changeLanguage('uk')"
-								translate="BUTTON_LANG_UK">
-							</button>
-						</div>
-				</div>
-			</div>
     </div>
-  </div>
-</div>

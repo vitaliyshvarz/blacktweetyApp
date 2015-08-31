@@ -67,6 +67,7 @@
             var _deferred = $q.defer();
             sendEmailService.post(email).$promise.
                 then(function(result){
+                    $rootScope.$broadcast('EMAIL_SEND');
                     $rootScope.showMessage('Email sent!');
                     _deferred.resolve(result);
                 }, function(error){

@@ -75,7 +75,25 @@
         INBOX_MESSAGES: 'Inbox emails',
         OPEN: 'Open',
         DELETE: 'Delete',
-        DATE: 'Date'
+        DATE: 'Date',
+        CONFIRM: 'Confirm?',
+        REPLY: 'Reply',
+        FORWARD: 'Forward',
+        Menu: {
+            myprofile: 'My Profile',
+            logout: 'Logout',
+            login: 'Login',
+            users: 'Users',
+            messages: 'Messages',
+            language: 'Language',
+            account: 'Account'
+        },
+        SEARCH: 'Search',
+        MESSAGE: 'Message',
+        FORWARD_MSG: 'Forward message',
+        REPLY_MSG: 'Reply on message',
+        UNREAD_MSG: 'New Messages',
+        ALL_MSG: 'All messages'
       });
     });
 

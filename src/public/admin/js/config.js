@@ -20,6 +20,7 @@
 	.constant('USER_EMAIL_DATA_API', 	'/api/get-email-data')
 	.constant('READ_EMAIL_DATA_API', 	'/api/read-email/:id')
 	.constant('EMAIL_BY_ID_DATA_API', '/api/email-by-id/:id')
+	.constant('DLETE_EMAIL_API',      '/api/delete-email/:id')
 
 	.constant('DEFAULT_AVATAR',    'uploads/userDefault.jpg');
 

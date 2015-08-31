@@ -75,7 +75,25 @@
         INBOX_MESSAGES: 'Posteingang E-Mails',
         OPEN: 'Offen',
         DELETE: 'löschen',
-        DATE: 'Datum'
+        DATE: 'Datum',
+        CONFIRM: 'Bestätigen?',
+        REPLY: 'Antworten',
+        FORWARD: 'Vorwärts',
+        Menu: {
+            myprofile: 'Mein Profil',
+            logout: 'Abmelden',
+            login: 'Einloggen',
+            users: 'Benutzer',
+            messages: 'Nachrichten',
+            language: 'Sprahe',
+            account: 'Account'
+        },
+        SEARCH: 'Suche',
+        MESSAGE: 'Nachricht',
+        FORWARD_MSG: 'Nachricht weiterleiten',
+        REPLY_MSG: 'Antwort auf Nachricht',
+        UNREAD_MSG: 'Neue Nachrichten',
+        ALL_MSG: 'Alle Nachrichten'
         });
     });
 

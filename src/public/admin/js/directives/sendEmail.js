@@ -2,7 +2,6 @@
     'use strict';
     /*
     *	Send email user directive
-    *
     */
     angular
         .module('blacktweetyApp')
@@ -12,29 +11,35 @@
         .$inject = [
         '$translate',
         '$filter',
-        'Email'
+        'Email',
+        '$rootScope',
+        'userFactory',
+        '_'
     ];
 
-    function sendEmail($translate, $filter, Email) {
+    function sendEmail($translate, $filter, Email, $rootScope, userFactory, _) {
         return {
             restrict: 'E',
             replace: false,
             scope: {
                 user: '=user',
-                allUsers: '=allUsers'
+                allUsers: '=allUsers',
+                message: '=message'
             },
             templateUrl: 'js/directives/sendEmail.html',
             link: function(scope) {
 
-            scope.mailParams = {
-                from: scope.user.email,
+            scope.allUsers = userFactory.filteredUsersData(scope.allUsers);
+            scope.mailParams = _.extend({
+                from: $rootScope.user.email,
                 to: [],
                 cc:[],
                 bcc:[],
                 subject:'',
                 text:''
-            };
+            }, scope.message);
 
+            scope.showSpinner = false;
             scope.checkEmails = function(emailsArray){
                 var invaldEmails = [];
                 angular.forEach(emailsArray, function(emailName){
@@ -94,9 +99,14 @@
             };
             scope.sendEmail = function(){
                 if(scope.checkEmailData()){
+                    scope.showSpinner = true;
                     Email.send(scope.mailParams);
                 }
             };
+
+            $rootScope.$on('EMAIL_SEND', function(){
+                scope.showSpinner = false;
+            });
 
             }
         };

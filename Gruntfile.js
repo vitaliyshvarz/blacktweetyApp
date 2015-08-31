@@ -189,6 +189,7 @@ module.exports = function(grunt) {
 		      basePath : '',
 		      files: [
 		      	'src/public/bower_components/jquery/dist/jquery.js',
+		      	'src/public/bower_components/underscore/underscore-min.js',
 		      	'src/public/bower_components/angular/angular.js',
 		      	'src/public/bower_components/angular-mocks/angular-mocks.js',
 		      	'src/public/bower_components/angular-resource/angular-resource.js',
@@ -204,6 +205,7 @@ module.exports = function(grunt) {
 		      	'src/public/bower_components/textAngular/dist/textAngular-rangy.min.js',
 		      	'src/public/bower_components/textAngular/dist/textAngular-sanitize.min.js',
 		      	'src/public/bower_components/textAngular/dist/textAngular.min.js',
+		      	'src/public/bower_components/angular-underscore-module/angular-underscore-module.js',
 		      	'src/public/admin/js/**/*.js',
 		        'src/**/*.mock.js', 'src/**/*.spec.js'
 		      ],
