@@ -44,7 +44,7 @@ api.use(multer({ dest: 'src/public/',
 
 
 api.get('/api/users', function(req, res){
-	Users.find({}, function(err, users) {
+	Users.find({}, { password: 0 }, function(err, users) {
 		var userMap = {};
 
 		users.forEach(function(user) {
@@ -83,6 +83,7 @@ api.post('/api/photo', function(req, res){
 });
 
 api.post('/api/login', function(req, res){
+		console.log(req)
 		Users.find({password: req.body.pass, email: req.body.email}, { password: 0 },
 			function(err, user) {
 				if (err) {console.log(err); res.send(err); return;}
