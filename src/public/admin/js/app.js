@@ -36,6 +36,7 @@
 	        .when('/main/user-profile',   'main.userProfile')
 	        .when('/main/dash-board',     'main.dashBoard')
 	        .when('/main/users',          'main.users')
+	        .when('/main/users/:id',      'main.user')
 	        .when('/main/messages',       'main.messages')
 	        .when('/main/messages/:id',   'main.message')
 
@@ -78,6 +79,25 @@
 		            	initialData: ['initialDataFactory', function(initialDataFactory) {
 				            return initialDataFactory.getUsers();
 				        	}]
+		            },
+				        untilResolved: {
+				          templateUrl: 'js/views/loading.html'
+				        },
+				        resolveFailed: {
+				          templateUrl: 'js/views/error.html'
+				        }
+		        	})
+
+		        	.segment('user', {
+		        		templateUrl: 'js/views/user.html',
+		        		controller: 'UserCtrl',
+		        		resolve: {
+		        			user: ['$routeParams', 'userFactory', function($routeParams, userFactory){
+		        				return userFactory.getUserById($routeParams.id);
+		        			}],
+		        			users: ['initialDataFactory', function(initialDataFactory) {
+				            return 	initialDataFactory.getUsers();
+				        	}],
 		            },
 				        untilResolved: {
 				          templateUrl: 'js/views/loading.html'

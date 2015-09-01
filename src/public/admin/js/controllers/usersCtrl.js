@@ -11,16 +11,17 @@
 		'$scope',
 		'$routeSegment',
 		'initialData',
-		'$translate',
-		'$cookies',
-		'$rootScope',
 		'$location'
 	];
 
-	function UsersCtrl($scope, $routeSegment, initialData, $translate, $cookies, $rootScope, $location) {
+	function UsersCtrl($scope, $routeSegment, initialData, $location) {
 
 	  $scope.users = initialData.users;
-	  $('#usersTable').dataTable();
+	  angular.element('#usersTable').dataTable();
+
+	 	$scope.openUser = function(id){
+	  	$location.path('/main/users/' + id);
+	  };
 	}
 
 }());

@@ -14,15 +14,14 @@
     userService
         .$inject = [
         '$resource',
-        'USER_API'
+        'USERS_API'
     ];
 
-	function userService($resource, USER_API) {
-	    var endpointUrl = USER_API;
+	function userService($resource, USERS_API) {
+	    var endpointUrl = USERS_API;
 	    return $resource(endpointUrl, {},
 	      {
 	        'query': { method: 'GET', isArray: false },
-	        'post': { method: 'POST', isArray: false }
 	      }
 	    );
 	  }

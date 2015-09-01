@@ -13,6 +13,7 @@
     userFactory
         .$inject = [
         'userService',
+        'addUserService',
         '$q',
         '$location',
         'Upload',
@@ -21,11 +22,13 @@
         'USER_PHOTO_UPLOAD',
         '$rootScope',
         'userLoginService',
-        'userEmailService'
+        'userEmailService',
+        'userByIdService'
     ];
 
     function userFactory(
         userService,
+        addUserService,
         $q,
         $location,
         Upload,
@@ -34,42 +37,50 @@
         USER_PHOTO_UPLOAD,
         $rootScope,
         userLoginService,
-        userEmailService
+        userEmailService,
+        userByIdService
         ) {
+
+        return {
+            getAllUsers : getAllUsers,
+            addNewUser  : addNewUser,
+            uploadAvatar: uploadAvatar,
+            deleteImage: deleteImage,
+            updateUser: updateUser,
+            filteredUsersData: filteredUsersData,
+            getUserLoginData: getUserLoginData,
+            getUserEmails: getUserEmails,
+            getNewMessages: getNewMessages,
+            getUserById: getUserById
+        };
 
         /**
         * Returns all users
         */
-        var getAllUsers = function() {
-            var _deferred = $q.defer();
+        function getAllUsers() {
+            var q = $q.defer();
             userService.query({}).$promise.then(
-                function(result) {
-                    _deferred.resolve(result);
-                },
-                function(error) {
-                    _deferred.reject( error );
-                });
-            return _deferred.promise;
-        };
+                function(result) { q.resolve(result); },
+                function(error) { q.reject( error ); });
+            return q.promise;
+        }
 
         /**
         * Add new user
         * params{object} - user data
         */
-        var addNewUser = function(user) {
-            var _deferred = $q.defer();
-            userService.post(user).$promise.then(
+        function addNewUser(user) {
+            var q = $q.defer();
+            addUserService.post(user).$promise.then(
                 function(result) {
                     $rootScope.showMessage("Success adding user");
-                    _deferred.resolve(result);
+                    q.resolve(result);
                 },
-                function(error) {
-                    _deferred.reject( error );
-                });
-            return _deferred.promise;
-        };
+                function(error) { q.reject( error ); });
+            return q.promise;
+        }
 
-        var uploadAvatar = function(file){
+        function uploadAvatar(file){
             Upload.upload({
                 url: USER_PHOTO_UPLOAD,
                 file: file,
@@ -85,40 +96,34 @@
                 console.log('file: ' + config.file.name + ', Response: ' +
                 JSON.stringify(data) + '\n');
             });
-        };
+        }
 
         /**
         * Delete image
         * @params{string} -file link
         */
-        var deleteImage = function(file){
-            var _deferred = $q.defer();
+        function deleteImage(file){
+            var q = $q.defer();
             deleteFile.post({file : file}).$promise.then(
-                function(result) {
-                    _deferred.resolve(result);
-                },
-                function(error) {
-                    _deferred.reject( error );
-                });
-            return _deferred.promise;
-        };
+                function(result) { q.resolve(result); },
+                function(error) { q.reject( error ); });
+            return q.promise;
+        }
 
         /**
         * Update user
         * @params{object} - user data
         */
-        var updateUser = function(user){
-            var _deferred = $q.defer();
+        function updateUser(user){
+            var q = $q.defer();
             updateUserService.post(user).$promise.then(
                 function(result) {
-                    _deferred.resolve(result);
+                    q.resolve(result);
                     $rootScope.showMessage("User Updated");
                 },
-                function(error) {
-                    _deferred.reject( error );
-                });
-            return _deferred.promise;
-        };
+                function(error) { q.reject( error ); });
+            return q.promise;
+        }
 
         /*
         * Get filtered user data
@@ -138,55 +143,48 @@
         * @params{string} user id
         * @returns{object} user login data
         */
-        var getUserLoginData = function(id){
-            var _deferred = $q.defer();
+        function getUserLoginData(id){
+            var q = $q.defer();
             userLoginService.query({'id': id}).$promise.then(
-                function(result) {
-                    _deferred.resolve(result);
-                },
-                function(error) {
-                    _deferred.reject( error );
-                });
-            return _deferred.promise;
-        };
+                function(result) { q.resolve(result); },
+                function(error) { q.reject( error ); });
+            return q.promise;
+        }
+
+        /**
+        * Returns user by id
+        * @params{string} user id
+        * @returns{object} user data
+        */
+        function getUserById(id){
+            var q = $q.defer();
+            userByIdService.query({'id': id}).$promise.then(
+                function(result) { q.resolve(result); },
+                function(error) { q.reject( error ); });
+            return q.promise;
+        }
 
         /**
         * Returns user emails
         * @params{string} user email
         * @returns{object} user login data
         */
-        var getUserEmails = function(email){
-            var _deferred = $q.defer();
+        function getUserEmails(email){
+            var q = $q.defer();
             userEmailService.query({'email': email}).$promise.then(
-                function(result) {
-                    _deferred.resolve(result);
-                },
-                function(error) {
-                    _deferred.reject( error );
-                });
-            return _deferred.promise;
-        };
+                function(result) { q.resolve(result); },
+                function(error) { q.reject( error ); });
+            return q.promise;
+        }
 
         /**
         * Returns new user(emails user has not read)
         * @params{string} user email
         * @returns{object} user login data
         */
-        var getNewMessages = function(allEmails){
+        function getNewMessages(allEmails){
             return allEmails.filter(function(email){ return (!!email.unread && email.type === 'inbox'); });
-        };
-
-        return {
-            getAllUsers : getAllUsers,
-            addNewUser  : addNewUser,
-            uploadAvatar: uploadAvatar,
-            deleteImage: deleteImage,
-            updateUser: updateUser,
-            filteredUsersData: filteredUsersData,
-            getUserLoginData: getUserLoginData,
-            getUserEmails: getUserEmails,
-            getNewMessages: getNewMessages
-        };
+        }
     }
 
 }());

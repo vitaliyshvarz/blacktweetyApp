@@ -56,7 +56,14 @@ api.get('/api/users', function(req, res){
 	});
 });
 
-api.post('/api/users', function(req, res){
+api.get('/api/user-by-id/:id', function(req, res){
+	Users.findOne({_id: req.params.id}, { password: 0 }, function(err, user) {
+		if (err) {console.log(err); res.send(err); return;}
+		res.send({ user: user });
+	});
+});
+
+api.post('/api/add-user', function(req, res){
 	var newUser = new Users({
 			_id: shortid.generate(),
 			name: {
@@ -67,7 +74,7 @@ api.post('/api/users', function(req, res){
 			email		: req.body.email,
 			category	: req.body.role,
 			password	: req.body.password,
-			avatar		: filenameSave
+			avatar		: filenameSave || req.body.avatar
 		});
 	newUser.save(function (err) {
 	  if (err) {console.log(err); res.send(err); return;}
@@ -83,7 +90,6 @@ api.post('/api/photo', function(req, res){
 });
 
 api.post('/api/login', function(req, res){
-		console.log(req)
 		Users.find({password: req.body.pass, email: req.body.email}, { password: 0 },
 			function(err, user) {
 				if (err) {console.log(err); res.send(err); return;}

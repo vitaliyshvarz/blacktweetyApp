@@ -13,10 +13,12 @@
         'userFactory',
         '$translate',
         '$routeSegment',
-        '$timeout'
+        '$timeout',
+        'DEFAULT_AVATAR',
+        '$location'
     ];
 
-    function addNewUser(userFactory, $translate, $routeSegment, $timeout) {
+    function addNewUser(userFactory, $translate, $routeSegment, $timeout, DEFAULT_AVATAR, $location) {
         return {
             restrict: 'E',
             replace: false,
@@ -52,7 +54,6 @@
                     };
                     scope.password1 = '';
                     scope.password2 = '';
-                    $routeSegment.chain[0].reload();
                 };
 
                 /*
@@ -98,9 +99,14 @@
                     if(scope.user.firstName && scope.user.lastName &&
                         scope.user.email && scope.user.age &&
                         scope.user.role && scope.user.password) {
-                            scope.uploadAvatar(scope.files);
+                            if(scope.files && scope.files.length){
+                                scope.uploadAvatar(scope.files);
+                            } else {
+                                scope.user.avatar = DEFAULT_AVATAR;
+                            }
                             userFactory.addNewUser(scope.user);
                             scope.resetUser();
+                            $location.path('/main/users');
                     }
             	};
 

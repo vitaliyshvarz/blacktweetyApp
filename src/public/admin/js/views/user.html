@@ -1,10 +1,11 @@
+
 <div class="row">
-  <div class="col-lg-12">
-      <h1 class="page-header" ng-bind="userName"></h1>
-  </div>
+	<div class="col-lg-12">
+  	<h1 class="page-header" ng-bind="userName"></h1>
+	</div>
 </div>
 <div class="row">
-  	<div class="col-md-4">
+  	<div class="col-md-5">
   		<div>
 				<img 	ng-if="user.avatar && files[0] == null"
 							width="120"
@@ -164,8 +165,7 @@
   	</div>
 
 
-  	<div class="col-md-8">
-
+  	<div class="col-md-7">
   			<!-- send email-->
   			<div>
   				<div class="panel panel-primary">
@@ -180,112 +180,6 @@
 		  			</div>
 		  		</div>
   			</div>
-
-  			<!-- new items -->
-  			<div class="row">
-<!--   	      <div class="col-lg-3 col-md-4">
-              <div class="panel panel-primary">
-                  <div class="panel-heading">
-                      <div class="row">
-                          <div class="col-xs-3">
-                              <i class="fa fa-comments fa-3x"></i>
-                          </div>
-                          <div class="col-xs-9 text-right">
-                              <div class="huge">Null</div>
-                          </div>
-                          <div class="col-xs-12  text-center">
-                          	<div>New Comments</div>
-                          </div>
-                      </div>
-                  </div>
-                  <a href="#">
-                      <div class="panel-footer">
-                          <span class="pull-left">View Details</span>
-                          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                          <div class="clearfix"></div>
-                      </div>
-                  </a>
-              </div>
-          </div> -->
-          <div class="col-lg-3 col-md-4">
-              <div class="panel panel-green">
-                  <div class="panel-heading">
-                      <div class="row">
-                          <div class="col-xs-3">
-                              <i class="fa fa-envelope-o fa-3x"></i>
-                          </div>
-                          <div class="col-xs-9 text-right">
-                              <div class="huge" ng-bind="user.newMessages.length"></div>
-                          </div>
-                          <div class="col-xs-12  text-center">
-                          	<div translate="NEW_EMAILS"></div>
-                          </div>
-                      </div>
-                  </div>
-                  <a href="#/main/messages">
-                      <div class="panel-footer">
-                          <span class="pull-left" translate="VIEW_EMAILS"></span>
-                          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                          <div class="clearfix"></div>
-                      </div>
-                  </a>
-              </div>
-          </div>
-				</div>
-
-  		<hr>
-  		<form>
-  		  <div class="row">
-					<div class="col-sm-3">
-						<label class="label label-warning" translate="User.currentPassword"></label>
-					</div>
-					<div class="col-sm-9">
-					  	<input 	type="text"
-							  			class="form-control"
-							  			aria-label="password"
-							  			name="password1"
-							  			placeholder="password"
-							  			ng-model="passwordOld"
-							  			required="true">
-					</div>
-				</div>
-  			<div class="row">
-					<div class="col-sm-3">
-						<label class="label label-warning" translate="User.newPassword"></label>
-					</div>
-					<div class="col-sm-9">
-					  	<input 	type="text"
-							  			class="form-control"
-							  			aria-label="password"
-							  			name="password1"
-							  			placeholder="password"
-							  			ng-model="password1"
-							  			ng-change="setPassword()"
-							  			required="true">
-					</div>
-				</div>
-				<div class="row" ng-class="{'has-error': passError}">
-					<div class="col-sm-3">
-						<label class="label label-warning" translate="CONFIRM_PASS"></label>
-					</div>
-					<div class="col-sm-9">
-					  	<input 	type="text"
-							  			class="form-control"
-							  			aria-label="password"
-							  			name="password2"
-							  			placeholder="confirm password"
-							  			ng-model="password2"
-							  			ng-change="setPassword()"
-							  			required="true">
-					  	<span class="text-danger" ng-show="passError" translate="PASS_MATCH_ERR"></span>
-					</div>
-
-				</div>
-				<hr>
-				<button class="btn btn-warning center-block"
-					ng-click="updatePassword()" translate="UPDATE_PASS">
-				</button>
-  		</form>
   		<hr>
   	</div>
 </div>
