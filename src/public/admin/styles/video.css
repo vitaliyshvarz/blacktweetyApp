@@ -15,6 +15,5 @@ video {
 
 
 @media screen and (max-device-width: 800px) {
-  html { background: url(../img/video/london.png) #000 no-repeat center center fixed; }
-  #bgvid { display: none; }
+  .login-main-block { background: url(../img/video/london.png) #000 no-repeat center center fixed; }
 }
