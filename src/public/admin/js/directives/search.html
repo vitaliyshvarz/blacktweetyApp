@@ -1,0 +1,20 @@
+  <div class="input-group custom-search-form globalSearch">
+      <input  type="text"
+              class="form-control"
+              placeholder="{{'SEARCH' | translate}}"
+              ng-model="searchText"
+              ng-change="search()">
+      <span class="input-group-btn">
+      <button class="btn btn-default" type="button">
+          <i class="fa fa-search"></i>
+      </button>
+      </span>
+      <div class="bt-search-block" ng-show="searchText.length > 0">
+        <div class="text-center"><img ng-show="showLoader" width="20" src="img/loader.gif"></div>
+          <a class="list-group-item" ng-repeat="collection in searchData  track by $index">
+            {{collection.name}}
+            <p class="list-group-item"  ng-repeat="item in collection track by $index">{{item}}</p>
+          </a>
+        </ul>
+      </div>
+  </div>

@@ -93,7 +93,16 @@
         FORWARD_MSG: 'Forward message',
         REPLY_MSG: 'Reply on message',
         UNREAD_MSG: 'New Messages',
-        ALL_MSG: 'All messages'
+        ALL_MSG: 'All messages',
+        ACCOUNT_STATUS: 'Account status',
+        ACTIVE: 'Active',
+        INACTIVE: 'Inactive',
+        BLOG_SUBSCRIBE: 'Blog subscribe',
+        YES: 'Yes',
+        NO: 'No',
+        EDIT: 'Edit',
+        DELETE_USER: 'Delete user',
+        ARE_YOU_SURE: 'Are you sure?'
       });
     });
 

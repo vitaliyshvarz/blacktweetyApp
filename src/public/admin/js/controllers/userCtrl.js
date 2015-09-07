@@ -28,6 +28,7 @@
 		) {
 
 	  $scope.user = user.user;
+	  $scope.edit = false;
 	  $scope.allUsers = users.users;
 	  $scope.userName = $scope.user.name.first + ' ' +  $scope.user.name.last;
 
@@ -77,6 +78,19 @@
       }
       $scope.user.avatar = user.user.avatar;
     };
+
+    // enable user info editing
+    $scope.editEnable = function(){
+    	$scope.edit = !!$scope.edit ? false : true;
+    };
+
+    $scope.deleteUser = function(){
+        $('#deleteUserModal').modal('hide');
+    	userFactory.deleteUser($scope.user._id);
+        $location.path('/main/users');
+        $rootScope.showMessage("User deleted");
+    };
+
 	}
 
 }());

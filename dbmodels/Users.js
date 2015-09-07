@@ -14,7 +14,8 @@ var UserSchema = new mongoose.Schema({
   category: { type: String, default: 'default' },
   active:  { type: Boolean, default: false },
   password: String,
-  lastLogin: Date
+  lastLogin: Date,
+  blogSubscribe: {type: Boolean, default: true}
 });
 
 var Users = mongoose.model('Users', UserSchema);

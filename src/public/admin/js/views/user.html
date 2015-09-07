@@ -78,7 +78,8 @@
 							  			name="firstName"
 							  			ng-model="user.name.first"
 							  			ng-change="checkName('first')"
-							  			required="true">
+							  			required="true"
+							  			ng-disabled="!edit">
 					  	<span class="text-danger" ng-show="firstNameError" ng-bind="firstNameErrorText"></span>
 					</div>
 				</div>
@@ -94,7 +95,8 @@
 					 			name="lastName"
 					 			ng-model="user.name.last"
 					 			ng-change="checkName('last')"
-					 			required="true">
+					 			required="true"
+					 			ng-disabled="!edit">
 					 	<span class="text-danger" ng-show="lastNameError" ng-bind="lastNameErrorText"></span>
 					</div>
 				</div>
@@ -109,7 +111,8 @@
 							  			name="email"
 							  			placeholder="email"
 							  			ng-model="user.email"
-							  			required="true">
+							  			required="true"
+							  			ng-disabled="!edit">
 					</div>
 				</div>
 				<div class="row">
@@ -123,7 +126,8 @@
 							  			name="age"
 							  			placeholder="age"
 							  			ng-model="user.age"
-							  			required="true">
+							  			required="true"
+							  			ng-disabled="!edit">
 					</div>
 				</div>
 				<div class="row">
@@ -136,50 +140,94 @@
 								<input 	type="radio"
 												id="userRoleDefault"
 												ng-model="user.category"
-												value="default">
+												value="default"
+												ng-disabled="!edit">
 								<span translate="Roles.default"</span>
 							</label>
 							<label>
 								<input 	type="radio"
 												id="userRoleDefault"
 												ng-model="user.category"
-												value="moderator">
+												value="moderator"
+												ng-disabled="!edit">
 								<span translate="Roles.moderator"</span>
 							</label>
 							<label>
 								<input 	type="radio"
 												id="userRoleDefault"
 												ng-model="user.category"
-												value="admin">
+												value="admin"
+												ng-disabled="!edit">
 								<span translate="Roles.admin"</span>
 							</label>
 						</div>
 					</div>
 				</div>
 				<hr>
-				<button class="btn btn-success center-block"
-					ng-click="updateUser()" translate="UPDATE">
-				</button>
+				<div class="text-center">
+					<div class="btn-group">
+						<button class="btn btn-warning"
+							ng-click="editEnable()" translate="EDIT">
+						</button>
+						<button class="btn btn-success"
+							ng-click="updateUser()" translate="UPDATE">
+						</button>
+						<button class="btn btn-danger"
+							ng-disabled="!edit"
+							ng-click="deleteUser()"
+							translate="DELETE_USER">
+						</button>
+					</div>
+				</div>
 				<br>
   		</form>
   	</div>
 
 
   	<div class="col-md-7">
+  			<div class="panel panel-primary">
+  				<div class="panel-heading">Account actions</div>
+  				<div class="panel-body">
+  					<div class="form-group">
+              <label translate="ACCOUNT_STATUS"></label>
+              <label class="radio-inline">
+                  <input type="radio" ng-value="true" ng-model="user.active" ng-checked="user.active">{{'ACTIVE'
+                  | translate}}
+              </label>
+              <label class="radio-inline">
+                  <input type="radio" ng-value="false" ng-model="user.active" ng-checked="!user.active">{{'INACTIVE' | translate}}
+              </label>
+          	</div>
+          	<div class="form-group">
+	          	<label translate="BLOG_SUBSCRIBE"></label>
+	              <label class="radio-inline">
+	                  <input type="radio" ng-value="true" ng-model="user.blogSubscribe" ng-checked="user.blogSubscribe">{{'YES'
+	                  | translate}}
+	              </label>
+	              <label class="radio-inline">
+	                  <input type="radio" ng-value="false" ng-model="user.blogSubscribe" ng-checked="!user.blogSubscribe">{{'NO' | translate}}
+	              </label>
+              </div>
+          	</div>
+          	<div>
+          		<button class="btn btn-success btn-sm center-block"
+								ng-click="updateUser()" translate="UPDATE">
+							</button>
+							<br>
+          	</div>
+  				</div>
   			<!-- send email-->
-  			<div>
-  				<div class="panel panel-primary">
-		  			<div 	class="panel-heading"
-		  						style="cursor:pointer"
-		  						data-toggle="collapse"
-		  						data-target="#sendEmail"
-		  						translate="SEND_EMAIL">
-		  			</div>
-		  			<div class="panel-body collapse" id="sendEmail">
-		  				<send-email user="user" all-users="allUsers"></send-email>
-		  			</div>
-		  		</div>
-  			</div>
+				<div class="panel panel-primary">
+	  			<div 	class="panel-heading"
+	  						style="cursor:pointer"
+	  						data-toggle="collapse"
+	  						data-target="#sendEmail"
+	  						translate="SEND_EMAIL">
+	  			</div>
+	  			<div class="panel-body collapse" id="sendEmail">
+	  				<send-email user="user" all-users="allUsers"></send-email>
+	  			</div>
+	  		</div>
   		<hr>
   	</div>
 </div>

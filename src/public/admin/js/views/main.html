@@ -78,38 +78,31 @@
       <div class="btapp-mobile-menu collapse">
         <ul class="nav">
           <li class="sidebar-search">
-              <div class="input-group custom-search-form">
-                  <input type="text" class="form-control" placeholder="{{'SEARCH' | translate}}">
-                  <span class="input-group-btn">
-                  <button class="btn btn-default" type="button">
-                      <i class="fa fa-search"></i>
-                  </button>
-              </span>
-              </div>
+            <search></search>
           </li>
           <li>
-              <a href="#/main/users" ><i class="fa fa-dashboard fa-fw"></i> {{'Menu.users' | translate}}</a>
+              <a href="#/main/users" class="collapse-link"><i class="fa fa-dashboard fa-fw"></i> {{'Menu.users' | translate}}</a>
           </li>
           <li>
-              <a href="#/main/messages"><i class="fa fa-edit fa-fw"></i> {{'Menu.messages' | translate}}</a>
+              <a href="#/main/messages" class="collapse-link"><i class="fa fa-edit fa-fw"></i> {{'Menu.messages' | translate}}</a>
           </li>
           <li>
             <a href="#mobile-lang" data-toggle="collapse"><i class="fa fa-language fa-fw"></i> {{'Menu.language' | translate}}</a>
             <div class="collapse" id="mobile-lang">
                 <a  href="#"
-                    class="list-group-item"
+                    class="list-group-item collapse-link"
                     translate="BUTTON_LANG_EN"
                     ng-click="changeLanguage('en')"
                     ng-class="lang === 'en' ? 'list-group-item-success' : 'list-group-item-default'">
                 </a>
                 <a  href="#"
-                    class="list-group-item"
+                    class="list-group-item collapse-link"
                     translate="BUTTON_LANG_DE"
                     ng-click="changeLanguage('de')"
                     ng-class="lang === 'de' ? 'list-group-item-success' : 'list-group-item-default'">
                 </a>
                 <a  href="#"
-                    class="list-group-item"
+                    class="list-group-item collapse-link"
                     translate="BUTTON_LANG_UK"
                     ng-click="changeLanguage('uk')"
                     ng-class="lang === 'uk' ? 'list-group-item-success' : 'list-group-item-default'">
@@ -119,8 +112,8 @@
           <li>
             <a href="#mobile-account" data-toggle="collapse"><i class="fa fa-user fa-fw"></i> {{'Menu.account' | translate}}</a>
             <div class="collapse" id="mobile-account">
-                <a href="#/main/user-profile" class="list-group-item"><i class="fa fa-user fa-fw"></i> {{'Menu.myprofile' | translate}}</a>
-                <a href="#" ng-click="logOut()" class="list-group-item"><i class="fa fa-sign-out fa-fw"></i> {{'Menu.logout' | translate}}</a>
+                <a href="#/main/user-profile" class="list-group-item collapse-link"><i class="fa fa-user fa-fw"></i> {{'Menu.myprofile' | translate}}</a>
+                <a href="#" ng-click="logOut()" class="list-group-item collapse-link"><i class="fa fa-sign-out fa-fw"></i> {{'Menu.logout' | translate}}</a>
             </div>
           </li>
 
@@ -136,14 +129,7 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav in" id="side-menu">
                 <li class="sidebar-search">
-                    <div class="input-group custom-search-form">
-                        <input type="text" class="form-control" placeholder="{{'SEARCH' | translate}}">
-                        <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
-                    </div>
+                    <search></search>
                     <!-- /input-group -->
                 </li>
               <li>

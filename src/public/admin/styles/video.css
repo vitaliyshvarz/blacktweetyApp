@@ -12,8 +12,3 @@ video {
   background-size: cover;
   transition: 1s opacity;
 }
-
-
-@media screen and (max-device-width: 800px) {
-  .login-main-block { background: url(../img/video/london.png) #000 no-repeat center center fixed; }
-}

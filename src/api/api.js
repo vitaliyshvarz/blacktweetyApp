@@ -199,6 +199,8 @@ api.post('/api/update_user', function(req, res){
 			age 		     : req.body.age,
 			email		     : req.body.email,
 			category	   : req.body.category,
+			active       : req.body.active,
+			blogSubscribe: req.body.blogSubscribe,
 			avatar		   : !!filenameSave ? filenameSave : req.body.avatar,
 			_id          : req.body._id
 	};
@@ -208,6 +210,13 @@ api.post('/api/update_user', function(req, res){
 	    res.send({ user: newUser, resMessage : 'user update success' });
 	   	filenameSave = '';
   	});
+});
+
+api.delete('/api/delete-user/:id', function(req, res){
+	Users.remove({_id: req.params.id}, function(err, user){
+		if (err) { console.log(err); res.send(err); return;}
+		res.send('success delteing user');
+	});
 });
 
 /**

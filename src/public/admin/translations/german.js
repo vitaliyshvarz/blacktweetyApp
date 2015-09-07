@@ -93,7 +93,16 @@
         FORWARD_MSG: 'Nachricht weiterleiten',
         REPLY_MSG: 'Antwort auf Nachricht',
         UNREAD_MSG: 'Neue Nachrichten',
-        ALL_MSG: 'Alle Nachrichten'
+        ALL_MSG: 'Alle Nachrichten',
+        ACCOUNT_STATUS: 'Kontostatus',
+        ACTIVE: 'aktiv',
+        INACTIVE: 'inaktiv',
+        BLOG_SUBSCRIBE: 'Blog abonnieren',
+        YES: 'Ja',
+        NO: 'Nein',
+        EDIT: 'Bearbeiten',
+        DELETE_USER: 'Benutzer löschen',
+        ARE_YOU_SURE: 'Bist du sicher'
         });
     });
 

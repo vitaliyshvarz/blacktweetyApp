@@ -15,10 +15,21 @@
 		'$rootScope',
 		'$location',
 		'DEFAULT_AVATAR',
-		'ngDialog'
+		'ngDialog',
+		'searchFactory'
 	];
 
-	function MainCtrl($scope, $routeSegment, $translate, $cookies, $rootScope, $location, DEFAULT_AVATAR, ngDialog) {
+	function MainCtrl(
+		$scope,
+		$routeSegment,
+		$translate,
+		$cookies,
+		$rootScope,
+		$location,
+		DEFAULT_AVATAR,
+		ngDialog,
+		searchFactory
+		) {
 
 		$scope.lang = $translate.use();
 
@@ -44,6 +55,10 @@
 			$cookies.remove('user');
 			$location.path('/login');
 		};
+
+		angular.element('.btapp-mobile-menu .collapse-link').on('click', function(){
+			angular.element('.btapp-mobile-menu').collapse('hide');
+		});
 
 		function hideCollapsedMenu(){
 			var elem = angular.element('.sidebar-nav.navbar-collapse');

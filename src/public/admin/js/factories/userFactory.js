@@ -23,7 +23,8 @@
         '$rootScope',
         'userLoginService',
         'userEmailService',
-        'userByIdService'
+        'userByIdService',
+        'deleteUserService'
     ];
 
     function userFactory(
@@ -38,7 +39,8 @@
         $rootScope,
         userLoginService,
         userEmailService,
-        userByIdService
+        userByIdService,
+        deleteUserService
         ) {
 
         return {
@@ -51,7 +53,8 @@
             getUserLoginData: getUserLoginData,
             getUserEmails: getUserEmails,
             getNewMessages: getNewMessages,
-            getUserById: getUserById
+            getUserById: getUserById,
+            deleteUser: deleteUser
         };
 
         /**
@@ -184,6 +187,18 @@
         */
         function getNewMessages(allEmails){
             return allEmails.filter(function(email){ return (!!email.unread && email.type === 'inbox'); });
+        }
+
+        /**
+        * Delte user by user id
+        * @params{string} userId
+        */
+        function deleteUser(id){
+            var q = $q.defer();
+            deleteUserService.delete({'id': id}).$promise.then(
+                function(result) { q.resolve(result); },
+                function(error) { q.reject( error ); });
+            return q.promise;
         }
     }
 
