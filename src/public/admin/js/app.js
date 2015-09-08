@@ -104,7 +104,8 @@
 				        },
 				        resolveFailed: {
 				          templateUrl: 'js/views/error.html'
-				        }
+				        },
+				        dependencies: ['id']
 		        	})
 
 		        	.segment('messages', {
@@ -124,7 +125,8 @@
 				        },
 				        resolveFailed: {
 				          templateUrl: 'js/views/error.html'
-				        }
+				        },
+				        dependencies: ['id']
 		        	})
 
 		        	.segment('message',{
@@ -147,7 +149,8 @@
 				        },
 				        resolveFailed: {
 				          templateUrl: 'js/views/error.html'
-				        }
+				        },
+				        dependencies: ['id']
 		        	})
 
 		        	.segment('userProfile', {

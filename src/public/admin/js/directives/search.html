@@ -13,7 +13,7 @@
       <div class="bt-search-block" ng-show="searchText.length > 0">
           <div ng-repeat="collection in searchData  track by $index">
             <span class="col-md-12 text-muted small"ng-show="collection.data.length > 0">{{collection.name}}</span>
-            <div ng-repeat="searchItem in collection.data track by $index">
+            <div ng-click="openItem('/main/' + collection.name + '/' + searchItem._id)" ng-repeat="searchItem in collection.data track by $index">
               <div class="col-md-12 bt-search-item" ng-if="collection.name === 'messages'">
                 <span class="small">{{searchItem.from}}</span>
                 <span class="small">{{searchItem.to[0].name}}</span>
@@ -25,9 +25,7 @@
                 <span class="small">{{searchItem.name.last}}</span>
               </div>
             </div>
-            </div>
-            <span ng-show="noData()">no results found</span>
-          </a>
-        </ul>
+          </div>
+        <div class="text-center" ng-show="noData()">no results found</div>
       </div>
   </div>

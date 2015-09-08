@@ -12,10 +12,12 @@
         '$filter',
         '$rootScope',
         'searchFactory',
+        '$location',
+        '$routeSegment',
         '_'
     ];
 
-    function search($filter, $rootScope, searchFactory, _) {
+    function search($filter, $rootScope, searchFactory, $location, $routeSegment, _) {
         return {
             restrict: 'E',
             replace: false,
@@ -37,7 +39,9 @@
 
                 scope.search = function(){
                     scope.showLoader = true;
-                    searchFactory.searcher.search(scope.searchText);
+                    if(scope.searchText.length > 1){
+                        searchFactory.searcher.search(scope.searchText);
+                    }
                 };
 
                 scope.noData = function(){
@@ -46,6 +50,10 @@
                         if(_.isArray(collection) && collection.length > 0){ data++; }
                     });
                     return !!data ? false : true;
+                };
+
+                scope.openItem = function(path){
+                    $location.path(path);
                 };
 
                 $rootScope.$on('SEARCH', function () {

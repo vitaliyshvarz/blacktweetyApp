@@ -42,24 +42,24 @@
         return {
             searcher: searcher
         };
-
+        /*jshint validthis: true */
         function userSearch(){
             var q = $q.defer();
-            glUsersSearchService.post({'search': searchVal}).$promise.then(
+            glUsersSearchService.post({'search': this.searchVal}).$promise.then(
                 function(result) { q.resolve(result); },
                 function(error) { q.reject( error ); });
             return q.promise;
         }
         function messagesSearch(){
             var q = $q.defer();
-            glMessagesSearchService.post({'search': searchVal}).$promise.then(
+            glMessagesSearchService.post({'search': this.searchVal}).$promise.then(
                 function(result) { q.resolve(result); },
                 function(error) { q.reject( error ); });
             return q.promise;
         }
         function blogSearch(){
             var q = $q.defer();
-            glBlogSearchService.post({'search': searchVal}).$promise.then(
+            glBlogSearchService.post({'search': this.searchVal}).$promise.then(
                 function(result) { q.resolve(result); },
                 function(error) { q.reject( error ); });
             return q.promise;
@@ -78,14 +78,13 @@
                 blogSearch = this.blogSearch(),
                 searcher = this;
 
-            if(value.length > 1){
-                $q.all([userSearch, messagesSearch, blogSearch]).
-                    then(function(result){
-                        applyResults.call(searcher, result);
-                        $rootScope.$broadcast('SEARCH');
-                    });
-            }
+            $q.all([userSearch, messagesSearch, blogSearch]).
+                then(function(result){
+                    applyResults.call(searcher, result);
+                    $rootScope.$broadcast('SEARCH');
+                });
         }
+        /*jshint validthis: false */
 
     }
 
