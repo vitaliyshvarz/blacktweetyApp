@@ -106,7 +106,7 @@
                             }
                             userFactory.addNewUser(scope.user);
                             scope.resetUser();
-                            $('.collapse').collapse('hide')
+                            $('.collapse').collapse('hide');
                             $location.path('/main/users');
                     }
             	};

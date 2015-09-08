@@ -28,17 +28,30 @@
                 scope.searchData = {};
 
                 function init(){
-                    angular.forEach(searchFactory, function(item, name){
+                    angular.forEach(searchFactory.searcher, function(item, name){
                         if(_.isArray(item)) { scope.searchData[name] = {name: name, data: item}; }
                     });
+                    scope.showLoader = false;
                 }
                 init();
 
                 scope.search = function(){
                     scope.showLoader = true;
+                    searchFactory.searcher.search(scope.searchText);
+                };
 
-                    searchFactory.search(scope.searchText);
-                }
+                scope.noData = function(){
+                    var data = 0;
+                    angular.forEach(searchFactory.searcher, function(collection){
+                        if(_.isArray(collection) && collection.length > 0){ data++; }
+                    });
+                    return !!data ? false : true;
+                };
+
+                $rootScope.$on('SEARCH', function () {
+                    init();
+                });
+
             }
         };
     }

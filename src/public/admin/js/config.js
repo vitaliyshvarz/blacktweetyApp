@@ -25,6 +25,11 @@
 	.constant('USER_BY_ID_API',       '/api/user-by-id/:id')
 	.constant('DELETE_USER_API',      '/api/delete-user/:id')
 
-	.constant('DEFAULT_AVATAR',    'uploads/userDefault.jpg');
+	.constant('DEFAULT_AVATAR',    'uploads/userDefault.jpg')
+	.constant('SEARCH_CONFIGS',   {
+		users: {name: 'users', endPoint: '/api/search-in-users'},
+		blog: {name: 'blog posts', endPoint: '/api/search-in-blog'},
+		messages: {name: 'messages',  endPoint: '/api/search-in-messages'}
+	});
 
 }());

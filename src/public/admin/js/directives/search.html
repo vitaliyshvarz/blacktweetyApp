@@ -5,15 +5,28 @@
               ng-model="searchText"
               ng-change="search()">
       <span class="input-group-btn">
+      <img class="search-load" ng-show="showLoader && searchText.length > 0" width="20" src="img/loader.gif">
       <button class="btn btn-default" type="button">
           <i class="fa fa-search"></i>
       </button>
       </span>
       <div class="bt-search-block" ng-show="searchText.length > 0">
-        <div class="text-center"><img ng-show="showLoader" width="20" src="img/loader.gif"></div>
-          <a class="list-group-item" ng-repeat="collection in searchData  track by $index">
-            {{collection.name}}
-            <p class="list-group-item"  ng-repeat="item in collection track by $index">{{item}}</p>
+          <div ng-repeat="collection in searchData  track by $index">
+            <span class="col-md-12 text-muted small"ng-show="collection.data.length > 0">{{collection.name}}</span>
+            <div ng-repeat="searchItem in collection.data track by $index">
+              <div class="col-md-12 bt-search-item" ng-if="collection.name === 'messages'">
+                <span class="small">{{searchItem.from}}</span>
+                <span class="small">{{searchItem.to[0].name}}</span>
+                <span class="small">{{searchItem.to[0].address}}</span>
+              </div>
+              <div class="col-md-12 bt-search-item" ng-if="collection.name === 'users'">
+                <span class="small"><img width="20" src="{{searchItem.avatar}}"></span>
+                <span class="small">{{searchItem.name.first}}</span>
+                <span class="small">{{searchItem.name.last}}</span>
+              </div>
+            </div>
+            </div>
+            <span ng-show="noData()">no results found</span>
           </a>
         </ul>
       </div>

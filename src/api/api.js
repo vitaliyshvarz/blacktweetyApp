@@ -286,4 +286,45 @@ api.post('/api/delete_file', function(req, res){
 	});
 });
 
+/**
+* Search services
+*/
+api.post('/api/search-in-users', function(req, res){
+	Users.find({ $or:[
+	    { email:{'$regex':req.body.search, $options: 'i' }},
+	    { 'name.first':{'$regex':req.body.search, $options: 'i' }},
+		  { 'name.last':{'$regex':req.body.search, $options: 'i' }}
+	  ]
+  	}, function(err, result){
+  		if (err) { console.log(err); res.send(err); return;}
+  		res.send(result);
+    });
+});
+api.post('/api/search-in-blog', function(req, res){
+	// Users.find({ $or:[
+ //    { email:{'$regex':req.body.search, $options: 'i' }},
+ //    { name: {
+	//     	first:{'$regex':req.body.search, $options: 'i' },
+	//     	last:{'$regex':req.body.search, $options: 'i' }
+ //    }}]
+	// }, function(err, result){
+	// 	if (err) { console.log(err); res.send(err); return;}
+	// 	res.send(result);
+ //  });
+res.send([]);
+});
+api.post('/api/search-in-messages', function(req, res){
+	Emails.find({ $or:[
+    { from:{'$regex':req.body.search, $options: 'i' }},
+    { 'to.name':{'$regex':req.body.search, $options: 'i' }},
+    { 'to.address':{'$regex':req.body.search, $options: 'i' }},
+    { 'message.subject':{'$regex':req.body.search, $options: 'i' }},
+	  { 'message.text':{'$regex':req.body.search, $options: 'i' }}
+  	]
+	}, function(err, result){
+		if (err) { console.log(err); res.send(err); return;}
+		res.send(result);
+  });
+});
+
 module.exports = api;

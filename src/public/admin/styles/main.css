@@ -118,6 +118,7 @@ div.well{
   display: block;
   margin: auto;
 }
+/* Search */
 
 .bt-search-block{
   width: 100%;
@@ -131,6 +132,25 @@ div.well{
   z-index: 1;
   border-radius: 3px;
   border: 1px solid gray;
+  max-height: 400px;
+  overflow: auto;
+}
+.bt-search-item {
+  padding-bottom: 3px;
+  border-top: 1px solid lightgray;
+  padding-top: 2px;
+}
+.bt-search-item:hover {
+  cursor: pointer;
+  background-color:lightgray
+}
+
+.search-load {
+  position: absolute;
+  z-index: 2;
+  top: 7px;
+  bottom: 0;
+  left: -24px;
 }
 @media(max-width:768px) {
   .hide-elem-tablet {
