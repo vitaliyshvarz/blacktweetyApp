@@ -2,8 +2,12 @@ it will be an awesome CMS
 
 - install mongoDB
 - create DB "test"
+- install bower
+- install grunt
+
 - npm install
 - bower install
+- 
 
 Node test:
 - make test
