@@ -21,7 +21,8 @@
 			'datatables',
 			'ngTagsInput',
 			'textAngular',
-			'underscore'
+			'underscore',
+			'ui.tinymce'
 		]);
 
 	app.config(['$routeSegmentProvider',
@@ -39,6 +40,7 @@
 	        .when('/main/users/:id',      'main.user')
 	        .when('/main/messages',       'main.messages')
 	        .when('/main/messages/:id',   'main.message')
+	        .when('/main/blog',           'main.blog')
 
 	        .segment('main', {
             templateUrl: 'js/views/main.html',
@@ -153,22 +155,39 @@
 				        dependencies: ['id']
 		        	})
 
+		        	.segment('blog', {
+		        		templateUrl: 'js/views/blog.html',
+		        		controller: 'BlogCtrl',
+		        		resolve: {
+		        			blogData: ['initialDataFactory', '$rootScope', function(initialDataFactory, $rootScope) {
+		            		// var usrEmail = $rootScope.user.email;
+				            // return 	initialDataFactory.getUserEmails(usrEmail);
+				        	}]
+		        		},
+				        untilResolved: {
+				          templateUrl: 'js/views/loading.html'
+				        },
+				        resolveFailed: {
+				          templateUrl: 'js/views/error.html'
+				        },
+		        	})
+
 		        	.segment('userProfile', {
 			        	templateUrl: 'js/views/userProfile.html',
 			        	controller: 'userProfileCtrl',
-		            resolve: {
-		            	users: ['initialDataFactory', function(initialDataFactory) {
-				            return 	initialDataFactory.getUsers();
-				        	}],
-				        	loginData: ['initialDataFactory', '$rootScope', function(initialDataFactory, $rootScope) {
-		            		var usrId = $rootScope.user._id;
-				            return 	initialDataFactory.getUserLoginData(usrId);
-				        	}],
-				        	emailsData: ['initialDataFactory', '$rootScope', function(initialDataFactory, $rootScope) {
-		            		var usrEmail = $rootScope.user.email;
-				            return 	initialDataFactory.getUserEmails(usrEmail);
-				        	}],
-		            },
+			            resolve: {
+			            	users: ['initialDataFactory', function(initialDataFactory) {
+					            return 	initialDataFactory.getUsers();
+					        	}],
+					        	loginData: ['initialDataFactory', '$rootScope', function(initialDataFactory, $rootScope) {
+			            		var usrId = $rootScope.user._id;
+					            return 	initialDataFactory.getUserLoginData(usrId);
+					        	}],
+					        	emailsData: ['initialDataFactory', '$rootScope', function(initialDataFactory, $rootScope) {
+			            		var usrEmail = $rootScope.user.email;
+					            return 	initialDataFactory.getUserEmails(usrEmail);
+					        	}],
+			            },
 				        untilResolved: {
 				          templateUrl: 'js/views/loading.html'
 				        },

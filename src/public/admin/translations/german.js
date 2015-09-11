@@ -86,7 +86,8 @@
             users: 'Benutzer',
             messages: 'Nachrichten',
             language: 'Sprahe',
-            account: 'Account'
+            account: 'Account',
+            blog: 'Blog'
         },
         SEARCH: 'Suche',
         MESSAGE: 'Nachricht',
@@ -102,7 +103,8 @@
         NO: 'Nein',
         EDIT: 'Bearbeiten',
         DELETE_USER: 'Benutzer löschen',
-        ARE_YOU_SURE: 'Bist du sicher'
+        ARE_YOU_SURE: 'Bist du sicher ?',
+        BLOG_POSTS: 'Blog-Beiträge'
         });
     });
 

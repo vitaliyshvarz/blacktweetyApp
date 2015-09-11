@@ -13,6 +13,7 @@ var fs 						= require('fs');
 var Users = require("../../dbmodels/Users").Users;
 var Emails = require('../../dbmodels/Emails').Emails;
 var LoginData = require('../../dbmodels/LoginData').LoginData;
+var Blog = require('../../dbmodels/BlogPost').Blog;
 
 /* Milter config */
 
@@ -286,6 +287,9 @@ api.post('/api/delete_file', function(req, res){
 	});
 });
 
+
+
+//============================================================
 /**
 * Search services
 */
@@ -326,5 +330,26 @@ api.post('/api/search-in-messages', function(req, res){
 		res.send(result);
   });
 });
+
+//==================================================================
+//Blog services
+api.post('/api/add-blog-post', function(req, res){
+	var newPost = new Blog({
+			_id         : shortid.generate(),
+			userId      : req.body.userId,
+			category 	: req.body.category,
+			title		: req.body.title,
+			content		: req.body.content,
+			status		: req.body.status,
+			tags		: req.body.tags
+		});
+	newPost.save(function (err) {
+	  if (err) {console.log(err); res.send(err); return;}
+	  console.log('post ' + req.body.firstName + 'saved');
+	  res.send('blog post added successfully');
+	});
+});
+
+
 
 module.exports = api;

@@ -67,7 +67,8 @@
             bcc: 'BCC',
             subject: 'Тема',
             text: 'Текст',
-            actions: 'Дії'
+            actions: 'Дії',
+            blog: 'Блог'
         },
         NEW_EMAILS: 'Нові повідомлення',
         VIEW_EMAILS: 'Повідомлення',
@@ -102,7 +103,8 @@
         NO: 'Ні',
         EDIT: 'Редагувати',
         DELETE_USER: 'Видалити користувача',
-        ARE_YOU_SURE: 'Ви впевнені?'
+        ARE_YOU_SURE: 'Ви впевнені?',
+        BLOG_POSTS: 'Дописи у блозі'
       });
 
     });

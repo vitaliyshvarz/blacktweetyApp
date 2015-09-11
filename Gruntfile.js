@@ -234,7 +234,7 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('test', [
 		'express:dev',
-	  'jshint',
-	  'karma:unit'
+	  	'jshint',
+	  	'karma:unit'
 	]);
 };

@@ -86,7 +86,8 @@
             users: 'Users',
             messages: 'Messages',
             language: 'Language',
-            account: 'Account'
+            account: 'Account',
+            blog: 'Blog'
         },
         SEARCH: 'Search',
         MESSAGE: 'Message',
@@ -102,7 +103,8 @@
         NO: 'No',
         EDIT: 'Edit',
         DELETE_USER: 'Delete user',
-        ARE_YOU_SURE: 'Are you sure?'
+        ARE_YOU_SURE: 'Are you sure?',
+        BLOG_POSTS: 'Blog posts'
       });
     });
 
