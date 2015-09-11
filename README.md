@@ -1,13 +1,14 @@
-it will be an awesome CMS
+Simple blog CMS
 
 - install mongoDB
 - create DB "test"
 - install bower
 - install grunt
 
+Run
 - npm install
 - bower install
-- 
+- grunt dbrestore
 
 Node test:
 - make test
