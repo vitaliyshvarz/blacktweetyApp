@@ -15,8 +15,7 @@
 
 	function BlogCtrl($scope, userFactory, blogData) {
 
-		 $scope.blogPosts = blogData;
-
+		$scope.blogPosts = blogData;
 	}
 
 }());

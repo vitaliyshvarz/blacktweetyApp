@@ -1,0 +1,122 @@
+ 			<form>
+				<div class="row vcenter">
+					<div class="col-xs-2">
+						<label class="label label-primary" translate="Blog.date"></label>
+					</div>
+					<div class="col-xs-10">
+				  	<input 	type="text"
+						  			class="form-control"
+						  			aria-label="data"
+						  			name="date"
+						  			placeholder="date"
+						  			ng-model="newPost.date"
+						  			required="true"
+						  			disabled="true">
+					</div>
+				</div>
+
+				<div class="row vcenter">
+					<div class="col-xs-2">
+						<label class="label label-primary" translate="Blog.title"></label>
+					</div>
+					<div class="col-xs-10">
+				  	<input 	type="text"
+						  			class="form-control"
+						  			aria-label="Title"
+						  			name="Title"
+						  			placeholder="Title"
+						  			ng-model="newPost.title"
+						  			required="true">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 text-center">
+						<hr><p><label class="label label-primary" translate="Blog.content"></label></p>
+					</div>
+					<div class="col-xs-12" >
+						<textarea ui-tinymce="tinymceOptions" ng-model="newPost.content"></textarea>
+					</div>
+					<div  class="alert alert-danger" ng-if="mailTextError"
+	              ng-bind="mailTextError">
+	        </div>
+				</div>
+
+				<!--category-->
+				<div class="row vcenter">
+					<div class="col-xs-2">
+						<label class="label label-primary" translate="Blog.category"></label>
+					</div>
+					<div class="col-xs-10">
+  					<tags-input class="bootstrap"
+  											ng-model="Blog.category"
+        								placeholder="Categories"
+        								replace-spaces-with-dashes="false">
+				        <auto-complete  source="allCategories"  debounce-delay="0"></auto-complete>
+				    </tags-input>
+				    <div  class="alert alert-danger" ng-if="mailCcError"
+		              ng-bind="mailCcError">
+	        	</div>
+					</div>
+				</div>
+
+				<!--tags-->
+				<div class="row vcenter">
+					<div class="col-xs-2">
+						<label class="label label-primary" translate="Blog.tags"></label>
+					</div>
+					<div class="col-xs-10">
+  					<tags-input ng-model="Blog.tags"
+        								placeholder="Tags"
+        								class="bootstrap"
+        								replace-spaces-with-dashes="false">
+				        <auto-complete  source="allTags"></auto-complete>
+				    </tags-input>
+				   	<div  class="alert alert-danger" ng-if="mailToError"
+		              ng-bind="mailToError">
+	        	</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<br>
+					<div class="text-center" ng-show="showSpinner"><img src="img/loader.gif"></div>
+					<button class="btn btn-success center-block"
+						ng-click="createBlogPost()" translate="CREATE_BLOG_POST">
+					</button>
+				</div>
+			</form>
+
+			<!-- add image -->
+			<div class="modal fade" style="z-index:999999" id="myModal" tabindex="99" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        
+
+								<div>
+									<img 	width="150"
+												height="150"
+												class="img-rounded center-block"
+												ng-show="files[0] != null"
+												ngf-src="files[0]"/>
+					  		</div>
+					  		<br>
+					  		<div class="text-center">
+						  		<div class="btn-group">
+										<button class="btn btn-success"
+												 		ngf-select ng-model="files"
+												 		ngf-multiple="multiple">
+												 		{{'SELECT_FILE' | translate}}
+										</button>
+										<button class="btn btn-danger"
+												 		ng-click="removeImage()">
+												 		{{'CANCEL' | translate}}
+										</button>
+						  		</div>
+					  		</div>
+
+			      </div>
+			    </div>
+			  </div>
+			</div>

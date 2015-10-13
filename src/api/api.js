@@ -10,16 +10,21 @@ var done         	= false;
 var filenameSave 	= '';
 var fs 						= require('fs');
 // db
-var Users = require("../../dbmodels/Users").Users;
-var Emails = require('../../dbmodels/Emails').Emails;
-var LoginData = require('../../dbmodels/LoginData').LoginData;
-var Blog = require('../../dbmodels/BlogPost').Blog;
+var Users 			= require("../../dbmodels/Users").Users;
+var Emails 			= require('../../dbmodels/Emails').Emails;
+var LoginData 	= require('../../dbmodels/LoginData').LoginData;
+var Blog 				= require('../../dbmodels/BlogPost').Blog;
+var BlogImages 	= require('../../dbmodels/BlogImages').BlogImages;
 
-/* Milter config */
+/* Multer config */
 
 api.use(multer({ dest: 'src/public/',
 	changeDest: function(dest, req, res) {
-	    return dest + req.body.username + '/uploads/';
+			if(!req.body.blog){
+				return dest + req.body.username + '/uploads/';
+			} else {
+				return dest + req.body.username + '/uploads/' + req.body.blog;
+			}
 	},
 	rename: function (fieldname, filename, req, res) {
 		var filenameForSave = Date.now()+filename;
@@ -347,6 +352,21 @@ api.post('/api/add-blog-post', function(req, res){
 	  if (err) {console.log(err); res.send(err); return;}
 	  console.log('post ' + req.body.firstName + 'saved');
 	  res.send('blog post added successfully');
+	});
+});
+
+//upload blog image
+api.post('/api/blog-image', function(){
+	if(done === true){
+		res.end("Blog image uploaded.");
+	}
+});
+
+//get all uploaded blog images
+api.get('/api/blog-images', function(req, res){
+	BlogImages.find({}, function(error, images){
+		if (error) {console.log(err); res.send(err); return;}
+		res.send({ images: images });
 	});
 });
 

@@ -8,101 +8,59 @@
 
     addBlogPost
         .$inject = [
-        'userFactory',
         '$translate',
         '$routeSegment',
         '$timeout',
-        '$location'
+        '$location',
+        '$rootScope',
+        'BLOG_IMAGES',
+        'tinymceOptions'
     ];
 
-    function addBlogPost(userFactory, $translate, $routeSegment, $timeout, $location) {
+    function addBlogPost(
+        $translate, 
+        $routeSegment, 
+        $timeout, 
+        $location, 
+        $rootScope, 
+        BLOG_IMAGES, 
+        tinymceOptions 
+        ) {
         return {
             restrict: 'E',
-            replace: false,
+            transclude: true,
             scope: {
                 user: '=user',
-                allUsers: '=allUsers',
-                message: '=message'
+                categories: '=categories',
+                post: '=post'
             },
-            templateUrl: 'js/directives/sendEmail.html',
-            link: function(scope) {
+            templateUrl: 'js/directives/addBlogPost.html',
+            controller: function($scope, $element){
+                tinymceOptions.tinyvision.upload = function(){
+                    $('#myModal').modal('show');
+                    debugger;
+                }
+                $scope.tinymceOptions = tinymceOptions;
+            },
+            link: function(scope, $transclude) {
 
-            scope.allUsers = userFactory.filteredUsersData(scope.allUsers);
-            scope.mailParams = _.extend({
-                from: $rootScope.user.email,
-                to: [],
-                cc:[],
-                bcc:[],
-                subject:'',
-                text:''
-            }, scope.message);
+            scope.newPost = _.extend({
+                userId: $rootScope.user._id,
+                date: new Date(),
+                category: [],
+                tags: [],
+                title: '',
+                content: '',
+                status: 1
+            }, scope.post);
 
             scope.showSpinner = false;
-            scope.checkEmails = function(emailsArray){
-                var invaldEmails = [];
-                angular.forEach(emailsArray, function(emailName){
-                    if(!/[\w]+@[\w]{1,10}\.[a-zA-Z]{2,5}/i.test(emailName.text)){
-                        invaldEmails.push(emailName.text);
-                    }
-                });
-                if(invaldEmails.length > 0){ return invaldEmails.join(', '); }
-                return true;
-            };
 
-            scope.checkEmailData = function(){
-                scope.emailError = false;
-
-                if(!scope.mailParams.to.length){
-                    scope.mailToError = $filter('translate')('TO_REQUIRED');
-                    scope.emailError = true;
-                }
-                if(scope.mailParams.to.length && scope.checkEmails(scope.mailParams.to).length){
-                    scope.mailToError = $filter('translate')('INVALID_TO') +
-                                            scope.checkEmails(scope.mailParams.to);
-                    scope.emailError = true;
-                } else if(scope.mailParams.to.length){
-                    scope.mailToError = '';
-                }
-                if(scope.mailParams.cc.length && scope.checkEmails(scope.mailParams.cc).length) {
-                    scope.mailCcError = $filter('translate')('INVALID_CC') +
-                                            scope.checkEmails(scope.mailParams.to);
-                    scope.emailError = true;
-                } else {
-                    scope.mailCcError = '';
-                }
-                if(scope.mailParams.bcc.length && scope.checkEmails(scope.mailParams.bcc).length) {
-                    scope.mailBccError = $filter('translate')('INVALID_BCC') +
-                                            scope.checkEmails(scope.mailParams.to);
-                    scope.emailError = true;
-                } else {
-                    scope.mailBccError = '';
-                }
-
-                if(!scope.mailParams.text || scope.mailParams.text.length === 0){
-                    scope.mailTextError = $filter('translate')('NO_EMAIL_MESSAGE');
-                    scope.emailError = true;
-                } else {
-                    scope.mailTextError = '';
-                }
-
-                if(!scope.mailParams.subject.length){
-                    scope.emailError = true;
-                }
-                if(!scope.mailParams.from.length){
-                    scope.emailError = true;
-                }
-                if(scope.emailError){ return false; }
-                return true;
+            scope.createBlogPost = function(){
 
             };
-            scope.sendEmail = function(){
-                if(scope.checkEmailData()){
-                    scope.showSpinner = true;
-                    Email.send(scope.mailParams);
-                }
-            };
 
-            $rootScope.$on('EMAIL_SEND', function(){
+            $rootScope.$on('BLOG_POST_SUBMITED', function(){
                 scope.showSpinner = false;
             });
 

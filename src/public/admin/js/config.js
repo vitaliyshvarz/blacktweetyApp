@@ -30,6 +30,27 @@
 		users: {name: 'users', endPoint: '/api/search-in-users'},
 		blog: {name: 'blog posts', endPoint: '/api/search-in-blog'},
 		messages: {name: 'messages',  endPoint: '/api/search-in-messages'}
-	});
+	})
+	.constant('BLOG_IMAGES', '/api/blog-images')
+	.constant('BLOG_IMAGE_UPLOAD', '/api/blog-image')
+	.constant('tinymceOptions', {
+      theme: "modern",
+      plugins: [
+          "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+          "searchreplace wordcount visualblocks visualchars code fullscreen",
+          "insertdatetime media nonbreaking save table contextmenu directionality",
+          "emoticons template paste textcolor tinyvision"
+      ],
+      toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+      toolbar2: "print preview media | forecolor backcolor emoticons",
+      image_advtab: true,
+      height: "300px",
+      tinyvision: {
+          source: '/api/blog-images',
+          upload: function () {
+              
+          }
+      }
+    });
 
 }());
