@@ -12,21 +12,24 @@
 
     blogFactory
         .$inject = [
-        'userService',
-        'BLOG_IMAGE_UPLOAD'
+        'imageService',
+        '$q'
     ];
 
     function blogFactory(
-        userService,
-        BLOG_IMAGE_UPLOAD
+        imageService,
+        $q
         ) {
 
-        function uploadImage(){
+        /**
+        * Get all image data
+        */
+        function getImageData(){
 
         }
 
         return {
-            uploadImage: uploadImage,
+            getImageData: getImageData,
         };
     }
 

@@ -1,0 +1,26 @@
+
+	<div>
+		<img 	width="150"
+					height="150"
+					class="img-rounded center-block"
+					ng-show="files[0] != null"
+					ngf-src="files[0]"/>
+	</div>
+	<br>
+	<div class="text-center">
+		<div class="btn-group">
+			<button class="btn btn-success"
+					 		ngf-select ng-model="files"
+					 		ngf-multiple="multiple">
+					 		{{'SELECT_FILE' | translate}}
+			</button>
+			<button class="btn btn-danger"
+					 		ng-click="removeImage()">
+					 		{{'CANCEL' | translate}}
+			</button>
+			<button class="btn btn-success"
+					 		ng-click="uploadImage()">
+					 		{{'UPLOAD' | translate}}
+			</button>
+		</div>
+	</div>

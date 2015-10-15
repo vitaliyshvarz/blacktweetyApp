@@ -24,7 +24,7 @@
         $location, 
         $rootScope, 
         BLOG_IMAGES, 
-        tinymceOptions 
+        tinymceOptions
         ) {
         return {
             restrict: 'E',
@@ -32,15 +32,23 @@
             scope: {
                 user: '=user',
                 categories: '=categories',
-                post: '=post'
+                post: '=post',
+                images: '=images'
             },
             templateUrl: 'js/directives/addBlogPost.html',
             controller: function($scope, $element){
-                tinymceOptions.tinyvision.upload = function(){
-                    $('#myModal').modal('show');
+                function init(){
+                    tinymceOptions.tinyvision.upload = function(){
+                        $('#myModal').modal('show');
+                    }
+                    tinymceOptions.tinyvision.source =  BLOG_IMAGES;
                     debugger;
+                    $scope.tinymceOptions = tinymceOptions;  
                 }
-                $scope.tinymceOptions = tinymceOptions;
+                init();
+                $rootScope.$on('IMAGE_UPLOADED', function(){
+                    init();
+                });
             },
             link: function(scope, $transclude) {
 

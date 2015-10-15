@@ -20,14 +20,10 @@ var BlogImages 	= require('../../dbmodels/BlogImages').BlogImages;
 
 api.use(multer({ dest: 'src/public/',
 	changeDest: function(dest, req, res) {
-			if(!req.body.blog){
-				return dest + req.body.username + '/uploads/';
-			} else {
-				return dest + req.body.username + '/uploads/' + req.body.blog;
-			}
+		return dest + req.body.username + '/uploads/';
 	},
 	rename: function (fieldname, filename, req, res) {
-		var filenameForSave = Date.now()+filename;
+		var filenameForSave = !req.body.blog ? Date.now()+filename : 'blog/' + Date.now()+filename;
 		filenameSave = "uploads/"+filenameForSave+'.'+req.body.extention;
 		return filenameForSave;
 	},
@@ -356,17 +352,29 @@ api.post('/api/add-blog-post', function(req, res){
 });
 
 //upload blog image
-api.post('/api/blog-image', function(){
+api.post('/api/blog-image', function(req, res){
 	if(done === true){
-		res.end("Blog image uploaded.");
+		var newImage = new BlogImages({
+			_id         : shortid.generate(),
+			userId      : req.body.userId,
+			imageUrl    : filenameSave,
+			name        : req.files.file.originalname,
+			value       : filenameSave
+		});
+		newImage.save(function (err) {
+		  if (err) {console.log(err); res.send(err); return;}
+		  console.log('image ' + req.files.file.originalname + 'saved');
+		  res.send("Blog image uploaded.");
+		});
 	}
 });
 
 //get all uploaded blog images
 api.get('/api/blog-images', function(req, res){
 	BlogImages.find({}, function(error, images){
+		console.log(req.headers)
 		if (error) {console.log(err); res.send(err); return;}
-		res.send({ images: images });
+		res.send({ 'data': images });
 	});
 });
 
