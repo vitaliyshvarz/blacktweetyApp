@@ -13,8 +13,7 @@
         '$timeout',
         '$location',
         '$rootScope',
-        'BLOG_IMAGES',
-        'tinymceOptions'
+        'BLOG_IMAGES'
     ];
 
     function addBlogPost(
@@ -23,8 +22,7 @@
         $timeout, 
         $location, 
         $rootScope, 
-        BLOG_IMAGES, 
-        tinymceOptions
+        BLOG_IMAGES
         ) {
         return {
             restrict: 'E',
@@ -36,20 +34,7 @@
                 images: '=images'
             },
             templateUrl: 'js/directives/addBlogPost.html',
-            controller: function($scope, $element){
-                function init(){
-                    tinymceOptions.tinyvision.upload = function(){
-                        $('#myModal').modal('show');
-                    }
-                    tinymceOptions.tinyvision.source =  BLOG_IMAGES;
-                    debugger;
-                    $scope.tinymceOptions = tinymceOptions;  
-                }
-                init();
-                $rootScope.$on('IMAGE_UPLOADED', function(){
-                    init();
-                });
-            },
+
             link: function(scope, $transclude) {
 
             scope.newPost = _.extend({

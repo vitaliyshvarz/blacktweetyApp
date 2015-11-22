@@ -33,24 +33,34 @@
 	})
 	.constant('BLOG_IMAGES', '/api/blog-images')
 	.constant('BLOG_IMAGE_UPLOAD', '/api/blog-image')
-	.constant('tinymceOptions', {
-      theme: "modern",
-      plugins: [
-          "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-          "searchreplace wordcount visualblocks visualchars code fullscreen",
-          "insertdatetime media nonbreaking save table contextmenu directionality",
-          "emoticons template paste textcolor tinyvision"
-      ],
-      toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-      toolbar2: "print preview media | forecolor backcolor emoticons",
-      image_advtab: true,
-      height: "300px",
-      tinyvision: {
-          source: '/api/blog-images',
-          upload: function () {
-              
-          }
-      }
-    });
+
+	.config(function ($provide) {
+
+        $provide.decorator('taOptions', ['taRegisterTool', '$delegate', 'ngDialog', function (taRegisterTool, taOptions, ngDialog) {
+            taRegisterTool('uploadImage', {
+                buttontext: 'Upload Image',
+                iconclass: "fa fa-image",
+                action: function (deferred,restoreSelection) {
+                    ngDialog.open({
+                        controller: 'UploadImageModalInstance',
+                        template: 'js/views/upload.html'
+                    }).closePromise.then(
+                        function (result) {
+                        	debugger;
+                            restoreSelection();
+                            document.execCommand('insertImage', true, result.value);
+                            deferred.resolve();
+                        },
+                        function () {
+                            deferred.resolve();
+                        }
+                    );
+                    return false;
+                }
+            });
+            taOptions.toolbar[1].push('uploadImage');
+            return taOptions;
+        }]);
+    })
 
 }());

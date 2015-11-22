@@ -20,7 +20,9 @@ var BlogImages 	= require('../../dbmodels/BlogImages').BlogImages;
 
 api.use(multer({ dest: 'src/public/',
 	changeDest: function(dest, req, res) {
-		return dest + req.body.username + '/uploads/';
+		var dir = '/uploads/';
+		if(req.body.dir) { dir += req.body.dir; }
+		return dest + req.body.username + dir;
 	},
 	rename: function (fieldname, filename, req, res) {
 		var filenameForSave = !req.body.blog ? Date.now()+filename : 'blog/' + Date.now()+filename;
@@ -87,7 +89,7 @@ api.post('/api/add-user', function(req, res){
 
 api.post('/api/photo', function(req, res){
 	if(done === true){
-		res.end("File uploaded.");
+		res.end('Success uplodaing image');
 	}
 });
 
@@ -364,7 +366,7 @@ api.post('/api/blog-image', function(req, res){
 		newImage.save(function (err) {
 		  if (err) {console.log(err); res.send(err); return;}
 		  console.log('image ' + req.files.file.originalname + 'saved');
-		  res.send("Blog image uploaded.");
+		  res.send({ data: filenameSave});
 		});
 	}
 });

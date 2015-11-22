@@ -21,8 +21,7 @@
 			'datatables',
 			'ngTagsInput',
 			'textAngular',
-			'underscore',
-			'ui.tinymce'
+			'underscore'
 		]);
 
 	app.config(['$routeSegmentProvider',
