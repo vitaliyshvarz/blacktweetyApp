@@ -48,7 +48,7 @@
     "di": "0.0.1",
     "bluebird": "~2.10.2",
     "log4js": "~0.6.27",
-    "lodash": "~3.10.1",
+    "lodash": "~4.17.21",
     "useragent": "~2.1.7",
     "chokidar": "~1.2.0",
     "expand-braces": "~0.1.1",
