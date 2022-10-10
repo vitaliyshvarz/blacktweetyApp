@@ -16,5 +16,5 @@ Node test:
 Front-end admin test
 - grunt test
 
-(VPS) Heroku url
+Heroku URL
 - blacktweetyapp.herokuapp.com
