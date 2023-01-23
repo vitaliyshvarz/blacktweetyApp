@@ -43,7 +43,7 @@
     "serve-favicon": "^2.2.1",
     "shortid": "^2.2.2",
     "should": "^7.0.2",
-    "supertest": "^1.0.1",
+    "supertest": "^6.3.3",
     "socket.io": "~4.5.2",
     "di": "0.0.1",
     "bluebird": "~2.10.2",
